@@ -237,9 +237,10 @@ private working state must be backed up alongside it.
 The ledger always begins with a Genesis event. Its payload is
 `@type: urn:brutality:tcg:Genesis` with `@id`
 `urn:brutality:tcg:Genesis:{publicKeyMultibase}`, anchoring the whole chain to
-the key that signs it, plus the ledger `schemaVersion`. Genesis omits `prevId`
-(the only event that does); verification recomputes the multibase from the
-signing key and checks it against the Genesis payload `@id`.
+the key that signs it, plus the ledger `schemaVersion`. Having no predecessor,
+Genesis digests with its own payload `@id` as the chain anchor; verification
+recomputes the multibase from the signing key and checks it against the
+Genesis payload `@id`.
 
 Phase 1 includes (payload JSON-LD `@type` in parentheses):
 
@@ -276,15 +277,19 @@ Envelope (root):
   W3C security vocabulary: a sha2-256 multihash (0x12 0x20 + digest),
   base58btc multibase encoded (`z…`)
 - `ts`: UTC timestamp
-- `prevId`: preceding event's envelope `@id`, omitted only on the Genesis
-  root — so each later event's content hash (and thus its `@id`) binds to
-  the prior head
 - `proof`: a W3C **Data Integrity** proof (`DataIntegrityProof`,
   cryptosuite **`eddsa-jcs-2022`**) over the unsecured document
-  (`{@id, @type, ts, prevId?, payload}`), added after `@id` is computed.
+  (`{@id, @type, ts, payload}`), added after `@id` is computed.
   Because `seq` lives in the signed `@id`, its position is authenticated. It
   carries `created`, a `did:key` `verificationMethod`,
   `proofPurpose: assertionMethod`, and a multibase `proofValue`.
+
+There is no `prevId` field. Chaining follows the did:webvh entry-hash
+pattern: the digest is computed over `{@id, @type, ts, payload}` with the
+*previous* event's envelope `@id` occupying the `@id` slot, and the result
+replaces it as `Event:{seq}-{digest}`. Each id therefore binds the full
+prior head implicitly. Genesis, the chain root, digests with its own payload
+`@id` (the signing key anchor) in the slot instead.
 
 Payload (domain resource):
 
@@ -302,11 +307,10 @@ Payload (domain resource):
   `…CardSet:OG`) and `urn:brutality:tcg:Card:{setCode}:{number}` (e.g.
   `…Card:OG:005`, zero-padded)
 
-The content digest covers `seq`, `ts`, `prevId` (when present), and the whole
-`payload`. Verifiers read `seq` from the `@id`, recompute the digest
-(confirming the envelope `@id`, the `seq` prefix, and the chain), and verify
-the proof. Pack commitments are `digestMultibase` values too. Null/absent
-fields are not serialized (e.g. Genesis omits `prevId`).
+Verifiers read `seq` from the `@id`, substitute the predecessor's `@id`
+(or the Genesis payload `@id`) into the `@id` slot, recompute the digest —
+one check that proves both content integrity and the chain link — and then
+verify the proof. Pack commitments are `digestMultibase` values too.
 
 The ledger must use:
 

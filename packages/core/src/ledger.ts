@@ -52,38 +52,39 @@ export function sha256DigestMultibase(input: string): string {
 }
 
 /**
- * Content hashed for the envelope `@id` (and chain binding): everything except
- * the root `@id`/`@type` (derived from this hash / constant) and `proof`
- * (added after). The payload — including its domain `@id`/`@type` — is inside.
+ * Chain digest, did:webvh style: the digest is computed over the event
+ * document with the *previous* event's `@id` occupying the `@id` slot
+ * (Genesis, having no predecessor, anchors on its own payload `@id`, which
+ * carries the signing key). The result then replaces `@id` as
+ * `Event:{seq}-{digest}` — so the chain link is implicit in the digest and
+ * no `prevId` field is needed. `proof` is added after and excluded here.
  */
-export function eventContentHash(e: {
-  seq: number;
-  ts: string;
-  prevId?: string;
-  payload: LedgerEventPayload;
-}): string {
+export function eventDigest(
+  anchorId: string,
+  e: { ts: string; payload: LedgerEventPayload }
+): string {
   const body: Record<string, unknown> = {
-    seq: e.seq,
+    "@id": anchorId,
+    "@type": EVENT_TYPE,
     ts: e.ts,
     payload: e.payload,
   };
-  if (e.prevId !== undefined) body.prevId = e.prevId;
   return sha256DigestMultibase(canonicalize(body));
 }
 
-/**
- * Document signed by the Data Integrity proof (everything except `proof`).
- * `seq` is not a field of its own; it is folded into `@id`, which is signed.
- */
+/** Anchor used in the `@id` slot when digesting: prev `@id`, or the Genesis payload `@id`. */
+function digestAnchor(prevEventId: string | null, payload: LedgerEventPayload): string {
+  return prevEventId ?? payload["@id"];
+}
+
+/** Document signed by the Data Integrity proof (everything except `proof`). */
 function unsecuredDocument(e: Omit<LedgerEvent, "proof">): Record<string, unknown> {
-  const doc: Record<string, unknown> = {
+  return {
     "@id": e["@id"],
     "@type": e["@type"],
     ts: e.ts,
     payload: e.payload,
   };
-  if (e.prevId !== undefined) doc.prevId = e.prevId;
-  return doc;
 }
 
 function buildSignedEvent(
@@ -102,18 +103,12 @@ function buildSignedEvent(
     ...fields,
   };
 
-  const hash = eventContentHash({
-    seq,
-    ts,
-    prevId: prevId ?? undefined,
-    payload,
-  });
+  const digest = eventDigest(digestAnchor(prevId, payload), { ts, payload });
 
   const unsecured: Omit<LedgerEvent, "proof"> = {
-    "@id": eventEnvelopeId(seq, hash),
+    "@id": eventEnvelopeId(seq, digest),
     "@type": EVENT_TYPE,
     ts,
-    ...(prevId !== null ? { prevId } : {}),
     payload,
   };
 
@@ -232,22 +227,15 @@ export function verifyChain(events: LedgerEvent[], publicKeyPem: string): Verify
       if (domainSuffix !== keyMultibase) {
         errors.push(`seq ${seqLabel}: Genesis @id must carry the signing key`);
       }
-      if (e.prevId !== undefined) {
-        errors.push(`seq ${seqLabel}: Genesis must not have a prevId`);
-      }
-    } else if (e.prevId !== prev) {
-      errors.push(`seq ${seqLabel}: prevId mismatch (expected ${prev}, got ${e.prevId})`);
     }
 
-    // Envelope @id folds seq together with the content hash of envelope+payload.
-    const hash = eventContentHash({
-      seq,
-      ts: e.ts,
-      prevId: e.prevId,
-      payload: e.payload,
-    });
-    if (e["@id"] !== eventEnvelopeId(seq, hash)) {
-      errors.push(`seq ${seqLabel}: @id does not match seq + content hash`);
+    // Recompute the digest with the previous event's @id in the @id slot
+    // (Genesis anchors on its own payload @id). A match proves both content
+    // integrity and the chain link to the predecessor.
+    const anchor = isGenesis ? e.payload?.["@id"] : prev!;
+    const digest = eventDigest(anchor, { ts: e.ts, payload: e.payload });
+    if (e["@id"] !== eventEnvelopeId(seq, digest)) {
+      errors.push(`seq ${seqLabel}: @id does not match seq + chained digest`);
     }
 
     if (e.proof?.verificationMethod !== expectedVm) {

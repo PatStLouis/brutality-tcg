@@ -18,7 +18,7 @@ export {
   appendEvents,
   listEvents,
   verifyChain,
-  eventContentHash,
+  eventDigest,
   sha256DigestMultibase,
   EVENT_TYPE,
   JsonLdTypes,

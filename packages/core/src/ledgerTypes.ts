@@ -72,8 +72,8 @@ export function domainSuffixOf(payload: {
 
 /**
  * Domain resource carried by an event: its own `@id`/`@type` plus
- * domain-specific fields. Envelope fields (`seq`, `ts`, `prevId`, `proof`)
- * live at the root.
+ * domain-specific fields. Envelope fields (`@id` carrying `seq` and the
+ * chained digest, `ts`, `proof`) live at the root.
  */
 export interface LedgerEventPayload {
   "@id": string;
@@ -83,14 +83,17 @@ export interface LedgerEventPayload {
 
 export interface LedgerEvent {
   /**
-   * `urn:brutality:tcg:Event:{seq}-{contentHash}` — the ordered, content-
+   * `urn:brutality:tcg:Event:{seq}-{digestMultibase}` — the ordered, content-
    * addressed chain link. `seq` is read from here via `eventSeqOf`.
+   *
+   * The digest is computed over this same document with the *previous*
+   * event's `@id` in this slot (Genesis uses its own payload `@id` as the
+   * anchor), then replaced by the result — so the chain link is implicit in
+   * the digest and there is no separate `prevId` field.
    */
   "@id": string;
   "@type": typeof EVENT_TYPE;
   ts: string;
-  /** Previous event `@id`. Omitted on the Genesis event (chain root). */
-  prevId?: string;
   payload: LedgerEventPayload;
   proof: DataIntegrityProof;
 }
