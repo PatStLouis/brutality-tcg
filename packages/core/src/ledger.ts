@@ -12,7 +12,9 @@ import {
   EVENT_TYPE,
   JsonLdTypes,
   domainSuffixOf,
+  eventEnvelopeId,
   eventJsonLdId,
+  eventSeqOf,
   eventTypeOf,
   jsonLdTypeFor,
   type EventSpec,
@@ -25,7 +27,9 @@ export {
   EVENT_TYPE,
   JsonLdTypes,
   domainSuffixOf,
+  eventEnvelopeId,
   eventJsonLdId,
+  eventSeqOf,
   eventTypeOf,
   jsonLdTypeFor,
 };
@@ -55,12 +59,14 @@ export function eventContentHash(e: {
   return sha256Hex(canonicalize(body));
 }
 
-/** Document signed by the Data Integrity proof (everything except `proof`). */
+/**
+ * Document signed by the Data Integrity proof (everything except `proof`).
+ * `seq` is not a field of its own; it is folded into `@id`, which is signed.
+ */
 function unsecuredDocument(e: Omit<LedgerEvent, "proof">): Record<string, unknown> {
   const doc: Record<string, unknown> = {
     "@id": e["@id"],
     "@type": e["@type"],
-    seq: e.seq,
     ts: e.ts,
     payload: e.payload,
   };
@@ -92,9 +98,8 @@ function buildSignedEvent(
   });
 
   const unsecured: Omit<LedgerEvent, "proof"> = {
-    "@id": eventJsonLdId(EVENT_TYPE, hash),
+    "@id": eventEnvelopeId(seq, hash),
     "@type": EVENT_TYPE,
-    seq,
     ts,
     ...(prevId !== null ? { prevId } : {}),
     payload,
@@ -164,7 +169,7 @@ export function listEvents(afterSeq = 0, limit = Number.MAX_SAFE_INTEGER): Ledge
   const all = readAllEvents();
   const out: LedgerEvent[] = [];
   for (const e of all) {
-    if (e.seq > afterSeq) out.push(e);
+    if (eventSeqOf(e) > afterSeq) out.push(e);
     if (out.length >= limit) break;
   }
   return out;
@@ -187,7 +192,8 @@ export function verifyChain(events: LedgerEvent[], publicKeyPem: string): Verify
 
   for (let i = 0; i < events.length; i++) {
     const e = events[i];
-    const seqLabel = e.seq ?? i + 1;
+    const seq = eventSeqOf(e);
+    const seqLabel = Number.isNaN(seq) ? i + 1 : seq;
 
     if (e["@type"] !== EVENT_TYPE) {
       errors.push(`seq ${seqLabel}: root @type must be ${EVENT_TYPE}`);
@@ -202,7 +208,7 @@ export function verifyChain(events: LedgerEvent[], publicKeyPem: string): Verify
       errors.push(`seq ${seqLabel}: payload @id must be {payload @type}:{domain id}`);
     }
 
-    if (e.seq !== i + 1) {
+    if (seq !== i + 1) {
       errors.push(`seq ${seqLabel}: expected seq ${i + 1}`);
     }
 
@@ -221,15 +227,15 @@ export function verifyChain(events: LedgerEvent[], publicKeyPem: string): Verify
       errors.push(`seq ${seqLabel}: prevId mismatch (expected ${prev}, got ${e.prevId})`);
     }
 
-    // Envelope @id is content-addressed from envelope + payload.
+    // Envelope @id folds seq together with the content hash of envelope+payload.
     const hash = eventContentHash({
-      seq: e.seq,
+      seq,
       ts: e.ts,
       prevId: e.prevId,
       payload: e.payload,
     });
-    if (e["@id"] !== eventJsonLdId(EVENT_TYPE, hash)) {
-      errors.push(`seq ${seqLabel}: @id does not match content hash`);
+    if (e["@id"] !== eventEnvelopeId(seq, hash)) {
+      errors.push(`seq ${seqLabel}: @id does not match seq + content hash`);
     }
 
     if (e.proof?.verificationMethod !== expectedVm) {

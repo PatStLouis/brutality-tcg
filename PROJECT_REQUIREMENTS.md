@@ -269,16 +269,19 @@ resource describing the domain fact:
 Envelope (root):
 
 - `@type`: always `urn:brutality:tcg:Event`
-- `@id`: content-addressed, `urn:brutality:tcg:Event:{contentHash}`
-- `seq`: monotonically ordered sequence number
+- `@id`: `urn:brutality:tcg:Event:{seq}-{contentHash}` — the monotonically
+  ordered sequence number folded together with the content hash, so the id
+  is both sortable and content-addressed. There is no separate `seq` field;
+  `seq` is read from the id
 - `ts`: UTC timestamp
 - `prevId`: preceding event's envelope `@id`, omitted only on the Genesis
   root — so each later event's content hash (and thus its `@id`) binds to
   the prior head
 - `proof`: a W3C **Data Integrity** proof (`DataIntegrityProof`,
   cryptosuite **`eddsa-jcs-2022`**) over the unsecured document
-  (`{@id, @type, seq, ts, prevId?, payload}`), added after `@id` is
-  computed. It carries `created`, a `did:key` `verificationMethod`,
+  (`{@id, @type, ts, prevId?, payload}`), added after `@id` is computed.
+  Because `seq` lives in the signed `@id`, its position is authenticated. It
+  carries `created`, a `did:key` `verificationMethod`,
   `proofPurpose: assertionMethod`, and a multibase `proofValue`.
 
 Payload (domain resource):
@@ -298,9 +301,9 @@ Payload (domain resource):
   `…Card:OG:005`, zero-padded)
 
 The content hash covers `seq`, `ts`, `prevId` (when present), and the whole
-`payload`. Verifiers recompute it (confirming the envelope `@id` and the
-chain) and verify the proof. Null/absent fields are not serialized (e.g.
-Genesis omits `prevId`).
+`payload`. Verifiers read `seq` from the `@id`, recompute the hash (confirming
+the envelope `@id`, the `seq` prefix, and the chain), and verify the proof.
+Null/absent fields are not serialized (e.g. Genesis omits `prevId`).
 
 The ledger must use:
 

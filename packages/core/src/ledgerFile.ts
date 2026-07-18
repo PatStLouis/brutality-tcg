@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { dataDir } from "./env";
-import type { LedgerEvent } from "./ledgerTypes";
+import { eventSeqOf, type LedgerEvent } from "./ledgerTypes";
 
 /**
  * Append-only JSON Lines ledger. This file is the canonical source of truth:
@@ -38,7 +38,7 @@ function ensureInit(): void {
   }
   const last = JSON.parse(lines[lines.length - 1]) as LedgerEvent;
   headId = last["@id"];
-  lastSeq = last.seq;
+  lastSeq = eventSeqOf(last);
 }
 
 /**
@@ -64,7 +64,7 @@ export function appendRaw(events: LedgerEvent[]): void {
   const payload = events.map((e) => JSON.stringify(e)).join("\n") + "\n";
   fs.appendFileSync(p, payload);
   headId = events[events.length - 1]["@id"];
-  lastSeq = events[events.length - 1].seq;
+  lastSeq = eventSeqOf(events[events.length - 1]);
 }
 
 export function readAllEvents(): LedgerEvent[] {

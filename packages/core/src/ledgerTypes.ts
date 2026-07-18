@@ -35,6 +35,18 @@ export function eventJsonLdId(atType: string, suffix: string): string {
   return `${atType}:${suffix}`;
 }
 
+/** Envelope `@id`: `urn:brutality:tcg:Event:{seq}-{contentHash}`. */
+export function eventEnvelopeId(seq: number, contentHash: string): string {
+  return eventJsonLdId(EVENT_TYPE, `${seq}-${contentHash}`);
+}
+
+/** Sequence number folded into an envelope `@id`, or `NaN` if unparseable. */
+export function eventSeqOf(e: { "@id": string }): number {
+  const suffix = e["@id"].slice(EVENT_TYPE.length + 1);
+  const dash = suffix.indexOf("-");
+  return dash === -1 ? NaN : Number(suffix.slice(0, dash));
+}
+
 export function jsonLdTypeFor(type: EventType): JsonLdType {
   return JsonLdTypes[type];
 }
@@ -70,10 +82,12 @@ export interface LedgerEventPayload {
 }
 
 export interface LedgerEvent {
-  /** `urn:brutality:tcg:Event:{contentHash}` — content-addressed chain link. */
+  /**
+   * `urn:brutality:tcg:Event:{seq}-{contentHash}` — the ordered, content-
+   * addressed chain link. `seq` is read from here via `eventSeqOf`.
+   */
   "@id": string;
   "@type": typeof EVENT_TYPE;
-  seq: number;
   ts: string;
   /** Previous event `@id`. Omitted on the Genesis event (chain root). */
   prevId?: string;

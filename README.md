@@ -36,9 +36,10 @@ the signing keys, so the services can be deployed on separate hosts.
 
 - **Ledger (source of truth):** append-only JSON Lines file (`data/ledger.jsonl`).
   Every entry is a uniform envelope: `@type` `urn:brutality:tcg:Event`, `@id`
-  content-addressed as `urn:brutality:tcg:Event:{hash}` (hash of
-  `seq`/`ts`/`prevId`/`payload`), plus `seq`, `ts`, optional `prevId`, and a
-  W3C **Data Integrity** `proof` (`eddsa-jcs-2022` / `did:key`). The `payload`
+  `urn:brutality:tcg:Event:{seq}-{hash}` (the sequence number folded with the
+  content hash of `seq`/`ts`/`prevId`/`payload`, so ids sort and there is no
+  separate `seq` field), plus `ts`, optional `prevId`, and a W3C
+  **Data Integrity** `proof` (`eddsa-jcs-2022` / `did:key`). The `payload`
   is its own JSON-LD resource describing what happened: a domain `@type`
   (e.g. `urn:brutality:tcg:PackOpening`) and a stable domain `@id`
   (e.g. `urn:brutality:tcg:PackOpening:{redemptionId}`), so all events of one
