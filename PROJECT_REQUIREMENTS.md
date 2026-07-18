@@ -342,16 +342,22 @@ create ledger events.
 
 ## 10. UI Components to Commission
 
-### 10.1 Existing Visual Reference
+### 10.1 Existing Commissioned Assets (Retained)
 
-The legacy `PatStLouis/brutality-pack-opener` repository contains a card-back
-design and earlier logo, pack, card, animation, rarity, and design-system work.
-These materials are reference inputs, not an assumption that the new app UI is
-already designed.
+The following card-related assets were already commissioned for the legacy
+`PatStLouis/brutality-pack-opener` project and carry forward into this product
+as-is. They are production assets, not placeholders:
 
-The existing commissioned card back establishes a dark black/grey marbled
-surface with high-contrast white and red, thorn-like Brutality typography.
-No new application UI components are currently commissioned.
+- Card back (black/grey marbled surface with the red thorn Brutality
+  typography)
+- Brutality wordmark/logo
+- Gold foil pack wrapper
+
+The new UI commission is additive: it designs the application components
+around these existing card assets and must treat them as fixed brand anchors
+(palette, texture, and typography direction), not as items to replace.
+
+No application UI components are currently commissioned.
 
 ### 10.2 Phase 1 Commission Package
 
@@ -519,6 +525,5 @@ before production launch:
 - Pack-credit expiration policy
 - Whether weekly guest packs are guaranteed cards or weighted pools
 - Duplicate protection, pity rules, and limited-edition supply
-- Final reuse or replacement of visual assets from the legacy repository
 - Card-photography and artist-likeness licensing process
 
