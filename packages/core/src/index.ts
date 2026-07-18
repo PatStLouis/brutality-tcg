@@ -49,3 +49,11 @@ export {
   type ProjectionCheck,
 } from "./projections";
 export { baseUrl, databasePath, REPO_ROOT } from "./env";
+export {
+  exportFixture,
+  importFixture,
+  fixturePath,
+  type LedgerFixture,
+  type ImportResult,
+} from "./fixture";
+export { DEMO_GUEST_DISCORD_ID, DEMO_GUEST_USERNAME, demoEnabled } from "./demo";

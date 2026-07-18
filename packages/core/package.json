@@ -10,6 +10,8 @@
   },
   "scripts": {
     "seed": "tsx src/bin/seed.ts",
+    "seed:demo": "tsx src/bin/seed-demo.ts",
+    "fixture:build": "tsx src/bin/build-fixture.ts",
     "grant": "tsx src/bin/grant.ts",
     "redeem": "tsx src/bin/redeem.ts",
     "simulate": "tsx src/bin/simulate.ts",

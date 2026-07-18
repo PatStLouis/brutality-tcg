@@ -1,0 +1,875 @@
+{
+  "format": "brutality-ledger-fixture",
+  "version": 1,
+  "exportedTs": "2026-07-18T19:11:03.454Z",
+  "demoSigningKeyPem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIMsX7jvam37V+xLeJK6LaypjFz3zAOkIUoLy1O1VHL4z\n-----END PRIVATE KEY-----\n",
+  "publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAASKxXYMShBuJ3F2Xqb+Yi3N5wRhd8u+ag2+/L8APkpo=\n-----END PUBLIC KEY-----\n",
+  "keyId": "08a1ed0f3c5cd482",
+  "events": [
+    {
+      "seq": 1,
+      "id": "92a308df-eb22-4f25-8c34-ff56c28610eb",
+      "ts": "2026-07-18T19:11:03.424Z",
+      "type": "set_published",
+      "payload": {
+        "cardIds": [
+          "og-001",
+          "og-002",
+          "og-003",
+          "og-004",
+          "og-005",
+          "og-006",
+          "og-007",
+          "og-008",
+          "og-009",
+          "og-010"
+        ],
+        "name": "OG SET",
+        "packSize": 5,
+        "rarityWeights": {
+          "common": 60,
+          "legendary": 1,
+          "rare": 10,
+          "ultra_rare": 4,
+          "uncommon": 25
+        },
+        "setId": "og-set",
+        "version": 1
+      },
+      "prevHash": "0000000000000000000000000000000000000000000000000000000000000000",
+      "hash": "c19de1f4320f89ad00888f1f1c9d76dc846f351ede952ed9bfb336e02a82f24b",
+      "sig": "0zOftEvZyZsnV0TyxDHXQq1BlvVjOgCUbDJsbK6749SFM6VoAQ6qABLvrAmzPvUTlgLnspFDw3DMhV53oAzYBQ==",
+      "keyId": "08a1ed0f3c5cd482"
+    },
+    {
+      "seq": 2,
+      "id": "c03a8dfa-60f4-44cc-a068-637f56302a81",
+      "ts": "2026-07-18T19:11:03.429Z",
+      "type": "collector_created",
+      "payload": {
+        "collector": "c_6527845b8e85b294"
+      },
+      "prevHash": "c19de1f4320f89ad00888f1f1c9d76dc846f351ede952ed9bfb336e02a82f24b",
+      "hash": "fb0a011ee85d158e06909e583869e9936c90d3098c71e81d02fa34deda5ae918",
+      "sig": "0LKzpkPPOsgqcowXOn8jOOqol6XA04j9mi/d2/2vozKBYGvWK5IL4Uwy1B1WV3gtFi6Mz+g3w6bQhKql/SFGBQ==",
+      "keyId": "08a1ed0f3c5cd482"
+    },
+    {
+      "seq": 3,
+      "id": "c46f5135-7a95-4059-8e4b-9472e248fa51",
+      "ts": "2026-07-18T19:11:03.431Z",
+      "type": "credits_granted",
+      "payload": {
+        "collector": "c_6527845b8e85b294",
+        "packs": 4,
+        "reason": "demo_fixture"
+      },
+      "prevHash": "fb0a011ee85d158e06909e583869e9936c90d3098c71e81d02fa34deda5ae918",
+      "hash": "d93469a2e3efbbb79d4b2ff7241718fc5037353905e058dacf98106fc8ab6d9d",
+      "sig": "KKexQ7XnNVfHeDSizsXdUSCdHsQACP/yoer4rlvVKxf9bVrwENT5CAWQQmdnk85cC6ZaZR068/CiYY/irFdBBA==",
+      "keyId": "08a1ed0f3c5cd482"
+    },
+    {
+      "seq": 4,
+      "id": "8086e1eb-bd13-41ae-953b-3ee93b708a44",
+      "ts": "2026-07-18T19:11:03.433Z",
+      "type": "credit_reserved",
+      "payload": {
+        "collector": "c_6527845b8e85b294",
+        "redemptionId": "68f13dd9-31ef-4669-aea4-dccfbe0fc173"
+      },
+      "prevHash": "d93469a2e3efbbb79d4b2ff7241718fc5037353905e058dacf98106fc8ab6d9d",
+      "hash": "c57cf1aca29b2589b300f1f43ee51f865618ab6b2e22a904a924eda770f42354",
+      "sig": "ONYib82G7mBQDAGoWBFV1MeObwoSFDCOYylx38rsFfLoeMiqe2jBEdI+6ABds9KuK+iwSppHTaZRawutNso0Ag==",
+      "keyId": "08a1ed0f3c5cd482"
+    },
+    {
+      "seq": 5,
+      "id": "782e1a02-254b-4d9c-b07e-79887646c44d",
+      "ts": "2026-07-18T19:11:03.433Z",
+      "type": "redemption_committed",
+      "payload": {
+        "collector": "c_6527845b8e85b294",
+        "commitment": "1d240e8f69fbc72aa0d8f40d44d2dbfec132babada683128f5b269d8c3a215c9",
+        "packSize": 5,
+        "redemptionId": "68f13dd9-31ef-4669-aea4-dccfbe0fc173",
+        "setId": "og-set",
+        "setVersion": 1
+      },
+      "prevHash": "c57cf1aca29b2589b300f1f43ee51f865618ab6b2e22a904a924eda770f42354",
+      "hash": "9aaa51310a6ebbee884f5506e68805cdaf588fef496d2f53cdce1d225b6b4de6",
+      "sig": "2Zp9AMyxre0dP9VVVFtB6ZjUYcOH2tglQWpL8XrnHw4/HteT1izQbfnkKsPPszMIj8Si+IORoLZIKBNvDftwBg==",
+      "keyId": "08a1ed0f3c5cd482"
+    },
+    {
+      "seq": 6,
+      "id": "dec49f10-e63c-4f1a-97ce-048690970d37",
+      "ts": "2026-07-18T19:11:03.434Z",
+      "type": "pack_opened",
+      "payload": {
+        "cardIds": [
+          "og-005",
+          "og-001",
+          "og-002",
+          "og-010",
+          "og-002"
+        ],
+        "collector": "c_6527845b8e85b294",
+        "commitment": "1d240e8f69fbc72aa0d8f40d44d2dbfec132babada683128f5b269d8c3a215c9",
+        "nonce": "dcf4b3acbdd6d2f81a47aaa36bac675b",
+        "redemptionId": "68f13dd9-31ef-4669-aea4-dccfbe0fc173",
+        "setId": "og-set"
+      },
+      "prevHash": "9aaa51310a6ebbee884f5506e68805cdaf588fef496d2f53cdce1d225b6b4de6",
+      "hash": "f30e26738b8fb89b7f051202a5407ff94c5c68645714011536a2103214080836",
+      "sig": "mYDznO/eP9Sv3wx1SfQ2CQ0FBSvIW6bs9KSa9VtwopdhI7NUBAqLnGYfCXZHqVfU2jTeinEQjjHcwd9NbQNcAw==",
+      "keyId": "08a1ed0f3c5cd482"
+    },
+    {
+      "seq": 7,
+      "id": "a37de26c-1f9b-4656-9e62-9bec54570329",
+      "ts": "2026-07-18T19:11:03.435Z",
+      "type": "credit_reserved",
+      "payload": {
+        "collector": "c_6527845b8e85b294",
+        "redemptionId": "39c9bcc6-429c-4e6d-99da-bc20793dd197"
+      },
+      "prevHash": "f30e26738b8fb89b7f051202a5407ff94c5c68645714011536a2103214080836",
+      "hash": "7eec771a156ffe76691d64d17045936b8dee599936f1c122df845002c2ca6f98",
+      "sig": "qSfABti522pw8DDQ5nuYdhLnAPOi/V9uVgB+W2gisb9GQHIQALpEKCSkHBZ2TpwowJAvVCR965WslBYMV5ciBw==",
+      "keyId": "08a1ed0f3c5cd482"
+    },
+    {
+      "seq": 8,
+      "id": "19e9d4dc-e1b9-4882-bf2f-7277d394bba0",
+      "ts": "2026-07-18T19:11:03.435Z",
+      "type": "redemption_committed",
+      "payload": {
+        "collector": "c_6527845b8e85b294",
+        "commitment": "5f467843ada6026481dac810b1800a2e6596e6fba24e6a2acd1ecfe5dd33e404",
+        "packSize": 5,
+        "redemptionId": "39c9bcc6-429c-4e6d-99da-bc20793dd197",
+        "setId": "og-set",
+        "setVersion": 1
+      },
+      "prevHash": "7eec771a156ffe76691d64d17045936b8dee599936f1c122df845002c2ca6f98",
+      "hash": "7fe93f59069754262ba0a61296a782756737a2b925698475a0937a20fbe64b9d",
+      "sig": "0FWyPPNZK97Xce1+ZzZzSUQnFNPpOEaDp4qjP21erasGO8+QlIfHEbIHZP4GPXE5lRssXnT6Vuww5a9EtPClDA==",
+      "keyId": "08a1ed0f3c5cd482"
+    },
+    {
+      "seq": 9,
+      "id": "9fc43d50-0884-4408-8c5b-c9d8e491d09e",
+      "ts": "2026-07-18T19:11:03.436Z",
+      "type": "pack_opened",
+      "payload": {
+        "cardIds": [
+          "og-004",
+          "og-006",
+          "og-008",
+          "og-008",
+          "og-010"
+        ],
+        "collector": "c_6527845b8e85b294",
+        "commitment": "5f467843ada6026481dac810b1800a2e6596e6fba24e6a2acd1ecfe5dd33e404",
+        "nonce": "99add4f0675d0387ea8ac4eaea07a698",
+        "redemptionId": "39c9bcc6-429c-4e6d-99da-bc20793dd197",
+        "setId": "og-set"
+      },
+      "prevHash": "7fe93f59069754262ba0a61296a782756737a2b925698475a0937a20fbe64b9d",
+      "hash": "37347b457bf5953f944d3e708b0d6f8fa42ce4b39848a401edee2906270f9708",
+      "sig": "7qQchf+R4LjM0aiCvgWz7GvD8LOvLz0/UPjYAi9VHSPyQkElLYHSjufpjhRszldy0ogwav0C8Uy9ZFbNzrLvBw==",
+      "keyId": "08a1ed0f3c5cd482"
+    },
+    {
+      "seq": 10,
+      "id": "e7c124eb-d6de-41d0-8e28-d346c3b787cb",
+      "ts": "2026-07-18T19:11:03.437Z",
+      "type": "credit_reserved",
+      "payload": {
+        "collector": "c_6527845b8e85b294",
+        "redemptionId": "1faa8bbd-1b92-4219-967d-fab5ef98d858"
+      },
+      "prevHash": "37347b457bf5953f944d3e708b0d6f8fa42ce4b39848a401edee2906270f9708",
+      "hash": "05af4ca3c8aa093d22198afede27a72ce31fe2604d5bdc995064b94e2d38ec6d",
+      "sig": "9mTK6q3FI3oRMAAmFJ5XTrUQ2eh+ZVZ57Ana8i7mvqZfHJvzAYTY8l7Wn9pr+QEr3N2i9p3d0a6JLW3uxvphBw==",
+      "keyId": "08a1ed0f3c5cd482"
+    },
+    {
+      "seq": 11,
+      "id": "279fbc9f-b248-45d4-97ef-8486421558fd",
+      "ts": "2026-07-18T19:11:03.437Z",
+      "type": "redemption_committed",
+      "payload": {
+        "collector": "c_6527845b8e85b294",
+        "commitment": "4800979e8d3ecb322ea6cf5f86989e885ae47a38b7de2f86fae1a19640ce7cc6",
+        "packSize": 5,
+        "redemptionId": "1faa8bbd-1b92-4219-967d-fab5ef98d858",
+        "setId": "og-set",
+        "setVersion": 1
+      },
+      "prevHash": "05af4ca3c8aa093d22198afede27a72ce31fe2604d5bdc995064b94e2d38ec6d",
+      "hash": "59728b4ac658cce9dd9ed986cf4e6b40b0b371a7a7b21b5cdccff9fae6b52a34",
+      "sig": "2iisDm65ZKdiNDPfzViuXw4yWBu2LFiv/Hgnud1aJiJhqv0NDvkRiMtADZFr+Odkq0QFdfVSZp6Oz6zphLLUAg==",
+      "keyId": "08a1ed0f3c5cd482"
+    },
+    {
+      "seq": 12,
+      "id": "fadad91a-2ccd-4f33-8ccc-700a830682dd",
+      "ts": "2026-07-18T19:11:03.438Z",
+      "type": "pack_opened",
+      "payload": {
+        "cardIds": [
+          "og-002",
+          "og-004",
+          "og-002",
+          "og-005",
+          "og-006"
+        ],
+        "collector": "c_6527845b8e85b294",
+        "commitment": "4800979e8d3ecb322ea6cf5f86989e885ae47a38b7de2f86fae1a19640ce7cc6",
+        "nonce": "12ae649235a6dc4319c2ed1fe03ddae4",
+        "redemptionId": "1faa8bbd-1b92-4219-967d-fab5ef98d858",
+        "setId": "og-set"
+      },
+      "prevHash": "59728b4ac658cce9dd9ed986cf4e6b40b0b371a7a7b21b5cdccff9fae6b52a34",
+      "hash": "cec69395eec10ba6a3b339721d70a2cff7beaedfa28285bc977a290d157de854",
+      "sig": "2B78VagB5KkUfdWIZ2SZJ2zLaQskBIhnjupyzRJwcwMEUlhSyJXrY/uODEFku9wPakB5GOGo6mrGp1K/VOtQAQ==",
+      "keyId": "08a1ed0f3c5cd482"
+    },
+    {
+      "seq": 13,
+      "id": "18ce2b7e-b193-41f3-a7af-72e2283fc9e0",
+      "ts": "2026-07-18T19:11:03.440Z",
+      "type": "credit_reserved",
+      "payload": {
+        "collector": "c_6527845b8e85b294",
+        "redemptionId": "83409d69-351d-41cb-bd88-9794faa40b32"
+      },
+      "prevHash": "cec69395eec10ba6a3b339721d70a2cff7beaedfa28285bc977a290d157de854",
+      "hash": "c37a5737f3eed27096b6a33ba52e229e45bba006e4adf6a5a0d2b031661b4f5d",
+      "sig": "C9fcNuwh4cjXcMOw36FQtoJEyPqZ2RdSW9fDMU+f4yq5twgjIB3ykaQxS858+znAfkKGxvn2NSCBYg4yauu6Dg==",
+      "keyId": "08a1ed0f3c5cd482"
+    },
+    {
+      "seq": 14,
+      "id": "15891b7c-399f-4acf-91c3-aa55d0d6ad9c",
+      "ts": "2026-07-18T19:11:03.441Z",
+      "type": "redemption_committed",
+      "payload": {
+        "collector": "c_6527845b8e85b294",
+        "commitment": "bff5dafef6be0195eff404972f41fa5a23988f115c3f1e23e0e54145a0cece7a",
+        "packSize": 5,
+        "redemptionId": "83409d69-351d-41cb-bd88-9794faa40b32",
+        "setId": "og-set",
+        "setVersion": 1
+      },
+      "prevHash": "c37a5737f3eed27096b6a33ba52e229e45bba006e4adf6a5a0d2b031661b4f5d",
+      "hash": "0e6d83f9da3085882f4f9d1335e715f890507c1aaf10e3700239fb3db9763a24",
+      "sig": "cpDr5LuNol64m4BGIiYgtNZYEY9fbs/P5VaJFTpqnptE0BeL/A97eF1Mu54leBoAwkLTVVw17kNO1VDLzwFcDw==",
+      "keyId": "08a1ed0f3c5cd482"
+    },
+    {
+      "seq": 15,
+      "id": "1bfe5b06-71fe-40e0-a4c5-7aec2ba2b320",
+      "ts": "2026-07-18T19:11:03.442Z",
+      "type": "pack_opened",
+      "payload": {
+        "cardIds": [
+          "og-004",
+          "og-003",
+          "og-001",
+          "og-002",
+          "og-007"
+        ],
+        "collector": "c_6527845b8e85b294",
+        "commitment": "bff5dafef6be0195eff404972f41fa5a23988f115c3f1e23e0e54145a0cece7a",
+        "nonce": "cd9ecc6a18686f35393c95b2e060ba8c",
+        "redemptionId": "83409d69-351d-41cb-bd88-9794faa40b32",
+        "setId": "og-set"
+      },
+      "prevHash": "0e6d83f9da3085882f4f9d1335e715f890507c1aaf10e3700239fb3db9763a24",
+      "hash": "ffd1e553f8476cc8a6f54b865bae5fc217d270ba74fae348b07de92ece384732",
+      "sig": "4H/fR8owjPwO9Hjj7ko8CReoJ/doCQzmBu6z5b8jcdLNRgl4eIEnqbIcI0KzFcrns9YBDz1UAddxP81TM5NYAw==",
+      "keyId": "08a1ed0f3c5cd482"
+    },
+    {
+      "seq": 16,
+      "id": "f70bf675-2de2-41b7-9442-10d1591abdff",
+      "ts": "2026-07-18T19:11:03.442Z",
+      "type": "collector_created",
+      "payload": {
+        "collector": "c_ca2c9f580391e183"
+      },
+      "prevHash": "ffd1e553f8476cc8a6f54b865bae5fc217d270ba74fae348b07de92ece384732",
+      "hash": "612579985d173729d4d8aef13a6b369c4f664162a7d6913fed15ab3dc27febe3",
+      "sig": "A5uVAp/KZZAurT00xAf1zXcoAck6k5S2u3ToMrsSrcwyUZuwyH/q5HdPWVRs9bEC2ChhdTmm0wgVmpZrA3dkCg==",
+      "keyId": "08a1ed0f3c5cd482"
+    },
+    {
+      "seq": 17,
+      "id": "40d2833e-975f-4501-bb6a-660ade91e735",
+      "ts": "2026-07-18T19:11:03.443Z",
+      "type": "credits_granted",
+      "payload": {
+        "collector": "c_ca2c9f580391e183",
+        "packs": 3,
+        "reason": "demo_fixture"
+      },
+      "prevHash": "612579985d173729d4d8aef13a6b369c4f664162a7d6913fed15ab3dc27febe3",
+      "hash": "d3a547a0842e6bbc82e0c2d50b4a44e6b9fd02123e77ef2fb90c72fbb3fd1573",
+      "sig": "9eAi0a5SZfd/ePJk9uT9rAABsIOpNWt+sEMU6JEH5qhSLgVifHi+ZzeAGM+QzarE6t2LdHD9nvYDY8sl5UwGBA==",
+      "keyId": "08a1ed0f3c5cd482"
+    },
+    {
+      "seq": 18,
+      "id": "d90247a8-59cc-4745-ba6a-ad513f6967d5",
+      "ts": "2026-07-18T19:11:03.444Z",
+      "type": "credit_reserved",
+      "payload": {
+        "collector": "c_ca2c9f580391e183",
+        "redemptionId": "5ca17b18-f9eb-4651-8ad5-eebdd76f920a"
+      },
+      "prevHash": "d3a547a0842e6bbc82e0c2d50b4a44e6b9fd02123e77ef2fb90c72fbb3fd1573",
+      "hash": "6611de2b39cd899af69e6eec9c977cb8d6d3eac91ed007b72982ea89c367bce1",
+      "sig": "v/Frw6YetqAAWlbHPUjXhytFYgayZf7tn17JFgXzaVUY1skUPc5h+8ZgPR6p0QM4VPHKJSGb6g2O1GTWLB91AQ==",
+      "keyId": "08a1ed0f3c5cd482"
+    },
+    {
+      "seq": 19,
+      "id": "68b218f8-8d39-45b0-b9d4-5a4c478b3d18",
+      "ts": "2026-07-18T19:11:03.444Z",
+      "type": "redemption_committed",
+      "payload": {
+        "collector": "c_ca2c9f580391e183",
+        "commitment": "490fe867620629ac741a8cb120ab4de20fe458f4565e5471456ee115c429d3a8",
+        "packSize": 5,
+        "redemptionId": "5ca17b18-f9eb-4651-8ad5-eebdd76f920a",
+        "setId": "og-set",
+        "setVersion": 1
+      },
+      "prevHash": "6611de2b39cd899af69e6eec9c977cb8d6d3eac91ed007b72982ea89c367bce1",
+      "hash": "3542eb86a3e89d0f3e2ec75d8df44919a46f46041d8a11ea0692176164fb5861",
+      "sig": "g/DT8tl+s2oTJngVQ6YHFgwPUbDrvIqW9Klmjq6/U9WNtll6mJUFQBkoziDGcu2dOtCtqQTf7jBzgpjVD1R2Dw==",
+      "keyId": "08a1ed0f3c5cd482"
+    },
+    {
+      "seq": 20,
+      "id": "337b7b32-bc45-45f9-bbef-5a53216941e4",
+      "ts": "2026-07-18T19:11:03.445Z",
+      "type": "pack_opened",
+      "payload": {
+        "cardIds": [
+          "og-008",
+          "og-010",
+          "og-010",
+          "og-001",
+          "og-006"
+        ],
+        "collector": "c_ca2c9f580391e183",
+        "commitment": "490fe867620629ac741a8cb120ab4de20fe458f4565e5471456ee115c429d3a8",
+        "nonce": "062ccf4547da2fb2b39151f2c46a5e1f",
+        "redemptionId": "5ca17b18-f9eb-4651-8ad5-eebdd76f920a",
+        "setId": "og-set"
+      },
+      "prevHash": "3542eb86a3e89d0f3e2ec75d8df44919a46f46041d8a11ea0692176164fb5861",
+      "hash": "f705f465ad7e5e7eeb0b76271995e322f61309307cd9e26f053fc49cc5aad9e8",
+      "sig": "mkcQfXySGLIeZHfbRPkNe5yiIJqwXo+p+xQq6igkg2PCV0cD1QDqJpCnyQxMBnJdEhx4s2ZT7HgFRyJT0/a2Bw==",
+      "keyId": "08a1ed0f3c5cd482"
+    },
+    {
+      "seq": 21,
+      "id": "e297902c-f11f-4524-bb6b-a46208e3e30d",
+      "ts": "2026-07-18T19:11:03.446Z",
+      "type": "credit_reserved",
+      "payload": {
+        "collector": "c_ca2c9f580391e183",
+        "redemptionId": "491b587b-badf-482c-a4c7-efa295d113ee"
+      },
+      "prevHash": "f705f465ad7e5e7eeb0b76271995e322f61309307cd9e26f053fc49cc5aad9e8",
+      "hash": "1622f20680aa094e1026cc1b90fc40f397be27f43534de2b687ef3887909d4a3",
+      "sig": "cnDACgDwGDkRi4/A+JWdSl+8yIBethK/imKwqq7zojyFuyyDPf9yfV0S/ewYEOVPdp/shbyw9Z1mdQJyf57FBw==",
+      "keyId": "08a1ed0f3c5cd482"
+    },
+    {
+      "seq": 22,
+      "id": "b77abaf7-b6d7-4255-a66d-4057613d495b",
+      "ts": "2026-07-18T19:11:03.446Z",
+      "type": "redemption_committed",
+      "payload": {
+        "collector": "c_ca2c9f580391e183",
+        "commitment": "8f72f72b4179fee667a0ce35eaccf92b1c0a25a78fc001831c65ea7cc81a049c",
+        "packSize": 5,
+        "redemptionId": "491b587b-badf-482c-a4c7-efa295d113ee",
+        "setId": "og-set",
+        "setVersion": 1
+      },
+      "prevHash": "1622f20680aa094e1026cc1b90fc40f397be27f43534de2b687ef3887909d4a3",
+      "hash": "fac6808a7130f9b37052b2ab25e2c3f369b5707072351c3ea1e73c28e8c42585",
+      "sig": "OGxqj+bL3CTiQFtXhuYgOpAXAk6TfMSZbuciIE2srhz2pt5uOCA7LzYvMVx3OwbPc7taqgifu4F3JliV0HZoAw==",
+      "keyId": "08a1ed0f3c5cd482"
+    },
+    {
+      "seq": 23,
+      "id": "931d224a-e7e3-47cd-9863-7816a9dd3ff5",
+      "ts": "2026-07-18T19:11:03.446Z",
+      "type": "pack_opened",
+      "payload": {
+        "cardIds": [
+          "og-008",
+          "og-007",
+          "og-001",
+          "og-002",
+          "og-004"
+        ],
+        "collector": "c_ca2c9f580391e183",
+        "commitment": "8f72f72b4179fee667a0ce35eaccf92b1c0a25a78fc001831c65ea7cc81a049c",
+        "nonce": "7d08e16c12862955028961c775afc2c7",
+        "redemptionId": "491b587b-badf-482c-a4c7-efa295d113ee",
+        "setId": "og-set"
+      },
+      "prevHash": "fac6808a7130f9b37052b2ab25e2c3f369b5707072351c3ea1e73c28e8c42585",
+      "hash": "ca87892321f8b21ee34862202f8802090fbfdd244959513c4cd93405042bf0ff",
+      "sig": "cRLhQEKjWu64WsYWyRNiAG3/VLTfIG410J8gN0wTO0icE8q051WJgEkCuFkUsU3X4YknuElEYBPVaacePKK7Aw==",
+      "keyId": "08a1ed0f3c5cd482"
+    },
+    {
+      "seq": 24,
+      "id": "abf72d24-31a8-4208-9d0f-8a2b6136ed1a",
+      "ts": "2026-07-18T19:11:03.447Z",
+      "type": "credit_reserved",
+      "payload": {
+        "collector": "c_ca2c9f580391e183",
+        "redemptionId": "9e373408-674c-4f46-ad38-42b4a21c60dc"
+      },
+      "prevHash": "ca87892321f8b21ee34862202f8802090fbfdd244959513c4cd93405042bf0ff",
+      "hash": "e2c1456bc49d9655807904b05be8401f4a1a84c67d065aec7c029f623a541afd",
+      "sig": "QW5qBbhR2XXjDvE7yWWeP1Wq1lhvkj58LDzI+ovfgId3jgd62on0psJL1Z+5ixS2kERatscLG1j3J3rBvmj6BQ==",
+      "keyId": "08a1ed0f3c5cd482"
+    },
+    {
+      "seq": 25,
+      "id": "4566f713-f2c9-4db4-854e-5fb7b13dbcf8",
+      "ts": "2026-07-18T19:11:03.447Z",
+      "type": "redemption_committed",
+      "payload": {
+        "collector": "c_ca2c9f580391e183",
+        "commitment": "f544e5ea72a435df5b18b4c279b388cc12115a2c78f7fb6c64be4f775b8b4597",
+        "packSize": 5,
+        "redemptionId": "9e373408-674c-4f46-ad38-42b4a21c60dc",
+        "setId": "og-set",
+        "setVersion": 1
+      },
+      "prevHash": "e2c1456bc49d9655807904b05be8401f4a1a84c67d065aec7c029f623a541afd",
+      "hash": "4003dfbf3214ed30f77532170cf12f1c4fed8ff64c242b95c15dbd585ea4efc7",
+      "sig": "Uk29by1B3UuzmtFKiuRyT9WHTcOSONZ38auhGbXn3WhYL7mwZw9RXAU5e+Nl2s4uHXH+DUedY0KjK4jefecvDA==",
+      "keyId": "08a1ed0f3c5cd482"
+    },
+    {
+      "seq": 26,
+      "id": "b2f2d41e-a3d6-4d96-8334-f37b0eb1ebce",
+      "ts": "2026-07-18T19:11:03.448Z",
+      "type": "pack_opened",
+      "payload": {
+        "cardIds": [
+          "og-006",
+          "og-001",
+          "og-010",
+          "og-008",
+          "og-008"
+        ],
+        "collector": "c_ca2c9f580391e183",
+        "commitment": "f544e5ea72a435df5b18b4c279b388cc12115a2c78f7fb6c64be4f775b8b4597",
+        "nonce": "39175e13e454773c943568d317c5c841",
+        "redemptionId": "9e373408-674c-4f46-ad38-42b4a21c60dc",
+        "setId": "og-set"
+      },
+      "prevHash": "4003dfbf3214ed30f77532170cf12f1c4fed8ff64c242b95c15dbd585ea4efc7",
+      "hash": "ea93ccc2f4db9d0b8fd9ff8d697cdb7c7cb2698df797c57dfe358b7a3be95684",
+      "sig": "zujajI+aQ4x3amlUe2hAQebnjcTxC7LDvssDnJH03sEc0QeXkYs/yT8QxBw+DRs1muEVdllCrsXzwwrIft/7Ag==",
+      "keyId": "08a1ed0f3c5cd482"
+    },
+    {
+      "seq": 27,
+      "id": "4e60d1d6-40cb-41ec-b4d5-296df31509e9",
+      "ts": "2026-07-18T19:11:03.448Z",
+      "type": "collector_created",
+      "payload": {
+        "collector": "c_2bda18b72651fcaf"
+      },
+      "prevHash": "ea93ccc2f4db9d0b8fd9ff8d697cdb7c7cb2698df797c57dfe358b7a3be95684",
+      "hash": "544a7b770e3d4d665225991959f6a986110aaca514531ec134d1abd53d2842bb",
+      "sig": "YQZ0e5yuSab0G8DOLwezusmB+p55D4Klum1nQ/k6xIsGS9lvuE3QJLJYP9KyRt3JfslujRnL/3Lg/E5H1J82Cw==",
+      "keyId": "08a1ed0f3c5cd482"
+    },
+    {
+      "seq": 28,
+      "id": "1de6edee-83cf-4995-bb72-797979403e20",
+      "ts": "2026-07-18T19:11:03.448Z",
+      "type": "credits_granted",
+      "payload": {
+        "collector": "c_2bda18b72651fcaf",
+        "packs": 2,
+        "reason": "demo_fixture"
+      },
+      "prevHash": "544a7b770e3d4d665225991959f6a986110aaca514531ec134d1abd53d2842bb",
+      "hash": "b0f3e383ea21f57d6c88473c4764ff504eaf78ee64753cdea15daf72e7f045f8",
+      "sig": "YRRKWGi5QYxsG8ESgQAxymm6kCPaI7CZbdGoBbs5cQmuu3V/wCqtD0/GG3YFIOMCoKbAIsHfDYbh6kRirHBfDw==",
+      "keyId": "08a1ed0f3c5cd482"
+    },
+    {
+      "seq": 29,
+      "id": "ce2868fe-876a-468d-9d43-4fb7e37b4808",
+      "ts": "2026-07-18T19:11:03.449Z",
+      "type": "credit_reserved",
+      "payload": {
+        "collector": "c_2bda18b72651fcaf",
+        "redemptionId": "e3be556c-bfd1-45bd-8d6e-7f3b991e106f"
+      },
+      "prevHash": "b0f3e383ea21f57d6c88473c4764ff504eaf78ee64753cdea15daf72e7f045f8",
+      "hash": "2c7e1dd11620c3cfa60a31e29bf3d3e95d7d7b7a971eff13c75e48329f7550ac",
+      "sig": "Rb+3ZokLx4zhyjZYrTwJLI+/Tvyn8pKKkrkgYbGaojLusQX34O9SVtPB7ZF/PUaPVgn3QDzIsf1iZYbl8yQbAw==",
+      "keyId": "08a1ed0f3c5cd482"
+    },
+    {
+      "seq": 30,
+      "id": "6542b3e4-605e-433a-b99f-32b6a660ea15",
+      "ts": "2026-07-18T19:11:03.449Z",
+      "type": "redemption_committed",
+      "payload": {
+        "collector": "c_2bda18b72651fcaf",
+        "commitment": "4a6bf438aa2eb4add4e856022cbe4d8b0d9b81a0fc25a36b0b7f9192678d3c0b",
+        "packSize": 5,
+        "redemptionId": "e3be556c-bfd1-45bd-8d6e-7f3b991e106f",
+        "setId": "og-set",
+        "setVersion": 1
+      },
+      "prevHash": "2c7e1dd11620c3cfa60a31e29bf3d3e95d7d7b7a971eff13c75e48329f7550ac",
+      "hash": "f420878e8d56a71250e6e7387c5494205884018daab8d259b5f7f949fb9502db",
+      "sig": "hJsuttIiUvK32UfuN+dFsGTQquUaTccYUFGa6jFoJPMBLiivynUCQwpJVQwkPGwrcWVouSLtIWOU6wFWvWYcCg==",
+      "keyId": "08a1ed0f3c5cd482"
+    },
+    {
+      "seq": 31,
+      "id": "264a3a98-a4a1-425a-bc94-5048b38fb828",
+      "ts": "2026-07-18T19:11:03.449Z",
+      "type": "pack_opened",
+      "payload": {
+        "cardIds": [
+          "og-007",
+          "og-008",
+          "og-002",
+          "og-010",
+          "og-008"
+        ],
+        "collector": "c_2bda18b72651fcaf",
+        "commitment": "4a6bf438aa2eb4add4e856022cbe4d8b0d9b81a0fc25a36b0b7f9192678d3c0b",
+        "nonce": "cff988457ec26661ccb9cca479fccf3d",
+        "redemptionId": "e3be556c-bfd1-45bd-8d6e-7f3b991e106f",
+        "setId": "og-set"
+      },
+      "prevHash": "f420878e8d56a71250e6e7387c5494205884018daab8d259b5f7f949fb9502db",
+      "hash": "054988b2081d91b7c2d8436771fd3bf99cd07db61266e25fad2d32bc6447da90",
+      "sig": "cjCkyQaeENK1tcfi4qq641OtUbMMZ2v3T+nsX+uLX5s9XFI08O//Bjh5thBzs17OryL3oLdf5ngiBfmETFdEBQ==",
+      "keyId": "08a1ed0f3c5cd482"
+    },
+    {
+      "seq": 32,
+      "id": "6dd1eb80-b6a8-4f5a-a617-3486239ffcfb",
+      "ts": "2026-07-18T19:11:03.450Z",
+      "type": "credit_reserved",
+      "payload": {
+        "collector": "c_2bda18b72651fcaf",
+        "redemptionId": "f504a078-a289-4b76-9955-74014163322d"
+      },
+      "prevHash": "054988b2081d91b7c2d8436771fd3bf99cd07db61266e25fad2d32bc6447da90",
+      "hash": "ff1d1b77c23d6bf7108647d296da75f8c315bd569574ac33f1aaf3c8c2141c8b",
+      "sig": "YxWgbyW1bQpUCQiVo3kJm4/UpmNzxy57uIqlepbvaUDFatsoRyg0tXazK/etN6dy3TlKsz+kA8ZQKyZAhG3KDA==",
+      "keyId": "08a1ed0f3c5cd482"
+    },
+    {
+      "seq": 33,
+      "id": "e84db3ad-7ad0-4a2e-b425-0478a858f696",
+      "ts": "2026-07-18T19:11:03.450Z",
+      "type": "redemption_committed",
+      "payload": {
+        "collector": "c_2bda18b72651fcaf",
+        "commitment": "65d5ecb3207aad0efe815781e175de7cd7c153fef3e4b7ef347d8d6581b953f7",
+        "packSize": 5,
+        "redemptionId": "f504a078-a289-4b76-9955-74014163322d",
+        "setId": "og-set",
+        "setVersion": 1
+      },
+      "prevHash": "ff1d1b77c23d6bf7108647d296da75f8c315bd569574ac33f1aaf3c8c2141c8b",
+      "hash": "fc9b45f2a8d58d1cd1cbcf49fdae22d68835d436f494a0a9a92dbb787169f28b",
+      "sig": "jD+5VLezXXM0AYU6IOpZJ0A9WiLMcvkeK+XHOOq26Xc5DjNdk1aWggAfsBmfjIAUV6OAy3fY3uMS1N0OxINVDw==",
+      "keyId": "08a1ed0f3c5cd482"
+    },
+    {
+      "seq": 34,
+      "id": "0881b681-c04e-4fa3-ad63-d6cf83fbd201",
+      "ts": "2026-07-18T19:11:03.450Z",
+      "type": "pack_opened",
+      "payload": {
+        "cardIds": [
+          "og-004",
+          "og-006",
+          "og-002",
+          "og-002",
+          "og-006"
+        ],
+        "collector": "c_2bda18b72651fcaf",
+        "commitment": "65d5ecb3207aad0efe815781e175de7cd7c153fef3e4b7ef347d8d6581b953f7",
+        "nonce": "78ce4980398391e6afe673f0027a52f7",
+        "redemptionId": "f504a078-a289-4b76-9955-74014163322d",
+        "setId": "og-set"
+      },
+      "prevHash": "fc9b45f2a8d58d1cd1cbcf49fdae22d68835d436f494a0a9a92dbb787169f28b",
+      "hash": "18e669d42ebad8bf76ed673faee9ee8d6d578b01fc403beef50b74321069df48",
+      "sig": "OVR1VooGKPOmKkK+EPLUNqKAeKvdCh2Mx3yq9c6Bw6XSkMlMtY75DRY1W+y7yE6+P1iqVjpC0b4pEagn6CpCAQ==",
+      "keyId": "08a1ed0f3c5cd482"
+    },
+    {
+      "seq": 35,
+      "id": "3172a7b8-266a-43a9-96e9-e43c8f5f5f21",
+      "ts": "2026-07-18T19:11:03.451Z",
+      "type": "collector_created",
+      "payload": {
+        "collector": "c_abb19dde36367cfe"
+      },
+      "prevHash": "18e669d42ebad8bf76ed673faee9ee8d6d578b01fc403beef50b74321069df48",
+      "hash": "c32451b2512932d8e22ac63fb25497128e9f8e746768cd4ec6a73f13421646f4",
+      "sig": "A5PvFpjegJsEd7icvtgEf3lXxAkBNo4CHj1aUJMduOqBcX1a7MdDv4s08ejwzuCyxId9pLDfG+3vSuDfaCkHCw==",
+      "keyId": "08a1ed0f3c5cd482"
+    },
+    {
+      "seq": 36,
+      "id": "c56c7da8-e641-4b81-a760-b83fe94d639b",
+      "ts": "2026-07-18T19:11:03.452Z",
+      "type": "credits_granted",
+      "payload": {
+        "collector": "c_abb19dde36367cfe",
+        "packs": 6,
+        "reason": "demo_fixture"
+      },
+      "prevHash": "c32451b2512932d8e22ac63fb25497128e9f8e746768cd4ec6a73f13421646f4",
+      "hash": "71b4498cebe4c048ebfa7738d24765675b22427bee1fba1f56158985aa28bbdc",
+      "sig": "Dws3KNL31msWH1MovckDQ4aMqp0FloXV+3NvsDob48EBoa1kueLq4HapUENhhWpGUXs06KKraPCQId5FIvTWCQ==",
+      "keyId": "08a1ed0f3c5cd482"
+    },
+    {
+      "seq": 37,
+      "id": "8437ae79-5e6d-490f-9fd5-6ec29acc87cc",
+      "ts": "2026-07-18T19:11:03.452Z",
+      "type": "credit_reserved",
+      "payload": {
+        "collector": "c_abb19dde36367cfe",
+        "redemptionId": "60739e81-60c7-4473-a49d-e8d01a79bdf5"
+      },
+      "prevHash": "71b4498cebe4c048ebfa7738d24765675b22427bee1fba1f56158985aa28bbdc",
+      "hash": "52fe8cfd668de5a15ba48c22a9ba0e60ff9e5393943dfe39919a769f86a350f5",
+      "sig": "Wzq421ZDtSh+WmI2iRaShVnTFBSAbnyooTKi8pCfrvyAxItNgGTzgnQKojN4igjgx8l3yx4fC7BKgPccVZfKCQ==",
+      "keyId": "08a1ed0f3c5cd482"
+    },
+    {
+      "seq": 38,
+      "id": "741737c2-3b23-46e3-99e8-078505365d45",
+      "ts": "2026-07-18T19:11:03.452Z",
+      "type": "redemption_committed",
+      "payload": {
+        "collector": "c_abb19dde36367cfe",
+        "commitment": "0a1d879d88980f6f6fe2b7688eef647d7ebc67e022518eb130a2bb67028e2b5d",
+        "packSize": 5,
+        "redemptionId": "60739e81-60c7-4473-a49d-e8d01a79bdf5",
+        "setId": "og-set",
+        "setVersion": 1
+      },
+      "prevHash": "52fe8cfd668de5a15ba48c22a9ba0e60ff9e5393943dfe39919a769f86a350f5",
+      "hash": "d1e0d5b9455b74296d7c5c3d045b50e14708d611a38899f54c7bfc6e6e66650a",
+      "sig": "C4uK4bnpP73Zk14xv2vffcOl1tAes5goe/QAiEDQpG0UU7UqN+IqHDZOSDkqTyy3kw6saLPHGDWJCOsItho1Dw==",
+      "keyId": "08a1ed0f3c5cd482"
+    },
+    {
+      "seq": 39,
+      "id": "de24970f-cdea-47e2-b125-9fed5dcbf2e5",
+      "ts": "2026-07-18T19:11:03.453Z",
+      "type": "pack_opened",
+      "payload": {
+        "cardIds": [
+          "og-010",
+          "og-010",
+          "og-002",
+          "og-010",
+          "og-001"
+        ],
+        "collector": "c_abb19dde36367cfe",
+        "commitment": "0a1d879d88980f6f6fe2b7688eef647d7ebc67e022518eb130a2bb67028e2b5d",
+        "nonce": "c31d573c51abd57084ede8ff1169c87c",
+        "redemptionId": "60739e81-60c7-4473-a49d-e8d01a79bdf5",
+        "setId": "og-set"
+      },
+      "prevHash": "d1e0d5b9455b74296d7c5c3d045b50e14708d611a38899f54c7bfc6e6e66650a",
+      "hash": "5760a48f433b6e64b7e7b2e7d397d66ac30b120a30909c9b23adc469acfa8f93",
+      "sig": "5ZoNGlk2nqmyKzigHA5lr7+8Q5T+sDyPV0m9RebKv4ymmGQbNXIG02X02svXHWw6J6HSVNU0abC4/h1H71+MDA==",
+      "keyId": "08a1ed0f3c5cd482"
+    }
+  ],
+  "collectors": [
+    {
+      "discord_id": "demo-npc-overlord",
+      "public_id": "c_6527845b8e85b294",
+      "display_name": "Overlord",
+      "created_ts": "2026-07-18T19:11:03.429Z"
+    },
+    {
+      "discord_id": "demo-npc-lowpoint",
+      "public_id": "c_ca2c9f580391e183",
+      "display_name": "LowPoint",
+      "created_ts": "2026-07-18T19:11:03.442Z"
+    },
+    {
+      "discord_id": "demo-npc-pitlord",
+      "public_id": "c_2bda18b72651fcaf",
+      "display_name": "PitLord",
+      "created_ts": "2026-07-18T19:11:03.448Z"
+    },
+    {
+      "discord_id": "demo-guest-000000000000",
+      "public_id": "c_abb19dde36367cfe",
+      "display_name": "Guest",
+      "created_ts": "2026-07-18T19:11:03.451Z"
+    }
+  ],
+  "redemptions": [
+    {
+      "redemption_id": "68f13dd9-31ef-4669-aea4-dccfbe0fc173",
+      "token": "BlT4JJxIanrwpXL-CTOMofBDuumL9Y-4",
+      "public_id": "c_6527845b8e85b294",
+      "set_id": "og-set",
+      "card_ids": "[\"og-005\",\"og-001\",\"og-002\",\"og-010\",\"og-002\"]",
+      "nonce": "dcf4b3acbdd6d2f81a47aaa36bac675b",
+      "commitment": "1d240e8f69fbc72aa0d8f40d44d2dbfec132babada683128f5b269d8c3a215c9",
+      "status": "opened",
+      "created_ts": "2026-07-18T19:11:03.433Z",
+      "expires_ts": "2026-07-19T19:11:03.433Z",
+      "opened_ts": "2026-07-18T19:11:03.434Z"
+    },
+    {
+      "redemption_id": "39c9bcc6-429c-4e6d-99da-bc20793dd197",
+      "token": "BkWCkpfIyB5TaEdJKMMh513lbiX8Hdbi",
+      "public_id": "c_6527845b8e85b294",
+      "set_id": "og-set",
+      "card_ids": "[\"og-004\",\"og-006\",\"og-008\",\"og-008\",\"og-010\"]",
+      "nonce": "99add4f0675d0387ea8ac4eaea07a698",
+      "commitment": "5f467843ada6026481dac810b1800a2e6596e6fba24e6a2acd1ecfe5dd33e404",
+      "status": "opened",
+      "created_ts": "2026-07-18T19:11:03.434Z",
+      "expires_ts": "2026-07-19T19:11:03.434Z",
+      "opened_ts": "2026-07-18T19:11:03.436Z"
+    },
+    {
+      "redemption_id": "1faa8bbd-1b92-4219-967d-fab5ef98d858",
+      "token": "ceIUbYbNeTTXenDE6iMoPKVzxC1NKbF2",
+      "public_id": "c_6527845b8e85b294",
+      "set_id": "og-set",
+      "card_ids": "[\"og-002\",\"og-004\",\"og-002\",\"og-005\",\"og-006\"]",
+      "nonce": "12ae649235a6dc4319c2ed1fe03ddae4",
+      "commitment": "4800979e8d3ecb322ea6cf5f86989e885ae47a38b7de2f86fae1a19640ce7cc6",
+      "status": "opened",
+      "created_ts": "2026-07-18T19:11:03.437Z",
+      "expires_ts": "2026-07-19T19:11:03.437Z",
+      "opened_ts": "2026-07-18T19:11:03.437Z"
+    },
+    {
+      "redemption_id": "83409d69-351d-41cb-bd88-9794faa40b32",
+      "token": "s_pCGmv48K2yWq6kiaEmdwQ-rNVD1x0R",
+      "public_id": "c_6527845b8e85b294",
+      "set_id": "og-set",
+      "card_ids": "[\"og-004\",\"og-003\",\"og-001\",\"og-002\",\"og-007\"]",
+      "nonce": "cd9ecc6a18686f35393c95b2e060ba8c",
+      "commitment": "bff5dafef6be0195eff404972f41fa5a23988f115c3f1e23e0e54145a0cece7a",
+      "status": "opened",
+      "created_ts": "2026-07-18T19:11:03.440Z",
+      "expires_ts": "2026-07-19T19:11:03.440Z",
+      "opened_ts": "2026-07-18T19:11:03.441Z"
+    },
+    {
+      "redemption_id": "5ca17b18-f9eb-4651-8ad5-eebdd76f920a",
+      "token": "ofHSDh2w5tgzKAis2aoBzlMToYFn3oI1",
+      "public_id": "c_ca2c9f580391e183",
+      "set_id": "og-set",
+      "card_ids": "[\"og-008\",\"og-010\",\"og-010\",\"og-001\",\"og-006\"]",
+      "nonce": "062ccf4547da2fb2b39151f2c46a5e1f",
+      "commitment": "490fe867620629ac741a8cb120ab4de20fe458f4565e5471456ee115c429d3a8",
+      "status": "opened",
+      "created_ts": "2026-07-18T19:11:03.443Z",
+      "expires_ts": "2026-07-19T19:11:03.443Z",
+      "opened_ts": "2026-07-18T19:11:03.445Z"
+    },
+    {
+      "redemption_id": "491b587b-badf-482c-a4c7-efa295d113ee",
+      "token": "RVA_wx3hlul6jHDRZp-Mti5CyyloyyX7",
+      "public_id": "c_ca2c9f580391e183",
+      "set_id": "og-set",
+      "card_ids": "[\"og-008\",\"og-007\",\"og-001\",\"og-002\",\"og-004\"]",
+      "nonce": "7d08e16c12862955028961c775afc2c7",
+      "commitment": "8f72f72b4179fee667a0ce35eaccf92b1c0a25a78fc001831c65ea7cc81a049c",
+      "status": "opened",
+      "created_ts": "2026-07-18T19:11:03.446Z",
+      "expires_ts": "2026-07-19T19:11:03.446Z",
+      "opened_ts": "2026-07-18T19:11:03.446Z"
+    },
+    {
+      "redemption_id": "9e373408-674c-4f46-ad38-42b4a21c60dc",
+      "token": "bcd7LBfNNiHnEWgO8EAMfr1DZq-VpJ9o",
+      "public_id": "c_ca2c9f580391e183",
+      "set_id": "og-set",
+      "card_ids": "[\"og-006\",\"og-001\",\"og-010\",\"og-008\",\"og-008\"]",
+      "nonce": "39175e13e454773c943568d317c5c841",
+      "commitment": "f544e5ea72a435df5b18b4c279b388cc12115a2c78f7fb6c64be4f775b8b4597",
+      "status": "opened",
+      "created_ts": "2026-07-18T19:11:03.447Z",
+      "expires_ts": "2026-07-19T19:11:03.447Z",
+      "opened_ts": "2026-07-18T19:11:03.447Z"
+    },
+    {
+      "redemption_id": "e3be556c-bfd1-45bd-8d6e-7f3b991e106f",
+      "token": "3oIOUvU7KOTLqq00EfVRszpUyhs7Ml78",
+      "public_id": "c_2bda18b72651fcaf",
+      "set_id": "og-set",
+      "card_ids": "[\"og-007\",\"og-008\",\"og-002\",\"og-010\",\"og-008\"]",
+      "nonce": "cff988457ec26661ccb9cca479fccf3d",
+      "commitment": "4a6bf438aa2eb4add4e856022cbe4d8b0d9b81a0fc25a36b0b7f9192678d3c0b",
+      "status": "opened",
+      "created_ts": "2026-07-18T19:11:03.449Z",
+      "expires_ts": "2026-07-19T19:11:03.449Z",
+      "opened_ts": "2026-07-18T19:11:03.449Z"
+    },
+    {
+      "redemption_id": "f504a078-a289-4b76-9955-74014163322d",
+      "token": "9fuSydK9kixCyOS--ohLzT0T1jw91Pz7",
+      "public_id": "c_2bda18b72651fcaf",
+      "set_id": "og-set",
+      "card_ids": "[\"og-004\",\"og-006\",\"og-002\",\"og-002\",\"og-006\"]",
+      "nonce": "78ce4980398391e6afe673f0027a52f7",
+      "commitment": "65d5ecb3207aad0efe815781e175de7cd7c153fef3e4b7ef347d8d6581b953f7",
+      "status": "opened",
+      "created_ts": "2026-07-18T19:11:03.450Z",
+      "expires_ts": "2026-07-19T19:11:03.450Z",
+      "opened_ts": "2026-07-18T19:11:03.450Z"
+    },
+    {
+      "redemption_id": "60739e81-60c7-4473-a49d-e8d01a79bdf5",
+      "token": "Zgxk0OVd-XW2CUtmS-butiV_5VrnytA_",
+      "public_id": "c_abb19dde36367cfe",
+      "set_id": "og-set",
+      "card_ids": "[\"og-010\",\"og-010\",\"og-002\",\"og-010\",\"og-001\"]",
+      "nonce": "c31d573c51abd57084ede8ff1169c87c",
+      "commitment": "0a1d879d88980f6f6fe2b7688eef647d7ebc67e022518eb130a2bb67028e2b5d",
+      "status": "opened",
+      "created_ts": "2026-07-18T19:11:03.452Z",
+      "expires_ts": "2026-07-19T19:11:03.452Z",
+      "opened_ts": "2026-07-18T19:11:03.453Z"
+    }
+  ]
+}

@@ -2,10 +2,12 @@ import {
   OG_SET,
   collectorByDiscordId,
   creditBalance,
+  demoEnabled,
   holdingsFor,
 } from "@brutality/core";
 import { getSession } from "@/lib/session";
 import { CardFace } from "@/components/CardFace";
+import { DemoRedeem } from "@/components/DemoRedeem";
 
 export const dynamic = "force-dynamic";
 
@@ -19,6 +21,13 @@ export default async function BinderPage() {
         <a className="btn" href="/api/auth/login">
           Sign in with Discord
         </a>
+        {demoEnabled() ? (
+          <p>
+            <a className="btn" href="/api/auth/guest">
+              Continue as guest (demo)
+            </a>
+          </p>
+        ) : null}
       </div>
     );
   }
@@ -51,7 +60,9 @@ export default async function BinderPage() {
           <b>{balance.available}</b> unopened pack credit(s)
         </div>
       </div>
-      {balance.available > 0 ? (
+      {demoEnabled() ? (
+        <DemoRedeem />
+      ) : balance.available > 0 ? (
         <p className="muted">
           You have pack credits waiting — run <code>!redeem</code> in Discord to
           get an opening link.

@@ -61,6 +61,30 @@ npm run redeem -- <discordId>   # prints an opening URL for the web app
 npm run verify          # verify hash chain, signatures, commit/reveal, replay
 ```
 
+## Demo mode (no Discord required)
+
+A static, pre-signed ledger fixture ships in `fixtures/demo-ledger.json`:
+a guest account with unopened pack credits plus a few community collectors,
+all with valid hashes, signatures, and commit/reveals.
+
+```bash
+npm run seed:demo             # import the fixture (use FORCE=true to wipe first)
+DEMO=true npm run dev:web     # enable guest login + in-browser redemption
+```
+
+With `DEMO=true`, the home page and binder show a **Continue as guest**
+option (`/api/auth/guest`) that bypasses Discord OAuth, and the binder gets a
+**Redeem a demo pack** button (`/api/demo/redeem`) that stands in for the
+bot's `!redeem`. Both endpoints return 404 when `DEMO` is not `true` — never
+enable it in production, and never reuse the fixture's signing key outside
+demos (it is public by design).
+
+To regenerate the fixture after changing sets or demo contents:
+
+```bash
+DATABASE_PATH=./data/fixture-build.db npm run fixture:build
+```
+
 ## Discord setup
 
 1. Create an application at https://discord.com/developers, add a bot, and

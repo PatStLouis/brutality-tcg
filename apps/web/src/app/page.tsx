@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { OG_SET } from "@brutality/core";
+import { OG_SET, demoEnabled } from "@brutality/core";
 
 export default function HomePage() {
   return (
@@ -38,6 +38,13 @@ export default function HomePage() {
         Every pack opening is committed to a hash-chained, signed ledger you can
         verify yourself: <Link href="/api/ledger">/api/ledger</Link>
       </p>
+      {demoEnabled() ? (
+        <p>
+          <a className="btn" href="/api/auth/guest">
+            Try the demo as guest
+          </a>
+        </p>
+      ) : null}
     </div>
   );
 }

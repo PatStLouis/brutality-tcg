@@ -12,6 +12,8 @@
     "dev:bot": "npm run dev --workspace @brutality/bot",
     "build": "npm run build --workspace @brutality/web",
     "seed": "npm run seed --workspace @brutality/core",
+    "seed:demo": "npm run seed:demo --workspace @brutality/core",
+    "fixture:build": "npm run fixture:build --workspace @brutality/core",
     "grant": "npm run grant --workspace @brutality/core",
     "redeem": "npm run redeem --workspace @brutality/core",
     "simulate": "npm run simulate --workspace @brutality/core",
