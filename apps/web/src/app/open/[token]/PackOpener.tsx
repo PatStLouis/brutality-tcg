@@ -86,7 +86,8 @@ export function PackOpener({
           tabIndex={0}
           onKeyDown={(e) => e.key === "Enter" && tearOpen()}
         >
-          <div className="pack__logo">Brutality</div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/assets/brand/pack.webp" alt="Sealed Brutality pack" />
         </div>
         <div className="tap-hint">Tap the pack to tear it open</div>
         <div className="commitment">commitment: {commitment}</div>
@@ -99,13 +100,19 @@ export function PackOpener({
     return (
       <div className="open-stage" onClick={revealNext}>
         <div className="reveal-area">
-          <div className="reveal-card" key={card.cardId + revealIndex}>
-            <CardFace
-              name={card.name}
-              number={card.number}
-              rarity={card.rarity}
-              image={card.image}
-            />
+          <div className="flip" key={card.cardId + revealIndex}>
+            <div className="flip__back" aria-hidden>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/assets/brand/cardback.webp" alt="" />
+            </div>
+            <div className="flip__front">
+              <CardFace
+                name={card.name}
+                number={card.number}
+                rarity={card.rarity}
+                image={card.image}
+              />
+            </div>
           </div>
         </div>
         <div className="tap-hint">

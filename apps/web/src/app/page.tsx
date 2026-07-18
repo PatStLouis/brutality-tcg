@@ -4,7 +4,8 @@ import { OG_SET, demoEnabled } from "@brutality/core";
 export default function HomePage() {
   return (
     <div>
-      <h1>Brutality TCG</h1>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src="/assets/brand/logo.webp" alt="Brutality TCG" className="brand-logo" />
       <p>
         Collect photo cards of deathcore artists. Earn packs through the
         Brutality Podcast community, redeem them with the Discord bot, and rip
