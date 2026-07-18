@@ -85,6 +85,33 @@ To regenerate the fixture after changing sets or demo contents:
 DATABASE_PATH=./data/fixture-build.db npm run fixture:build
 ```
 
+## Docker
+
+Each service has its own image; both build from the repo root:
+
+```bash
+docker build -f apps/web/Dockerfile -t brutality-web .
+docker build -f apps/bot/Dockerfile -t brutality-bot .
+```
+
+Or run both with compose (reads variables from `.env`):
+
+```bash
+docker compose up --build
+```
+
+The web container owns the database and ledger signing keys under `/app/data`
+— keep that on a persistent volume (compose sets up `brutality-data` for you).
+The bot container is stateless and reaches the web service at
+`http://web:3000` on the compose network.
+
+To seed inside the container (first run):
+
+```bash
+docker compose exec web npm run seed          # production set publish
+docker compose exec web npm run seed:demo     # or the demo fixture
+```
+
 ## Discord setup
 
 1. Create an application at https://discord.com/developers, add a bot, and

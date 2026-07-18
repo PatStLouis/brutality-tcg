@@ -1,0 +1,10 @@
+node_modules
+**/node_modules
+.next
+**/.next
+data
+.env
+.env.local
+.git
+*.md
+!apps/web/public/assets/cards/README.md
