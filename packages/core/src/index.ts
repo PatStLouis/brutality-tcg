@@ -1,4 +1,8 @@
 export { canonicalize } from "./canonical";
+export {
+  LEDGER_CONTEXT_DOCUMENT,
+  ledgerContextUrl,
+} from "./context";
 export { getDb, closeDb } from "./db";
 export {
   getSigningKey,

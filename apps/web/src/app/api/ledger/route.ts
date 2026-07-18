@@ -1,5 +1,11 @@
 import { NextResponse } from "next/server";
-import { listEvents, getSigningKey, EVENT_TYPE, JsonLdTypes, initStore } from "@brutality/core";
+import {
+  listEvents,
+  getSigningKey,
+  EVENT_TYPE,
+  JsonLdTypes,
+  initStore,
+} from "@brutality/core";
 
 /**
  * Public, machine-readable ledger export. Payloads contain pseudonymous
@@ -25,6 +31,8 @@ export async function GET(request: Request) {
 
   const key = getSigningKey();
   return NextResponse.json({
+    context: events[0]?.["@context"] ?? null,
+    contextScope: "Genesis declares the context for the complete JSONL stream",
     eventType: EVENT_TYPE,
     genesisType: JsonLdTypes.genesis,
     controller: key.did,

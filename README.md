@@ -35,23 +35,28 @@ The two services communicate over an authenticated internal API
 the signing keys, so the services can be deployed on separate hosts.
 
 - **Ledger (source of truth):** append-only JSON Lines file (`data/ledger.jsonl`).
-  Every entry is a uniform envelope: `@type` `urn:brutality:tcg:Event`, `@id`
+  Genesis declares a versioned JSON-LD `@context` (`/context/v1`) that maps
+  `id` to `@id`, `type` to `@type`, and compact type terms such as `Event`,
+  `Genesis`, and `PackOpening` to their Brutality TCG URNs. Under the ledger's
+  JSONL stream convention, that context applies to every later line, so it is
+  not repeated. Every entry is a uniform envelope: `type: "Event"`, `id`
   `urn:brutality:tcg:Event:{seq}-{digestMultibase}`, plus `ts` and a W3C
   **Data Integrity** `proof` (`eddsa-jcs-2022` / `did:key`). Chaining is
   did:webvh style: the digest is computed over the event document with the
-  *previous* event's `@id` in the `@id` slot, then replaced by the result —
+  *previous* event's `id` in the `id` slot, then replaced by the result —
   so each id binds the predecessor implicitly and there is no separate
   `prevId` or `seq` field. Digests — envelope digests and pack commitments —
   are `digestMultibase` values: base58btc-multibase sha2-256 multihashes
   (`z…`), matching the key encoding. The `payload`
-  is its own JSON-LD resource describing what happened: a domain `@type`
-  (e.g. `urn:brutality:tcg:PackOpening`) and a stable domain `@id`
+  is its own JSON-LD resource describing what happened: a compact domain
+  `type` (e.g. `PackOpening`) and a stable domain `id`
   (e.g. `urn:brutality:tcg:PackOpening:{redemptionId}`), so all events of one
   pack lifecycle share the same id suffix. An empty ledger gets a Genesis
-  event first, whose payload `@id` is
+  event first, whose payload `id` is
   `urn:brutality:tcg:Genesis:{publicKeyMultibase}`; having no predecessor,
-  Genesis digests with its own payload `@id` as the anchor — tying the chain
-  root to its signing key. A shared `@context` can be added later.
+  Genesis digests with its own payload `id` as the anchor — tying the chain
+  root to its signing key. Set `LEDGER_CONTEXT_URL` before creating a
+  production chain; the Genesis context IRI is immutable thereafter.
   Commit/reveal per pack. Public export at `/api/ledger` or
   `/api/ledger?format=jsonl`.
 - **SQLite cache:** rebuildable projections (credit balances, holdings) plus

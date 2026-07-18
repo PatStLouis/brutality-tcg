@@ -7,6 +7,7 @@ import {
   base58btcEncode,
 } from "./keys";
 import { createDataIntegrityProof, verifyDataIntegrityProof } from "./dataIntegrity";
+import { ledgerContextUrl } from "./context";
 import {
   appendRaw,
   getHeadId,
@@ -15,6 +16,7 @@ import {
 } from "./ledgerFile";
 import {
   EVENT_TYPE,
+  EVENT_TERM,
   JsonLdTypes,
   domainSuffixOf,
   eventEnvelopeId,
@@ -22,6 +24,7 @@ import {
   eventSeqOf,
   eventTypeOf,
   jsonLdTypeFor,
+  typeTermFor,
   type EventSpec,
   type EventType,
   type LedgerEvent,
@@ -30,6 +33,7 @@ import {
 
 export {
   EVENT_TYPE,
+  EVENT_TERM,
   JsonLdTypes,
   domainSuffixOf,
   eventEnvelopeId,
@@ -37,6 +41,7 @@ export {
   eventSeqOf,
   eventTypeOf,
   jsonLdTypeFor,
+  typeTermFor,
 };
 export type { EventType, EventSpec, LedgerEvent, LedgerEventPayload };
 
@@ -53,38 +58,41 @@ export function sha256DigestMultibase(input: string): string {
 
 /**
  * Chain digest, did:webvh style: the digest is computed over the event
- * document with the *previous* event's `@id` occupying the `@id` slot
- * (Genesis, having no predecessor, anchors on its own payload `@id`, which
+ * document with the *previous* event's `id` occupying the `id` slot
+ * (Genesis, having no predecessor, anchors on its own payload `id`, which
  * carries the signing key). The result then replaces `@id` as
  * `Event:{seq}-{digest}` — so the chain link is implicit in the digest and
  * no `prevId` field is needed. `proof` is added after and excluded here.
  */
 export function eventDigest(
   anchorId: string,
-  e: { ts: string; payload: LedgerEventPayload }
+  e: { context?: string; ts: string; payload: LedgerEventPayload }
 ): string {
   const body: Record<string, unknown> = {
-    "@id": anchorId,
-    "@type": EVENT_TYPE,
+    id: anchorId,
+    type: EVENT_TERM,
     ts: e.ts,
     payload: e.payload,
   };
+  if (e.context !== undefined) body["@context"] = e.context;
   return sha256DigestMultibase(canonicalize(body));
 }
 
-/** Anchor used in the `@id` slot when digesting: prev `@id`, or the Genesis payload `@id`. */
+/** Anchor used in the `id` slot: predecessor id, or the Genesis payload id. */
 function digestAnchor(prevEventId: string | null, payload: LedgerEventPayload): string {
-  return prevEventId ?? payload["@id"];
+  return prevEventId ?? payload.id;
 }
 
 /** Document signed by the Data Integrity proof (everything except `proof`). */
 function unsecuredDocument(e: Omit<LedgerEvent, "proof">): Record<string, unknown> {
-  return {
-    "@id": e["@id"],
-    "@type": e["@type"],
+  const document: Record<string, unknown> = {
+    id: e.id,
+    type: e.type,
     ts: e.ts,
     payload: e.payload,
   };
+  if (e["@context"] !== undefined) document["@context"] = e["@context"];
+  return document;
 }
 
 function buildSignedEvent(
@@ -98,16 +106,18 @@ function buildSignedEvent(
   const ts = new Date().toISOString();
   const atType = jsonLdTypeFor(type);
   const payload: LedgerEventPayload = {
-    "@id": eventJsonLdId(atType, domainId),
-    "@type": atType,
+    id: eventJsonLdId(atType, domainId),
+    type: typeTermFor(type),
     ...fields,
   };
+  const context = type === "genesis" ? ledgerContextUrl() : undefined;
 
-  const digest = eventDigest(digestAnchor(prevId, payload), { ts, payload });
+  const digest = eventDigest(digestAnchor(prevId, payload), { context, ts, payload });
 
   const unsecured: Omit<LedgerEvent, "proof"> = {
-    "@id": eventEnvelopeId(seq, digest),
-    "@type": EVENT_TYPE,
+    ...(context !== undefined ? { "@context": context } : {}),
+    id: eventEnvelopeId(seq, digest),
+    type: EVENT_TERM,
     ts,
     payload,
   };
@@ -144,19 +154,19 @@ export function appendEvents(specs: EventSpec[]): LedgerEvent[] {
     const genesis = buildSignedEvent(
       "genesis",
       getSigningKey().publicKeyMultibase,
-      { schemaVersion: 1 },
+      {},
       null,
       seq
     );
     built.push(genesis);
-    prevId = genesis["@id"];
+    prevId = genesis.id;
   }
 
   for (const spec of specs) {
     seq += 1;
     const event = buildSignedEvent(spec.type, spec.domainId, spec.payload, prevId, seq);
     built.push(event);
-    prevId = event["@id"];
+    prevId = event.id;
   }
 
   appendRaw(built);
@@ -202,17 +212,17 @@ export function verifyChain(events: LedgerEvent[], publicKeyPem: string): Verify
     const seq = eventSeqOf(e);
     const seqLabel = Number.isNaN(seq) ? i + 1 : seq;
 
-    if (e["@type"] !== EVENT_TYPE) {
-      errors.push(`seq ${seqLabel}: root @type must be ${EVENT_TYPE}`);
+    if (e.type !== EVENT_TERM) {
+      errors.push(`seq ${seqLabel}: root type must be ${EVENT_TERM}`);
     }
 
     const shortType = eventTypeOf(e);
     if (!shortType) {
-      errors.push(`seq ${seqLabel}: unknown payload @type ${e.payload?.["@type"]}`);
+      errors.push(`seq ${seqLabel}: unknown payload type ${e.payload?.type}`);
     }
     const domainSuffix = domainSuffixOf(e.payload ?? {});
     if (domainSuffix === undefined || domainSuffix.length === 0) {
-      errors.push(`seq ${seqLabel}: payload @id must be {payload @type}:{domain id}`);
+      errors.push(`seq ${seqLabel}: payload id must be {expanded payload type}:{domain id}`);
     }
 
     if (seq !== i + 1) {
@@ -221,21 +231,30 @@ export function verifyChain(events: LedgerEvent[], publicKeyPem: string): Verify
 
     const isGenesis = i === 0;
     if (isGenesis) {
+      if (typeof e["@context"] !== "string") {
+        errors.push(`seq ${seqLabel}: Genesis must declare @context`);
+      }
       if (shortType !== "genesis") {
         errors.push(`seq ${seqLabel}: first event must be Genesis`);
       }
       if (domainSuffix !== keyMultibase) {
-        errors.push(`seq ${seqLabel}: Genesis @id must carry the signing key`);
+        errors.push(`seq ${seqLabel}: Genesis id must carry the signing key`);
       }
+    } else if (e["@context"] !== undefined) {
+      errors.push(`seq ${seqLabel}: @context is declared by Genesis only`);
     }
 
-    // Recompute the digest with the previous event's @id in the @id slot
-    // (Genesis anchors on its own payload @id). A match proves both content
+    // Recompute the digest with the previous event's id in the id slot
+    // (Genesis anchors on its own payload id). A match proves both content
     // integrity and the chain link to the predecessor.
-    const anchor = isGenesis ? e.payload?.["@id"] : prev!;
-    const digest = eventDigest(anchor, { ts: e.ts, payload: e.payload });
-    if (e["@id"] !== eventEnvelopeId(seq, digest)) {
-      errors.push(`seq ${seqLabel}: @id does not match seq + chained digest`);
+    const anchor = isGenesis ? e.payload.id : prev!;
+    const digest = eventDigest(anchor, {
+      context: e["@context"],
+      ts: e.ts,
+      payload: e.payload,
+    });
+    if (e.id !== eventEnvelopeId(seq, digest)) {
+      errors.push(`seq ${seqLabel}: id does not match seq + chained digest`);
     }
 
     if (e.proof?.verificationMethod !== expectedVm) {
@@ -245,7 +264,7 @@ export function verifyChain(events: LedgerEvent[], publicKeyPem: string): Verify
     if (!e.proof || !verifyDataIntegrityProof(unsecuredDocument(unsecured), e.proof, publicKey)) {
       errors.push(`seq ${seqLabel}: invalid proof`);
     }
-    prev = e["@id"];
+    prev = e.id;
   }
 
   return {

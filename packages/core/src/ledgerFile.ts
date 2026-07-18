@@ -37,7 +37,7 @@ function ensureInit(): void {
     return;
   }
   const last = JSON.parse(lines[lines.length - 1]) as LedgerEvent;
-  headId = last["@id"];
+  headId = last.id ?? (last as unknown as { "@id"?: string })["@id"] ?? null;
   lastSeq = eventSeqOf(last);
 }
 
@@ -63,7 +63,7 @@ export function appendRaw(events: LedgerEvent[]): void {
   fs.mkdirSync(path.dirname(p), { recursive: true });
   const payload = events.map((e) => JSON.stringify(e)).join("\n") + "\n";
   fs.appendFileSync(p, payload);
-  headId = events[events.length - 1]["@id"];
+  headId = events[events.length - 1].id;
   lastSeq = eventSeqOf(events[events.length - 1]);
 }
 

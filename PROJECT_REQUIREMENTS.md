@@ -235,14 +235,16 @@ private working state must be backed up alongside it.
 ### 7.2 Event Types
 
 The ledger always begins with a Genesis event. Its payload is
-`@type: urn:brutality:tcg:Genesis` with `@id`
+`type: Genesis` with `id`
 `urn:brutality:tcg:Genesis:{publicKeyMultibase}`, anchoring the whole chain to
-the key that signs it, plus the ledger `schemaVersion`. Having no predecessor,
-Genesis digests with its own payload `@id` as the chain anchor; verification
+the key that signs it. Genesis alone declares the versioned `@context`; its
+IRI replaces the former `schemaVersion` field and applies to the complete
+JSONL stream by ledger convention. Having no predecessor, Genesis digests
+with its own payload `id` as the chain anchor; verification
 recomputes the multibase from the signing key and checks it against the
-Genesis payload `@id`.
+Genesis payload `id`.
 
-Phase 1 includes (payload JSON-LD `@type` in parentheses):
+Phase 1 includes (compact payload JSON-LD `type` in parentheses):
 
 - Collector created (`urn:brutality:tcg:CollectorCreated`)
 - Pack credit granted (`urn:brutality:tcg:CreditsGranted`)
@@ -269,8 +271,14 @@ resource describing the domain fact:
 
 Envelope (root):
 
-- `@type`: always `urn:brutality:tcg:Event`
-- `@id`: `urn:brutality:tcg:Event:{seq}-{digestMultibase}` — the monotonically
+- `@context`: present only on Genesis, pointing to the immutable versioned
+  context (normally `<BASE_URL>/context/v1`). It aliases `id` to `@id`,
+  `type` to `@type`, and expands compact terms such as `Event`, `Genesis`,
+  and `PackOpening` to their Brutality TCG URNs. Applying it to subsequent
+  JSONL entries is a ledger convention; standalone events require Genesis
+  or the context to be supplied explicitly
+- `type`: always `Event` (expands to `urn:brutality:tcg:Event`)
+- `id`: `urn:brutality:tcg:Event:{seq}-{digestMultibase}` — the monotonically
   ordered sequence number folded together with the content digest, so the id
   is both sortable and content-addressed. There is no separate `seq` field;
   `seq` is read from the id. Digests use the `digestMultibase` form from the
@@ -279,36 +287,37 @@ Envelope (root):
 - `ts`: UTC timestamp
 - `proof`: a W3C **Data Integrity** proof (`DataIntegrityProof`,
   cryptosuite **`eddsa-jcs-2022`**) over the unsecured document
-  (`{@id, @type, ts, payload}`), added after `@id` is computed.
-  Because `seq` lives in the signed `@id`, its position is authenticated. It
+  (`{@context?, id, type, ts, payload}`), added after `id` is computed.
+  Because `seq` lives in the signed `id`, its position is authenticated. It
   carries `created`, a `did:key` `verificationMethod`,
   `proofPurpose: assertionMethod`, and a multibase `proofValue`.
 
 There is no `prevId` field. Chaining follows the did:webvh entry-hash
-pattern: the digest is computed over `{@id, @type, ts, payload}` with the
-*previous* event's envelope `@id` occupying the `@id` slot, and the result
+pattern: the digest is computed over `{id, type, ts, payload}` with the
+*previous* event's envelope `id` occupying the `id` slot, and the result
 replaces it as `Event:{seq}-{digest}`. Each id therefore binds the full
 prior head implicitly. Genesis, the chain root, digests with its own payload
-`@id` (the signing key anchor) in the slot instead.
+`id` (the signing key anchor) in the slot instead. The Genesis digest also
+covers its `@context`.
 
 Payload (domain resource):
 
-- `@type`: domain-specific type (`urn:brutality:tcg:PackOpening`,
-  `urn:brutality:tcg:Genesis`, etc.); a shared `@context` may come later
-- `@id`: stable domain identifier, `{@type}:{domainId}` — e.g.
+- `type`: compact domain-specific type (`PackOpening`, `Genesis`, etc.),
+  expanded through the Genesis context
+- `id`: stable domain identifier, `{expanded type}:{domainId}` — e.g.
   `urn:brutality:tcg:PackOpening:{redemptionId}`. All events of one pack
   lifecycle (`CreditReserved`, `RedemptionCommitted`, `PackOpening`,
   `RedemptionExpired`, `CreditReleased`) share the same `redemptionId`
   suffix; `CollectorCreated` uses the collector's public id; `SetPublished`
   uses `{setCode}:{version}`; Genesis uses the signing key multibase
 - Remaining fields: domain data only (collector, set, cards, commitment,
-  `schemaVersion` on Genesis, etc.). Sets and cards are themselves
+  etc.). Sets and cards are themselves
   identified by URNs: `urn:brutality:tcg:CardSet:{code}` (e.g.
   `…CardSet:OG`) and `urn:brutality:tcg:Card:{setCode}:{number}` (e.g.
   `…Card:OG:005`, zero-padded)
 
-Verifiers read `seq` from the `@id`, substitute the predecessor's `@id`
-(or the Genesis payload `@id`) into the `@id` slot, recompute the digest —
+Verifiers read `seq` from the `id`, substitute the predecessor's `id`
+(or the Genesis payload `id`) into the `id` slot, recompute the digest —
 one check that proves both content integrity and the chain link — and then
 verify the proof. Pack commitments are `digestMultibase` values too.
 
