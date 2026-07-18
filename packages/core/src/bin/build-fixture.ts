@@ -28,13 +28,13 @@ if (getLastSeq() > 0) {
 
 // 1. Publish sets.
 for (const set of SETS) {
-  appendEvent("set_published", `${set.setId}:${set.version}`, {
-    setId: set.setId,
+  appendEvent("set_published", `${set.code}:${set.version}`, {
+    set: set.setId,
     version: set.version,
     name: set.name,
     packSize: set.packSize,
     rarityWeights: set.rarityWeights,
-    cardIds: set.cards.map((c) => c.cardId),
+    cards: set.cards.map((c) => c.cardId),
   });
 }
 

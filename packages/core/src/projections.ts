@@ -84,7 +84,7 @@ export function replayLedger(): ReplayState {
         bal(p.collector).reserved -= 1;
         if (!holdings.has(p.collector)) holdings.set(p.collector, new Map());
         const h = holdings.get(p.collector)!;
-        for (const cardId of p.cardIds as string[]) {
+        for (const cardId of p.cards as string[]) {
           h.set(cardId, (h.get(cardId) ?? 0) + 1);
         }
         break;

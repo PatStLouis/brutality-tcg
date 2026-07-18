@@ -2,9 +2,11 @@
 
 Commissioned card art drops in here.
 
-- File naming: `<set-id>/<card-id>.png` (e.g. `og-set/og-005.png`)
+- File naming: `<set-code>/<card-number>.png` (e.g. `og/005.png`)
 - After adding a file, set the matching card's `image` field in
-  `packages/core/src/cards.ts` to `/assets/cards/og-set/og-005.png`.
+  `packages/core/src/cards.ts` to `/assets/cards/og/005.png`.
+- Card identity in the ledger uses URNs (`urn:brutality:tcg:Card:OG:005`);
+  file paths just use the lowercase set code and zero-padded card number.
 - Until an image is set, the app renders a built-in placeholder card face,
   so nothing breaks while art is pending.
 

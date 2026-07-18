@@ -29,8 +29,8 @@ for (const e of events) {
   }
   if (t === "pack_opened" && redemptionId) {
     const p = e.payload as any;
-    const set = getSet(p.setId);
-    const expected = computeCommitment(redemptionId, p.setId, set.version, p.cardIds, p.nonce);
+    const set = getSet(p.set);
+    const expected = computeCommitment(redemptionId, p.set, set.version, p.cards, p.nonce);
     const committed = commitments.get(redemptionId);
     if (committed !== p.commitment || expected !== p.commitment) {
       revealErrors++;

@@ -9,20 +9,20 @@ for (const set of SETS) {
   const already = existing.some(
     (e) =>
       eventTypeOf(e) === "set_published" &&
-      (e.payload as any).setId === set.setId &&
+      (e.payload as any).set === set.setId &&
       (e.payload as any).version === set.version
   );
   if (already) {
     console.log(`Set already published: ${set.name} v${set.version}`);
     continue;
   }
-  appendEvent("set_published", `${set.setId}:${set.version}`, {
-    setId: set.setId,
+  appendEvent("set_published", `${set.code}:${set.version}`, {
+    set: set.setId,
     version: set.version,
     name: set.name,
     packSize: set.packSize,
     rarityWeights: set.rarityWeights,
-    cardIds: set.cards.map((c) => c.cardId),
+    cards: set.cards.map((c) => c.cardId),
   });
   console.log(`Published set: ${set.name} v${set.version} (${set.cards.length} cards)`);
 }

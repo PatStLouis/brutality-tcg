@@ -15,12 +15,27 @@ export interface CardDef {
 }
 
 export interface SetDef {
+  /** Canonical URN: `urn:brutality:tcg:CardSet:{code}`. */
   setId: string;
+  /** Short set code (the URN suffix), e.g. `OG`. */
+  code: string;
   name: string;
   version: number;
   packSize: number;
   rarityWeights: Record<Rarity, number>;
   cards: CardDef[];
+}
+
+export const CARD_SET_URN_PREFIX = "urn:brutality:tcg:CardSet";
+export const CARD_URN_PREFIX = "urn:brutality:tcg:Card";
+
+export function cardSetUrn(code: string): string {
+  return `${CARD_SET_URN_PREFIX}:${code}`;
+}
+
+/** Canonical card URN: `urn:brutality:tcg:Card:{setCode}:{number}` (zero-padded). */
+export function cardUrn(setCode: string, number: number): string {
+  return `${CARD_URN_PREFIX}:${setCode}:${String(number).padStart(3, "0")}`;
 }
 
 export const RARITIES: Rarity[] = ["common", "uncommon", "rare", "ultra_rare", "legendary"];
@@ -38,8 +53,22 @@ export const RARITY_LABELS: Record<Rarity, string> = {
  * All images are placeholders until photo rights are confirmed and the card
  * front template is commissioned.
  */
+const OG_CARDS: Array<Omit<CardDef, "cardId">> = [
+  { number: 1, name: "Nick Arthur", rarity: "common", image: null },
+  { number: 2, name: "Alex Koehler", rarity: "uncommon", image: null },
+  { number: 3, name: "Oli Sykes", rarity: "rare", image: null },
+  { number: 4, name: "Phil Bozeman", rarity: "ultra_rare", image: null },
+  { number: 5, name: "Mitch Lucker", rarity: "legendary", image: null },
+  { number: 6, name: "Adam Warren", rarity: "common", image: null },
+  { number: 7, name: "Alex Erian", rarity: "common", image: null },
+  { number: 8, name: "Brandon Butler", rarity: "uncommon", image: null },
+  { number: 9, name: "Frankie Palmeri", rarity: "rare", image: null },
+  { number: 10, name: "Scott Ian Lewis", rarity: "common", image: null },
+];
+
 export const OG_SET: SetDef = {
-  setId: "og-set",
+  setId: cardSetUrn("OG"),
+  code: "OG",
   name: "OG SET",
   version: 1,
   packSize: 5,
@@ -50,18 +79,7 @@ export const OG_SET: SetDef = {
     ultra_rare: 4,
     legendary: 1,
   },
-  cards: [
-    { cardId: "og-001", number: 1, name: "Nick Arthur", rarity: "common", image: null },
-    { cardId: "og-002", number: 2, name: "Alex Koehler", rarity: "uncommon", image: null },
-    { cardId: "og-003", number: 3, name: "Oli Sykes", rarity: "rare", image: null },
-    { cardId: "og-004", number: 4, name: "Phil Bozeman", rarity: "ultra_rare", image: null },
-    { cardId: "og-005", number: 5, name: "Mitch Lucker", rarity: "legendary", image: null },
-    { cardId: "og-006", number: 6, name: "Adam Warren", rarity: "common", image: null },
-    { cardId: "og-007", number: 7, name: "Alex Erian", rarity: "common", image: null },
-    { cardId: "og-008", number: 8, name: "Brandon Butler", rarity: "uncommon", image: null },
-    { cardId: "og-009", number: 9, name: "Frankie Palmeri", rarity: "rare", image: null },
-    { cardId: "og-010", number: 10, name: "Scott Ian Lewis", rarity: "common", image: null },
-  ],
+  cards: OG_CARDS.map((c) => ({ ...c, cardId: cardUrn("OG", c.number) })),
 };
 
 export const SETS: SetDef[] = [OG_SET];

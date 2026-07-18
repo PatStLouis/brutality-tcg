@@ -1,16 +1,16 @@
 {
   "format": "brutality-ledger-fixture",
   "version": 1,
-  "exportedTs": "2026-07-18T20:34:49.190Z",
+  "exportedTs": "2026-07-18T20:43:53.676Z",
   "demoSigningKeyPem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIMsX7jvam37V+xLeJK6LaypjFz3zAOkIUoLy1O1VHL4z\n-----END PRIVATE KEY-----\n",
   "publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAASKxXYMShBuJ3F2Xqb+Yi3N5wRhd8u+ag2+/L8APkpo=\n-----END PUBLIC KEY-----\n",
   "keyId": "08a1ed0f3c5cd482",
   "events": [
     {
-      "@id": "urn:brutality:tcg:Event:3cbb758a83962c6c99ed2166a80676357e2644a4f50878e6580b0de2318fcdef",
+      "@id": "urn:brutality:tcg:Event:e9d847f824dd9a43451177b2454f6b49d90dd380c5193980f1daed0130cb339d",
       "@type": "urn:brutality:tcg:Event",
       "seq": 1,
-      "ts": "2026-07-18T20:34:49.163Z",
+      "ts": "2026-07-18T20:43:53.648Z",
       "payload": {
         "@id": "urn:brutality:tcg:Genesis:z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3",
         "@type": "urn:brutality:tcg:Genesis",
@@ -19,22 +19,22 @@
       "proof": {
         "type": "DataIntegrityProof",
         "cryptosuite": "eddsa-jcs-2022",
-        "created": "2026-07-18T20:34:49.163Z",
+        "created": "2026-07-18T20:43:53.648Z",
         "verificationMethod": "did:key:z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3#z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3",
         "proofPurpose": "assertionMethod",
-        "proofValue": "z4vmEXtCyEREp8jRXLo5mzaRLSRafXR78VVku6Zd8k2aRAokHMvCMJJw4Go143ZetQG4CmFG76PyzRsovLPqMfVNk"
+        "proofValue": "z4Rb5hbnTSQjQjFTrVayLJ3YyRug367NqKvvdTgduWQ6v3fXCukKvi9ybGWUsxn82uxLjw6FNYTctnvXR7PUx1p84"
       }
     },
     {
-      "@id": "urn:brutality:tcg:Event:7f87a5399d17585226f5b31f3a3448159539c69b8dd88f36342a7d4e60adc01c",
+      "@id": "urn:brutality:tcg:Event:b4e7a24ea90c48b00a42c318acf36085b9bcb2722f016c0744931668af9c17a6",
       "@type": "urn:brutality:tcg:Event",
       "seq": 2,
-      "ts": "2026-07-18T20:34:49.165Z",
-      "prevId": "urn:brutality:tcg:Event:3cbb758a83962c6c99ed2166a80676357e2644a4f50878e6580b0de2318fcdef",
+      "ts": "2026-07-18T20:43:53.650Z",
+      "prevId": "urn:brutality:tcg:Event:e9d847f824dd9a43451177b2454f6b49d90dd380c5193980f1daed0130cb339d",
       "payload": {
-        "@id": "urn:brutality:tcg:SetPublished:og-set:1",
+        "@id": "urn:brutality:tcg:SetPublished:OG:1",
         "@type": "urn:brutality:tcg:SetPublished",
-        "setId": "og-set",
+        "set": "urn:brutality:tcg:CardSet:OG",
         "version": 1,
         "name": "OG SET",
         "packSize": 5,
@@ -45,1089 +45,1089 @@
           "ultra_rare": 4,
           "legendary": 1
         },
-        "cardIds": [
-          "og-001",
-          "og-002",
-          "og-003",
-          "og-004",
-          "og-005",
-          "og-006",
-          "og-007",
-          "og-008",
-          "og-009",
-          "og-010"
+        "cards": [
+          "urn:brutality:tcg:Card:OG:001",
+          "urn:brutality:tcg:Card:OG:002",
+          "urn:brutality:tcg:Card:OG:003",
+          "urn:brutality:tcg:Card:OG:004",
+          "urn:brutality:tcg:Card:OG:005",
+          "urn:brutality:tcg:Card:OG:006",
+          "urn:brutality:tcg:Card:OG:007",
+          "urn:brutality:tcg:Card:OG:008",
+          "urn:brutality:tcg:Card:OG:009",
+          "urn:brutality:tcg:Card:OG:010"
         ]
       },
       "proof": {
         "type": "DataIntegrityProof",
         "cryptosuite": "eddsa-jcs-2022",
-        "created": "2026-07-18T20:34:49.165Z",
+        "created": "2026-07-18T20:43:53.650Z",
         "verificationMethod": "did:key:z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3#z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3",
         "proofPurpose": "assertionMethod",
-        "proofValue": "z4jcrDHkV5QxVBaxWeBPH4knNbgMTMFhHaop3KBmRQbdsU6hd2eqgB8iiT7cmMA1vdieT7ZQvsVvySjjQLSZ3vMPJ"
+        "proofValue": "z35uCRP9AxyZz8aviEjUwXT2jCS84izAqbx8K4x4ZGitTbYFwnbqthaDrW13DEQkYzEWRCaFXck7RBJV5u8kAYNXy"
       }
     },
     {
-      "@id": "urn:brutality:tcg:Event:573745fae3241724ca2ccf98103e492f5d16dd3ff8a20d504c084b3b3ca574e5",
+      "@id": "urn:brutality:tcg:Event:ce3fc8f2e7f22b7daf5639cda1e46cc8c11102acc106ea9666ddbd258689c65b",
       "@type": "urn:brutality:tcg:Event",
       "seq": 3,
-      "ts": "2026-07-18T20:34:49.167Z",
-      "prevId": "urn:brutality:tcg:Event:7f87a5399d17585226f5b31f3a3448159539c69b8dd88f36342a7d4e60adc01c",
+      "ts": "2026-07-18T20:43:53.651Z",
+      "prevId": "urn:brutality:tcg:Event:b4e7a24ea90c48b00a42c318acf36085b9bcb2722f016c0744931668af9c17a6",
       "payload": {
-        "@id": "urn:brutality:tcg:CollectorCreated:c_26907da183c8eed2",
+        "@id": "urn:brutality:tcg:CollectorCreated:c_676b648a6d57275d",
         "@type": "urn:brutality:tcg:CollectorCreated"
       },
       "proof": {
         "type": "DataIntegrityProof",
         "cryptosuite": "eddsa-jcs-2022",
-        "created": "2026-07-18T20:34:49.167Z",
+        "created": "2026-07-18T20:43:53.651Z",
         "verificationMethod": "did:key:z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3#z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3",
         "proofPurpose": "assertionMethod",
-        "proofValue": "z5pH54PpaVFhCtbu3CERGhDF5S38vTdpsQxbFyExnxRSkk9XywGaijpxqxn1oF53QMNFYQDsQ3dqfMccH2XnLEYwH"
+        "proofValue": "z5tZTSWSiLhGqKJdbBWEJ94NVa3fXPEAxoV9cUY8ZGYcb6DAJ3MPWNw3F67aQo1j78b32KuaMU7aHu9uBDZegn3d8"
       }
     },
     {
-      "@id": "urn:brutality:tcg:Event:0a0d1e9b410df6b130e925f241f205cfe82481b1760cc40ed59cec371e889e24",
+      "@id": "urn:brutality:tcg:Event:5f079a74e274b1f809ab8e99b396191a9f84def182660f2a0d043461eb024f35",
       "@type": "urn:brutality:tcg:Event",
       "seq": 4,
-      "ts": "2026-07-18T20:34:49.169Z",
-      "prevId": "urn:brutality:tcg:Event:573745fae3241724ca2ccf98103e492f5d16dd3ff8a20d504c084b3b3ca574e5",
+      "ts": "2026-07-18T20:43:53.652Z",
+      "prevId": "urn:brutality:tcg:Event:ce3fc8f2e7f22b7daf5639cda1e46cc8c11102acc106ea9666ddbd258689c65b",
       "payload": {
-        "@id": "urn:brutality:tcg:CreditsGranted:f1d46ec9-2f93-4005-b78b-1339ccac030b",
+        "@id": "urn:brutality:tcg:CreditsGranted:50756d22-1a57-4398-a97d-66022096213d",
         "@type": "urn:brutality:tcg:CreditsGranted",
-        "collector": "c_26907da183c8eed2",
+        "collector": "c_676b648a6d57275d",
         "packs": 4,
         "reason": "demo_fixture"
       },
       "proof": {
         "type": "DataIntegrityProof",
         "cryptosuite": "eddsa-jcs-2022",
-        "created": "2026-07-18T20:34:49.169Z",
+        "created": "2026-07-18T20:43:53.652Z",
         "verificationMethod": "did:key:z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3#z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3",
         "proofPurpose": "assertionMethod",
-        "proofValue": "z2iNBeEpVm14QxS9BDDTURypUAZKqC1GRp8q4nuHovtynq3x7KxhC7WHpysVCckSrbQ2WGvZCrp4nq8mMuNjgVfQd"
+        "proofValue": "z5M4nLqafiwPQaBHJPwgsCPTAAzfKgJbhkKhDkiwhaPknS7gjPVX7EURkGrAGd1hbHjDHMUhdFAQ1aQVXMAkKnfVM"
       }
     },
     {
-      "@id": "urn:brutality:tcg:Event:8966154d75e44c89863ee866da760c5f2e3ed52c32874e5b6621122a71998c03",
+      "@id": "urn:brutality:tcg:Event:26f179bb1d714dd500b893546de4b3f4b343396150d50664b01d44dd1985e63c",
       "@type": "urn:brutality:tcg:Event",
       "seq": 5,
-      "ts": "2026-07-18T20:34:49.171Z",
-      "prevId": "urn:brutality:tcg:Event:0a0d1e9b410df6b130e925f241f205cfe82481b1760cc40ed59cec371e889e24",
+      "ts": "2026-07-18T20:43:53.653Z",
+      "prevId": "urn:brutality:tcg:Event:5f079a74e274b1f809ab8e99b396191a9f84def182660f2a0d043461eb024f35",
       "payload": {
-        "@id": "urn:brutality:tcg:CreditReserved:170ec532-3de0-4f70-be21-7458e5e84d0d",
+        "@id": "urn:brutality:tcg:CreditReserved:abc425ee-2d96-417a-ae31-8098b7515b04",
         "@type": "urn:brutality:tcg:CreditReserved",
-        "collector": "c_26907da183c8eed2"
+        "collector": "c_676b648a6d57275d"
       },
       "proof": {
         "type": "DataIntegrityProof",
         "cryptosuite": "eddsa-jcs-2022",
-        "created": "2026-07-18T20:34:49.171Z",
+        "created": "2026-07-18T20:43:53.653Z",
         "verificationMethod": "did:key:z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3#z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3",
         "proofPurpose": "assertionMethod",
-        "proofValue": "z589FmE8N8wF724Mi2vnYVTomjkfsBBHsmvxqvnk2UuCF7fkiPuH3Tkf3ozdpQ4CK1weYmTs5HU6hWwim8sAQrn5U"
+        "proofValue": "z2aAQiAMMzzZ2Af2ABbBnHSHrJe8SqeVHKRBVNAN5ZhqsUmAZCUfiRufxE3Ymg7BacrNnQCCvuBnqCWvbXwyGq76c"
       }
     },
     {
-      "@id": "urn:brutality:tcg:Event:a6d66d8624f05544da5b0c45cb212b2011d8265c4c0c76ca0c5732ca283060c5",
+      "@id": "urn:brutality:tcg:Event:fe5d96b930be58575a7b86a30cc39101e0765b26f2194cf3bb68aad0e1459dd1",
       "@type": "urn:brutality:tcg:Event",
       "seq": 6,
-      "ts": "2026-07-18T20:34:49.171Z",
-      "prevId": "urn:brutality:tcg:Event:8966154d75e44c89863ee866da760c5f2e3ed52c32874e5b6621122a71998c03",
+      "ts": "2026-07-18T20:43:53.654Z",
+      "prevId": "urn:brutality:tcg:Event:26f179bb1d714dd500b893546de4b3f4b343396150d50664b01d44dd1985e63c",
       "payload": {
-        "@id": "urn:brutality:tcg:RedemptionCommitted:170ec532-3de0-4f70-be21-7458e5e84d0d",
+        "@id": "urn:brutality:tcg:RedemptionCommitted:abc425ee-2d96-417a-ae31-8098b7515b04",
         "@type": "urn:brutality:tcg:RedemptionCommitted",
-        "collector": "c_26907da183c8eed2",
-        "setId": "og-set",
+        "collector": "c_676b648a6d57275d",
+        "set": "urn:brutality:tcg:CardSet:OG",
         "setVersion": 1,
         "packSize": 5,
-        "commitment": "98d18dfbd561363d8792f4bec8fb67005af85b6b0f5b1f6f86350df17d227cf5"
+        "commitment": "2b05e4c9236650fe71cdce1c5ebd275928fc7a6ff9fd81bc9a62b06de52c29f8"
       },
       "proof": {
         "type": "DataIntegrityProof",
         "cryptosuite": "eddsa-jcs-2022",
-        "created": "2026-07-18T20:34:49.171Z",
+        "created": "2026-07-18T20:43:53.654Z",
         "verificationMethod": "did:key:z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3#z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3",
         "proofPurpose": "assertionMethod",
-        "proofValue": "z21JtaVxN5Z6pu1h9hofzzhE4TziD5NKv7WDfyZetFfvsya1tBd1waPnoHCXBMBLgDnaQymMSJvMcuiDETPyqShv6"
+        "proofValue": "zEaJq4oQ3TnnLowJjrevinFBsNHZPNrBiZH1FXkMWkkf7ZNw4WGzcotXRmjnudJMFy3tuDHYQYs5eXG4zgpvYM2z"
       }
     },
     {
-      "@id": "urn:brutality:tcg:Event:c9c7371ed0cbf04bc3ed06666dd2dd2459180dfcd7e2ac49cd40e9725996f55d",
+      "@id": "urn:brutality:tcg:Event:ece7ee21fdd0f4467f3a62143a86e903df9f0129212b825d20ac738cd98b8a5d",
       "@type": "urn:brutality:tcg:Event",
       "seq": 7,
-      "ts": "2026-07-18T20:34:49.172Z",
-      "prevId": "urn:brutality:tcg:Event:a6d66d8624f05544da5b0c45cb212b2011d8265c4c0c76ca0c5732ca283060c5",
+      "ts": "2026-07-18T20:43:53.656Z",
+      "prevId": "urn:brutality:tcg:Event:fe5d96b930be58575a7b86a30cc39101e0765b26f2194cf3bb68aad0e1459dd1",
       "payload": {
-        "@id": "urn:brutality:tcg:PackOpening:170ec532-3de0-4f70-be21-7458e5e84d0d",
+        "@id": "urn:brutality:tcg:PackOpening:abc425ee-2d96-417a-ae31-8098b7515b04",
         "@type": "urn:brutality:tcg:PackOpening",
-        "collector": "c_26907da183c8eed2",
-        "setId": "og-set",
-        "cardIds": [
-          "og-007",
-          "og-008",
-          "og-010",
-          "og-010",
-          "og-001"
+        "collector": "c_676b648a6d57275d",
+        "set": "urn:brutality:tcg:CardSet:OG",
+        "cards": [
+          "urn:brutality:tcg:Card:OG:010",
+          "urn:brutality:tcg:Card:OG:007",
+          "urn:brutality:tcg:Card:OG:005",
+          "urn:brutality:tcg:Card:OG:008",
+          "urn:brutality:tcg:Card:OG:003"
         ],
-        "nonce": "99ef6515d981819efa8acc173aa28ebb",
-        "commitment": "98d18dfbd561363d8792f4bec8fb67005af85b6b0f5b1f6f86350df17d227cf5"
+        "nonce": "40296196cd0a57d5444efe44abb40a01",
+        "commitment": "2b05e4c9236650fe71cdce1c5ebd275928fc7a6ff9fd81bc9a62b06de52c29f8"
       },
       "proof": {
         "type": "DataIntegrityProof",
         "cryptosuite": "eddsa-jcs-2022",
-        "created": "2026-07-18T20:34:49.172Z",
+        "created": "2026-07-18T20:43:53.656Z",
         "verificationMethod": "did:key:z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3#z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3",
         "proofPurpose": "assertionMethod",
-        "proofValue": "z2yP3pVHSKoJvVyWLcEk9LS2QDFoWUTkhWeont6dgWsBo37a3Ay2ci5tgBGR3b4R6gyLMwhDrdTgk62aABzjGSCPj"
+        "proofValue": "z2UzZDBjvzN1k19DeMbFqr1Kv9S4XLczyCW7qPZyCG4SLpUVQDD27zPz7wbowH8mmtpni6k2SmhzB7netjm2JkGiz"
       }
     },
     {
-      "@id": "urn:brutality:tcg:Event:32c7adbe4e676c0b2defd5a55464c9c2b1d13cd8dde5fe608122398b1eec5c34",
+      "@id": "urn:brutality:tcg:Event:f8aeec06b9415b19fae427871549a005b6ce6502ee3007e061337c0908dac8e3",
       "@type": "urn:brutality:tcg:Event",
       "seq": 8,
-      "ts": "2026-07-18T20:34:49.173Z",
-      "prevId": "urn:brutality:tcg:Event:c9c7371ed0cbf04bc3ed06666dd2dd2459180dfcd7e2ac49cd40e9725996f55d",
+      "ts": "2026-07-18T20:43:53.657Z",
+      "prevId": "urn:brutality:tcg:Event:ece7ee21fdd0f4467f3a62143a86e903df9f0129212b825d20ac738cd98b8a5d",
       "payload": {
-        "@id": "urn:brutality:tcg:CreditReserved:05c94792-fe40-42e6-b1f1-2eb57121db59",
+        "@id": "urn:brutality:tcg:CreditReserved:2e23606d-559e-4761-ba07-58f0478a1560",
         "@type": "urn:brutality:tcg:CreditReserved",
-        "collector": "c_26907da183c8eed2"
+        "collector": "c_676b648a6d57275d"
       },
       "proof": {
         "type": "DataIntegrityProof",
         "cryptosuite": "eddsa-jcs-2022",
-        "created": "2026-07-18T20:34:49.173Z",
+        "created": "2026-07-18T20:43:53.657Z",
         "verificationMethod": "did:key:z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3#z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3",
         "proofPurpose": "assertionMethod",
-        "proofValue": "z2SQkpDoxWvQ429CW4dkw43tojZyozHbJRXAqhX9NNYQpiJiheqxY4H7LBXRkkwQjRbS3w95g3ThSunK2mGwNpUYK"
+        "proofValue": "zeV5Esi3iCcG1EpT5byrpuJ2GGEihmLym4pFM9tsBGJR7mTzF7LLiYqz1Lupvpuaz8486F6gigju88R9ho13nEec"
       }
     },
     {
-      "@id": "urn:brutality:tcg:Event:c90be4e5136bf635b8320a99b76e158343c782bafe658a974a28af945544bda0",
+      "@id": "urn:brutality:tcg:Event:884e9c7f1ae51152afee398796ec5a33c9812d499f83b248f1da94ac4db0587f",
       "@type": "urn:brutality:tcg:Event",
       "seq": 9,
-      "ts": "2026-07-18T20:34:49.173Z",
-      "prevId": "urn:brutality:tcg:Event:32c7adbe4e676c0b2defd5a55464c9c2b1d13cd8dde5fe608122398b1eec5c34",
+      "ts": "2026-07-18T20:43:53.658Z",
+      "prevId": "urn:brutality:tcg:Event:f8aeec06b9415b19fae427871549a005b6ce6502ee3007e061337c0908dac8e3",
       "payload": {
-        "@id": "urn:brutality:tcg:RedemptionCommitted:05c94792-fe40-42e6-b1f1-2eb57121db59",
+        "@id": "urn:brutality:tcg:RedemptionCommitted:2e23606d-559e-4761-ba07-58f0478a1560",
         "@type": "urn:brutality:tcg:RedemptionCommitted",
-        "collector": "c_26907da183c8eed2",
-        "setId": "og-set",
+        "collector": "c_676b648a6d57275d",
+        "set": "urn:brutality:tcg:CardSet:OG",
         "setVersion": 1,
         "packSize": 5,
-        "commitment": "89226c0fc901a872bf7ef54647eb3044f346a88b0cd7a6a0987d665eadbd246a"
+        "commitment": "52c82468ab9c190382b84d8266701899d7b281dde83d6cd9d234b1172690cfbd"
       },
       "proof": {
         "type": "DataIntegrityProof",
         "cryptosuite": "eddsa-jcs-2022",
-        "created": "2026-07-18T20:34:49.173Z",
+        "created": "2026-07-18T20:43:53.658Z",
         "verificationMethod": "did:key:z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3#z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3",
         "proofPurpose": "assertionMethod",
-        "proofValue": "zXWSn2uWdkFD3aUhSVEVBTSj8fMjXgY9cWebgkgfPYRRByQnogtZ2TZHNXKUUeLSoqYfS3ZDH3UkemnfaTPE6cfp"
+        "proofValue": "z4xpU6WpXxvnStE8qobikPRc1Ydt5tpBimechQP349DQPusKrCmoyL8xsHqzDuAKzHTEGuVix6jNtQdG4xFsgDPdx"
       }
     },
     {
-      "@id": "urn:brutality:tcg:Event:35c4a7b1dfb2d0b462629c701c40ce3045a3032e79265b675bde50bd29f927be",
+      "@id": "urn:brutality:tcg:Event:5d6a038492e7846df6d036bf8a026f38d09721a9030c9e27dc8e17456ab8cbe9",
       "@type": "urn:brutality:tcg:Event",
       "seq": 10,
-      "ts": "2026-07-18T20:34:49.173Z",
-      "prevId": "urn:brutality:tcg:Event:c90be4e5136bf635b8320a99b76e158343c782bafe658a974a28af945544bda0",
+      "ts": "2026-07-18T20:43:53.658Z",
+      "prevId": "urn:brutality:tcg:Event:884e9c7f1ae51152afee398796ec5a33c9812d499f83b248f1da94ac4db0587f",
       "payload": {
-        "@id": "urn:brutality:tcg:PackOpening:05c94792-fe40-42e6-b1f1-2eb57121db59",
+        "@id": "urn:brutality:tcg:PackOpening:2e23606d-559e-4761-ba07-58f0478a1560",
         "@type": "urn:brutality:tcg:PackOpening",
-        "collector": "c_26907da183c8eed2",
-        "setId": "og-set",
-        "cardIds": [
-          "og-007",
-          "og-001",
-          "og-001",
-          "og-002",
-          "og-006"
+        "collector": "c_676b648a6d57275d",
+        "set": "urn:brutality:tcg:CardSet:OG",
+        "cards": [
+          "urn:brutality:tcg:Card:OG:002",
+          "urn:brutality:tcg:Card:OG:007",
+          "urn:brutality:tcg:Card:OG:005",
+          "urn:brutality:tcg:Card:OG:010",
+          "urn:brutality:tcg:Card:OG:010"
         ],
-        "nonce": "60216a1b780f277d25256582d2af4ddd",
-        "commitment": "89226c0fc901a872bf7ef54647eb3044f346a88b0cd7a6a0987d665eadbd246a"
+        "nonce": "13826f585d053b4a4680721f07e15e4f",
+        "commitment": "52c82468ab9c190382b84d8266701899d7b281dde83d6cd9d234b1172690cfbd"
       },
       "proof": {
         "type": "DataIntegrityProof",
         "cryptosuite": "eddsa-jcs-2022",
-        "created": "2026-07-18T20:34:49.173Z",
+        "created": "2026-07-18T20:43:53.658Z",
         "verificationMethod": "did:key:z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3#z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3",
         "proofPurpose": "assertionMethod",
-        "proofValue": "z5iNWEdVsCQL9wpTyy2TC1Ahqg3tXG7mAWikmt45uR4mqDdPVQcNC24piBveyYYDajS97JFhEncGm1buaXXZVqsUf"
+        "proofValue": "z2CD9Lv5SDuwueVzpyjDC9csS6PaZePLAWDJcZQVWDqvw1zQpyy4BVeP1VSNWBvnjWBjXceqgHyUPHZeMhWk27nCS"
       }
     },
     {
-      "@id": "urn:brutality:tcg:Event:d392133079be3aeaf75d2731553f5b98870b07603eb215f6c6ae2df2a465cfce",
+      "@id": "urn:brutality:tcg:Event:194445674dde7cbf3d6db70b38aa95d60001e753903f639672a9da6f6105caa2",
       "@type": "urn:brutality:tcg:Event",
       "seq": 11,
-      "ts": "2026-07-18T20:34:49.174Z",
-      "prevId": "urn:brutality:tcg:Event:35c4a7b1dfb2d0b462629c701c40ce3045a3032e79265b675bde50bd29f927be",
+      "ts": "2026-07-18T20:43:53.661Z",
+      "prevId": "urn:brutality:tcg:Event:5d6a038492e7846df6d036bf8a026f38d09721a9030c9e27dc8e17456ab8cbe9",
       "payload": {
-        "@id": "urn:brutality:tcg:CreditReserved:6c829ff6-c03e-4d14-8152-508ae3110ceb",
+        "@id": "urn:brutality:tcg:CreditReserved:090629e3-4020-49a1-ad98-df16861819a4",
         "@type": "urn:brutality:tcg:CreditReserved",
-        "collector": "c_26907da183c8eed2"
+        "collector": "c_676b648a6d57275d"
       },
       "proof": {
         "type": "DataIntegrityProof",
         "cryptosuite": "eddsa-jcs-2022",
-        "created": "2026-07-18T20:34:49.174Z",
+        "created": "2026-07-18T20:43:53.661Z",
         "verificationMethod": "did:key:z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3#z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3",
         "proofPurpose": "assertionMethod",
-        "proofValue": "z2AYVCmwKugqmfF9pMVrWeGzS9tHJsC9uukRaj2pZM4vPzmFJiHYa2iiyZ36pkgqhLmVjoZSmKWFzgRKpcCD4c5zZ"
+        "proofValue": "z3sA1UatcFbk2EChA7Qh8V625h8WxSgoDPtXjkJtQ8gmvqH8Es6wDguoUYHTfrePtpk8qhcwcKAa11gTBN3RMnNHf"
       }
     },
     {
-      "@id": "urn:brutality:tcg:Event:372eca3ab7d9e45b3d5697b37364c654af6b9250520687ec12fdc13c93f9a528",
+      "@id": "urn:brutality:tcg:Event:f7134b748dd109450ff4be03c9755f81729d36ba9cc45822b7937677ca0b90dc",
       "@type": "urn:brutality:tcg:Event",
       "seq": 12,
-      "ts": "2026-07-18T20:34:49.174Z",
-      "prevId": "urn:brutality:tcg:Event:d392133079be3aeaf75d2731553f5b98870b07603eb215f6c6ae2df2a465cfce",
+      "ts": "2026-07-18T20:43:53.662Z",
+      "prevId": "urn:brutality:tcg:Event:194445674dde7cbf3d6db70b38aa95d60001e753903f639672a9da6f6105caa2",
       "payload": {
-        "@id": "urn:brutality:tcg:RedemptionCommitted:6c829ff6-c03e-4d14-8152-508ae3110ceb",
+        "@id": "urn:brutality:tcg:RedemptionCommitted:090629e3-4020-49a1-ad98-df16861819a4",
         "@type": "urn:brutality:tcg:RedemptionCommitted",
-        "collector": "c_26907da183c8eed2",
-        "setId": "og-set",
+        "collector": "c_676b648a6d57275d",
+        "set": "urn:brutality:tcg:CardSet:OG",
         "setVersion": 1,
         "packSize": 5,
-        "commitment": "d6a398a049fa9baef899477dffb19ee4820fd0b36e346ea7700f96bbd4f0cc59"
+        "commitment": "b4d19dc08ed6df7b67965c11c4321bc428ae21d9ef86f43c31adefbef6b90c44"
       },
       "proof": {
         "type": "DataIntegrityProof",
         "cryptosuite": "eddsa-jcs-2022",
-        "created": "2026-07-18T20:34:49.174Z",
+        "created": "2026-07-18T20:43:53.662Z",
         "verificationMethod": "did:key:z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3#z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3",
         "proofPurpose": "assertionMethod",
-        "proofValue": "z43D4Q221Y6sgxABoWQ45btTrd8YjaW18zi92TKvm8avxg72oGVEwyvVaiiqqo6qNN4evCs7gH9LxpmHm4ctNJ3f8"
+        "proofValue": "z63Eb22fVjhh6y95XJkiEiMnsbTcczX3hnVeK6PmDPEdhDCww2eUre9ZjUKDHREA9PGKxZVXtC9GCj3QfQ68FVUkc"
       }
     },
     {
-      "@id": "urn:brutality:tcg:Event:0aa5710119f1cf24ba80ed4af223540b72f2587b457ee7adc45ef8b7b323f304",
+      "@id": "urn:brutality:tcg:Event:f70c21e8c352192c5ef0382211aa77a48de7baec78d8ae84c06c38c59b173728",
       "@type": "urn:brutality:tcg:Event",
       "seq": 13,
-      "ts": "2026-07-18T20:34:49.175Z",
-      "prevId": "urn:brutality:tcg:Event:372eca3ab7d9e45b3d5697b37364c654af6b9250520687ec12fdc13c93f9a528",
+      "ts": "2026-07-18T20:43:53.662Z",
+      "prevId": "urn:brutality:tcg:Event:f7134b748dd109450ff4be03c9755f81729d36ba9cc45822b7937677ca0b90dc",
       "payload": {
-        "@id": "urn:brutality:tcg:PackOpening:6c829ff6-c03e-4d14-8152-508ae3110ceb",
+        "@id": "urn:brutality:tcg:PackOpening:090629e3-4020-49a1-ad98-df16861819a4",
         "@type": "urn:brutality:tcg:PackOpening",
-        "collector": "c_26907da183c8eed2",
-        "setId": "og-set",
-        "cardIds": [
-          "og-001",
-          "og-004",
-          "og-002",
-          "og-010",
-          "og-007"
+        "collector": "c_676b648a6d57275d",
+        "set": "urn:brutality:tcg:CardSet:OG",
+        "cards": [
+          "urn:brutality:tcg:Card:OG:002",
+          "urn:brutality:tcg:Card:OG:002",
+          "urn:brutality:tcg:Card:OG:006",
+          "urn:brutality:tcg:Card:OG:010",
+          "urn:brutality:tcg:Card:OG:007"
         ],
-        "nonce": "26c39815bfd5444c531483578e284897",
-        "commitment": "d6a398a049fa9baef899477dffb19ee4820fd0b36e346ea7700f96bbd4f0cc59"
+        "nonce": "648b6093bcf555f8c77e6380a0c2d9d2",
+        "commitment": "b4d19dc08ed6df7b67965c11c4321bc428ae21d9ef86f43c31adefbef6b90c44"
       },
       "proof": {
         "type": "DataIntegrityProof",
         "cryptosuite": "eddsa-jcs-2022",
-        "created": "2026-07-18T20:34:49.175Z",
+        "created": "2026-07-18T20:43:53.662Z",
         "verificationMethod": "did:key:z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3#z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3",
         "proofPurpose": "assertionMethod",
-        "proofValue": "z4T2Jy61ckmt2WQgQCEETeLGcGt7J9AJYz3DSn1XWohycbhFd5TbMDsjXwyxaWiTBQjfzupUW7zuXFThQKQ5XNgcq"
+        "proofValue": "z2NL2cRxmYYinAoamGRUp2oNDV8FG3FZZbM5AnwB8Ao55UNUNeVCMiHqG7Kwp6ivHuPkQNmzrfnXr2NpQsaNcuAr1"
       }
     },
     {
-      "@id": "urn:brutality:tcg:Event:c1b6cac1d1c3cf5a8680655e65f1cbc9ae007003f2ebb77106676f80ff1ca688",
+      "@id": "urn:brutality:tcg:Event:33eba359005cf98c66d101edcb45ee97a8e49ccc724aea361af1e292934d7227",
       "@type": "urn:brutality:tcg:Event",
       "seq": 14,
-      "ts": "2026-07-18T20:34:49.176Z",
-      "prevId": "urn:brutality:tcg:Event:0aa5710119f1cf24ba80ed4af223540b72f2587b457ee7adc45ef8b7b323f304",
+      "ts": "2026-07-18T20:43:53.663Z",
+      "prevId": "urn:brutality:tcg:Event:f70c21e8c352192c5ef0382211aa77a48de7baec78d8ae84c06c38c59b173728",
       "payload": {
-        "@id": "urn:brutality:tcg:CreditReserved:31b96cbc-1bde-4662-9cb1-e1b01abfadb8",
+        "@id": "urn:brutality:tcg:CreditReserved:6d0e1897-779f-410d-8568-07b73e99f7e7",
         "@type": "urn:brutality:tcg:CreditReserved",
-        "collector": "c_26907da183c8eed2"
+        "collector": "c_676b648a6d57275d"
       },
       "proof": {
         "type": "DataIntegrityProof",
         "cryptosuite": "eddsa-jcs-2022",
-        "created": "2026-07-18T20:34:49.176Z",
+        "created": "2026-07-18T20:43:53.663Z",
         "verificationMethod": "did:key:z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3#z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3",
         "proofPurpose": "assertionMethod",
-        "proofValue": "zDWjXkY5UJaJLEQN67pyNQDBPZjfsGv6rnrWQCJsY3Yv4m4UYF9Wq1kaWt8zkyNNSkQJ7XM5SJppEg9XjLAFc1Fc"
+        "proofValue": "z5oQyDqnGF2PRKZUcFyjCxwJ4LxFZEhk6kkTEUxFTzSEpFSEjEvdCMdYdxyXPtkBhb4Nbg9LvS3KcYRe1Frgttr2W"
       }
     },
     {
-      "@id": "urn:brutality:tcg:Event:3aeff8dbb573dcd035d110a9b89eb286e587bf2c84ce3061d456b4254a26a714",
+      "@id": "urn:brutality:tcg:Event:314a0f7964ff126dc80731a07b603f8034d9ffcf7f8101c8881533f8f9de7d78",
       "@type": "urn:brutality:tcg:Event",
       "seq": 15,
-      "ts": "2026-07-18T20:34:49.176Z",
-      "prevId": "urn:brutality:tcg:Event:c1b6cac1d1c3cf5a8680655e65f1cbc9ae007003f2ebb77106676f80ff1ca688",
+      "ts": "2026-07-18T20:43:53.664Z",
+      "prevId": "urn:brutality:tcg:Event:33eba359005cf98c66d101edcb45ee97a8e49ccc724aea361af1e292934d7227",
       "payload": {
-        "@id": "urn:brutality:tcg:RedemptionCommitted:31b96cbc-1bde-4662-9cb1-e1b01abfadb8",
+        "@id": "urn:brutality:tcg:RedemptionCommitted:6d0e1897-779f-410d-8568-07b73e99f7e7",
         "@type": "urn:brutality:tcg:RedemptionCommitted",
-        "collector": "c_26907da183c8eed2",
-        "setId": "og-set",
+        "collector": "c_676b648a6d57275d",
+        "set": "urn:brutality:tcg:CardSet:OG",
         "setVersion": 1,
         "packSize": 5,
-        "commitment": "697a88b6b5b6e215117a4dd4e262ccdcb267a81b364594be46e823c91992a2d6"
+        "commitment": "47ed374db8285c411204eabbebfa2d0b79c0a406898c9cf8e6a6869feec8c2bb"
       },
       "proof": {
         "type": "DataIntegrityProof",
         "cryptosuite": "eddsa-jcs-2022",
-        "created": "2026-07-18T20:34:49.176Z",
+        "created": "2026-07-18T20:43:53.664Z",
         "verificationMethod": "did:key:z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3#z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3",
         "proofPurpose": "assertionMethod",
-        "proofValue": "z3PuKunaSQhFzpFamgveHZ1zjoFtDjboiabJbwoU8ApjjuvxtqkdtgPtGq5qS73jSFrUEsgaHzpmsvYa8ACw3NJAs"
+        "proofValue": "z2xQEKG9HEZaixqUL9PQaxPFHK6v1swgkR4CnJGX11dJBjXwm5d9PD9SVXo8n8bEVdJReEhnHFnrxrMaaCLit37u5"
       }
     },
     {
-      "@id": "urn:brutality:tcg:Event:42673b48993aa74ee8a75e7b756bff5fbbe3f67f7323de5232ac80818d55a35f",
+      "@id": "urn:brutality:tcg:Event:3199cedd94a713dbd2b4c83f299b6f44aa0cdc9a1d6fa5f9ddf0620cfb67a818",
       "@type": "urn:brutality:tcg:Event",
       "seq": 16,
-      "ts": "2026-07-18T20:34:49.176Z",
-      "prevId": "urn:brutality:tcg:Event:3aeff8dbb573dcd035d110a9b89eb286e587bf2c84ce3061d456b4254a26a714",
+      "ts": "2026-07-18T20:43:53.664Z",
+      "prevId": "urn:brutality:tcg:Event:314a0f7964ff126dc80731a07b603f8034d9ffcf7f8101c8881533f8f9de7d78",
       "payload": {
-        "@id": "urn:brutality:tcg:PackOpening:31b96cbc-1bde-4662-9cb1-e1b01abfadb8",
+        "@id": "urn:brutality:tcg:PackOpening:6d0e1897-779f-410d-8568-07b73e99f7e7",
         "@type": "urn:brutality:tcg:PackOpening",
-        "collector": "c_26907da183c8eed2",
-        "setId": "og-set",
-        "cardIds": [
-          "og-002",
-          "og-007",
-          "og-002",
-          "og-006",
-          "og-001"
+        "collector": "c_676b648a6d57275d",
+        "set": "urn:brutality:tcg:CardSet:OG",
+        "cards": [
+          "urn:brutality:tcg:Card:OG:007",
+          "urn:brutality:tcg:Card:OG:002",
+          "urn:brutality:tcg:Card:OG:010",
+          "urn:brutality:tcg:Card:OG:009",
+          "urn:brutality:tcg:Card:OG:010"
         ],
-        "nonce": "862340d4e3bc1c92059facac7e4d99a3",
-        "commitment": "697a88b6b5b6e215117a4dd4e262ccdcb267a81b364594be46e823c91992a2d6"
+        "nonce": "093a95cb279cc00722396c4e7a0ddb11",
+        "commitment": "47ed374db8285c411204eabbebfa2d0b79c0a406898c9cf8e6a6869feec8c2bb"
       },
       "proof": {
         "type": "DataIntegrityProof",
         "cryptosuite": "eddsa-jcs-2022",
-        "created": "2026-07-18T20:34:49.176Z",
+        "created": "2026-07-18T20:43:53.664Z",
         "verificationMethod": "did:key:z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3#z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3",
         "proofPurpose": "assertionMethod",
-        "proofValue": "z4MxdEMhhzPi1rPdBpSgBR5hNus5kGBJD8ZQ6Mt9drY9LRX11FVv43UjHyG6VKWLd5hemaJYjhb1UwX2eXDPqwsHi"
+        "proofValue": "z2bQKSex8fj31396G1FP4T62aCE55oXR2LW1UnZ4mnhxGATPBhPgENB9La3qmuNzM5VCaZMHnpih5FNLqwsWK1eTv"
       }
     },
     {
-      "@id": "urn:brutality:tcg:Event:199d56eeb9019e57ae80c001a88adf271a41f87585d07b55b611de0c1a8eba9d",
+      "@id": "urn:brutality:tcg:Event:d38f713a082277b244530fdc24c6eb916285381548fdbe7b878c1aa2dac24a9b",
       "@type": "urn:brutality:tcg:Event",
       "seq": 17,
-      "ts": "2026-07-18T20:34:49.177Z",
-      "prevId": "urn:brutality:tcg:Event:42673b48993aa74ee8a75e7b756bff5fbbe3f67f7323de5232ac80818d55a35f",
+      "ts": "2026-07-18T20:43:53.665Z",
+      "prevId": "urn:brutality:tcg:Event:3199cedd94a713dbd2b4c83f299b6f44aa0cdc9a1d6fa5f9ddf0620cfb67a818",
       "payload": {
-        "@id": "urn:brutality:tcg:CollectorCreated:c_d7b99084f84853e1",
+        "@id": "urn:brutality:tcg:CollectorCreated:c_eea1d879dfa35193",
         "@type": "urn:brutality:tcg:CollectorCreated"
       },
       "proof": {
         "type": "DataIntegrityProof",
         "cryptosuite": "eddsa-jcs-2022",
-        "created": "2026-07-18T20:34:49.177Z",
+        "created": "2026-07-18T20:43:53.665Z",
         "verificationMethod": "did:key:z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3#z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3",
         "proofPurpose": "assertionMethod",
-        "proofValue": "z5PmswYqrLG8Eq9d2jzqu5w8oK7caEfo1V3r378FTbcnBbdoBwuLySyJ2abechTE6mntgr4de7SdaD9V3WcbDHCWo"
+        "proofValue": "z2SiEtXKc2rmTxDEisf38uWP5C28MMGSxqeD7m1LXNiAegAJbNYEhobtvfwRrWfBiy4G99Lxf3ctgu44jnjNJ7w6g"
       }
     },
     {
-      "@id": "urn:brutality:tcg:Event:3fb483c07d7de54d98f9887dd5aaaa71a134a41e4ff1bd08744d1ec9cab8dc97",
+      "@id": "urn:brutality:tcg:Event:9c8cfbee74adc4f94616d8f08b916f5500fe67e55cce7ede2d5c6c54ef5ccc88",
       "@type": "urn:brutality:tcg:Event",
       "seq": 18,
-      "ts": "2026-07-18T20:34:49.177Z",
-      "prevId": "urn:brutality:tcg:Event:199d56eeb9019e57ae80c001a88adf271a41f87585d07b55b611de0c1a8eba9d",
+      "ts": "2026-07-18T20:43:53.665Z",
+      "prevId": "urn:brutality:tcg:Event:d38f713a082277b244530fdc24c6eb916285381548fdbe7b878c1aa2dac24a9b",
       "payload": {
-        "@id": "urn:brutality:tcg:CreditsGranted:a6d1ec8e-6f1e-42e7-b448-20802f8be0e7",
+        "@id": "urn:brutality:tcg:CreditsGranted:5223f4e9-57d0-4180-bcd0-8acd0df582f4",
         "@type": "urn:brutality:tcg:CreditsGranted",
-        "collector": "c_d7b99084f84853e1",
+        "collector": "c_eea1d879dfa35193",
         "packs": 3,
         "reason": "demo_fixture"
       },
       "proof": {
         "type": "DataIntegrityProof",
         "cryptosuite": "eddsa-jcs-2022",
-        "created": "2026-07-18T20:34:49.177Z",
+        "created": "2026-07-18T20:43:53.665Z",
         "verificationMethod": "did:key:z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3#z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3",
         "proofPurpose": "assertionMethod",
-        "proofValue": "z5ZhoSzRd3Mq4qRssKsoRf5CxAnQbAHa8wZBV35qbBieLb7mtTpLrZiMk3Aov7hnBbN2bhKbPFqAwKH3B8MWdJtQP"
+        "proofValue": "zHX5rPLp1W7J2y9eXawH4DCLDwrBWR9iySon1JiP1ogcLA5EtKEaTuvDfwzxL6ArxQ41dSjo2hNK3DsRSZtpsM1T"
       }
     },
     {
-      "@id": "urn:brutality:tcg:Event:c5b9e442e59bc7b561a243069aaf28db3bcf919070e2149cee0a88bd9349fe25",
+      "@id": "urn:brutality:tcg:Event:080742331b55a9e03a9b29d26f32a5e599b572e298f481cb04990ccdaf2f68c4",
       "@type": "urn:brutality:tcg:Event",
       "seq": 19,
-      "ts": "2026-07-18T20:34:49.177Z",
-      "prevId": "urn:brutality:tcg:Event:3fb483c07d7de54d98f9887dd5aaaa71a134a41e4ff1bd08744d1ec9cab8dc97",
+      "ts": "2026-07-18T20:43:53.666Z",
+      "prevId": "urn:brutality:tcg:Event:9c8cfbee74adc4f94616d8f08b916f5500fe67e55cce7ede2d5c6c54ef5ccc88",
       "payload": {
-        "@id": "urn:brutality:tcg:CreditReserved:33e78d0c-a2f9-4032-889d-8883943e6570",
+        "@id": "urn:brutality:tcg:CreditReserved:47dc469a-0d2a-43b6-8eda-fc0b3df22d43",
         "@type": "urn:brutality:tcg:CreditReserved",
-        "collector": "c_d7b99084f84853e1"
+        "collector": "c_eea1d879dfa35193"
       },
       "proof": {
         "type": "DataIntegrityProof",
         "cryptosuite": "eddsa-jcs-2022",
-        "created": "2026-07-18T20:34:49.177Z",
+        "created": "2026-07-18T20:43:53.666Z",
         "verificationMethod": "did:key:z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3#z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3",
         "proofPurpose": "assertionMethod",
-        "proofValue": "z7U4HgzbbLQpswoJ4gkXwH9crJ8q6GThXBoPAxMcwmmw6uE9rfwF2B6P5QX5EYa7rb7NaQiCpTMq4fTzoqcoo7wB"
+        "proofValue": "z2mSwDbwPJ9EsMBFmSXAzpJXVXdiyW3m9egb8p8f18SBRstfa8mJ8xEaG8N2k96Cdx5rZRqxefeZ2seLkuMYWPxtS"
       }
     },
     {
-      "@id": "urn:brutality:tcg:Event:10564bc132c9e0ad12d8d05d72ec3be6998f00aca24b429fbff41bdc5a5d6264",
+      "@id": "urn:brutality:tcg:Event:4b7885751101bcccbe93576f195941fce758c16dcc430c5472052d7294f133f5",
       "@type": "urn:brutality:tcg:Event",
       "seq": 20,
-      "ts": "2026-07-18T20:34:49.178Z",
-      "prevId": "urn:brutality:tcg:Event:c5b9e442e59bc7b561a243069aaf28db3bcf919070e2149cee0a88bd9349fe25",
+      "ts": "2026-07-18T20:43:53.666Z",
+      "prevId": "urn:brutality:tcg:Event:080742331b55a9e03a9b29d26f32a5e599b572e298f481cb04990ccdaf2f68c4",
       "payload": {
-        "@id": "urn:brutality:tcg:RedemptionCommitted:33e78d0c-a2f9-4032-889d-8883943e6570",
+        "@id": "urn:brutality:tcg:RedemptionCommitted:47dc469a-0d2a-43b6-8eda-fc0b3df22d43",
         "@type": "urn:brutality:tcg:RedemptionCommitted",
-        "collector": "c_d7b99084f84853e1",
-        "setId": "og-set",
+        "collector": "c_eea1d879dfa35193",
+        "set": "urn:brutality:tcg:CardSet:OG",
         "setVersion": 1,
         "packSize": 5,
-        "commitment": "18bc394cd68a3cbd2f801dc2e09ba01fe513bcc90c6e2efd1c77b6c741f93b52"
+        "commitment": "e5651290e4b5573bebe0a1e70000100b9c99260105f6ead96bda392bfb7f32d8"
       },
       "proof": {
         "type": "DataIntegrityProof",
         "cryptosuite": "eddsa-jcs-2022",
-        "created": "2026-07-18T20:34:49.178Z",
+        "created": "2026-07-18T20:43:53.666Z",
         "verificationMethod": "did:key:z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3#z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3",
         "proofPurpose": "assertionMethod",
-        "proofValue": "z3URvDQ1Dqy1uokg4G45pzVPNKuLEHes7A15qKCr94bkpo4LjFqAtpzCBBDKKkbEpcGFbkfmuqx8g5dv1Z1Fwj8Qi"
+        "proofValue": "z42vnTX1p9wvJKGqinsotWRkQLQks2hW6nCpPDLfnPCL2HMvxPJvWyJiP6GdVaXyfu4b9dGzKC6Euh7Jcepnpd4Ct"
       }
     },
     {
-      "@id": "urn:brutality:tcg:Event:db0399ee5ed3de09a2cf6a69d3b6406d694c2ddd6dd6dc66c1aba997ce7b2d7a",
+      "@id": "urn:brutality:tcg:Event:0ead59d2d460ca34a3fa8b7777f38bc19a45a630ec608eb204a7fc53cc07569c",
       "@type": "urn:brutality:tcg:Event",
       "seq": 21,
-      "ts": "2026-07-18T20:34:49.178Z",
-      "prevId": "urn:brutality:tcg:Event:10564bc132c9e0ad12d8d05d72ec3be6998f00aca24b429fbff41bdc5a5d6264",
+      "ts": "2026-07-18T20:43:53.666Z",
+      "prevId": "urn:brutality:tcg:Event:4b7885751101bcccbe93576f195941fce758c16dcc430c5472052d7294f133f5",
       "payload": {
-        "@id": "urn:brutality:tcg:PackOpening:33e78d0c-a2f9-4032-889d-8883943e6570",
+        "@id": "urn:brutality:tcg:PackOpening:47dc469a-0d2a-43b6-8eda-fc0b3df22d43",
         "@type": "urn:brutality:tcg:PackOpening",
-        "collector": "c_d7b99084f84853e1",
-        "setId": "og-set",
-        "cardIds": [
-          "og-008",
-          "og-010",
-          "og-007",
-          "og-007",
-          "og-001"
+        "collector": "c_eea1d879dfa35193",
+        "set": "urn:brutality:tcg:CardSet:OG",
+        "cards": [
+          "urn:brutality:tcg:Card:OG:002",
+          "urn:brutality:tcg:Card:OG:002",
+          "urn:brutality:tcg:Card:OG:010",
+          "urn:brutality:tcg:Card:OG:007",
+          "urn:brutality:tcg:Card:OG:010"
         ],
-        "nonce": "21753548c741148d6e63c3f8a171a2d7",
-        "commitment": "18bc394cd68a3cbd2f801dc2e09ba01fe513bcc90c6e2efd1c77b6c741f93b52"
+        "nonce": "1da14c9d8a77d7cef64fa2af015d2a1c",
+        "commitment": "e5651290e4b5573bebe0a1e70000100b9c99260105f6ead96bda392bfb7f32d8"
       },
       "proof": {
         "type": "DataIntegrityProof",
         "cryptosuite": "eddsa-jcs-2022",
-        "created": "2026-07-18T20:34:49.178Z",
+        "created": "2026-07-18T20:43:53.666Z",
         "verificationMethod": "did:key:z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3#z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3",
         "proofPurpose": "assertionMethod",
-        "proofValue": "z34LE3xzenUuZ9Qz1RR9VZdHk5D2TDnX9wCHbRpRMyPXW2vajvtRCgu8Th5QYLRysMoVtr2MmQLjz4sA1ZMD6rSmE"
+        "proofValue": "z5MsBodrANqgKcSDhdCzxKwd2PGqZ4omrMS5Cj6HELA3F3bXVo5AjHf7PBdWrhj2NBv6yo2AE5t4BZL5AhrxS5JDT"
       }
     },
     {
-      "@id": "urn:brutality:tcg:Event:7c0d786dbdb034ee47941eb2ebd46e6b8d1fb7ad38622b6d8e4f7ab3d1c4aa83",
+      "@id": "urn:brutality:tcg:Event:7a9805ab7f32b125f05f4fb98004e596d9b2b84dbac8f60f8fac21868dfc6d71",
       "@type": "urn:brutality:tcg:Event",
       "seq": 22,
-      "ts": "2026-07-18T20:34:49.179Z",
-      "prevId": "urn:brutality:tcg:Event:db0399ee5ed3de09a2cf6a69d3b6406d694c2ddd6dd6dc66c1aba997ce7b2d7a",
+      "ts": "2026-07-18T20:43:53.667Z",
+      "prevId": "urn:brutality:tcg:Event:0ead59d2d460ca34a3fa8b7777f38bc19a45a630ec608eb204a7fc53cc07569c",
       "payload": {
-        "@id": "urn:brutality:tcg:CreditReserved:a8b213dd-bc34-4f4a-8b13-b9c9768ce1b2",
+        "@id": "urn:brutality:tcg:CreditReserved:abc31f2b-f2e2-47a8-a74b-a91d7887329b",
         "@type": "urn:brutality:tcg:CreditReserved",
-        "collector": "c_d7b99084f84853e1"
+        "collector": "c_eea1d879dfa35193"
       },
       "proof": {
         "type": "DataIntegrityProof",
         "cryptosuite": "eddsa-jcs-2022",
-        "created": "2026-07-18T20:34:49.179Z",
+        "created": "2026-07-18T20:43:53.667Z",
         "verificationMethod": "did:key:z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3#z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3",
         "proofPurpose": "assertionMethod",
-        "proofValue": "z29HKYDo4E1Bh8BFq9upkTJu2XjXHSXqp3c3BDybC5SnGyaoDguSBZRob3RbDRq19AdunP6xBnitcLt5MRAWkdJgT"
+        "proofValue": "z5nY6NvR9hzbjiqDvcwbaoxiwRDmte4cE7aFZfMLGnBYWf7tcHscrtTrWfvS8wN9wYEWJ31eSTDtFLcgPD8zYTndq"
       }
     },
     {
-      "@id": "urn:brutality:tcg:Event:ca5e827fe0d3a288d818fbc923a516dc6e8220081e7ab039594f0fdce5dde631",
+      "@id": "urn:brutality:tcg:Event:c8621c6ee9b1c6a351a696958b07e5a40d11435212bf8192485deed201cfcea2",
       "@type": "urn:brutality:tcg:Event",
       "seq": 23,
-      "ts": "2026-07-18T20:34:49.179Z",
-      "prevId": "urn:brutality:tcg:Event:7c0d786dbdb034ee47941eb2ebd46e6b8d1fb7ad38622b6d8e4f7ab3d1c4aa83",
+      "ts": "2026-07-18T20:43:53.668Z",
+      "prevId": "urn:brutality:tcg:Event:7a9805ab7f32b125f05f4fb98004e596d9b2b84dbac8f60f8fac21868dfc6d71",
       "payload": {
-        "@id": "urn:brutality:tcg:RedemptionCommitted:a8b213dd-bc34-4f4a-8b13-b9c9768ce1b2",
+        "@id": "urn:brutality:tcg:RedemptionCommitted:abc31f2b-f2e2-47a8-a74b-a91d7887329b",
         "@type": "urn:brutality:tcg:RedemptionCommitted",
-        "collector": "c_d7b99084f84853e1",
-        "setId": "og-set",
+        "collector": "c_eea1d879dfa35193",
+        "set": "urn:brutality:tcg:CardSet:OG",
         "setVersion": 1,
         "packSize": 5,
-        "commitment": "d1234d761501c097eef9037ee4393c24892d3adb7513eafb827cb0837f90b053"
+        "commitment": "71d3c81f1a0275c6c6ca1469cf90cf66be1d68b037c9c1f62563b3ff08494e9b"
       },
       "proof": {
         "type": "DataIntegrityProof",
         "cryptosuite": "eddsa-jcs-2022",
-        "created": "2026-07-18T20:34:49.179Z",
+        "created": "2026-07-18T20:43:53.668Z",
         "verificationMethod": "did:key:z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3#z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3",
         "proofPurpose": "assertionMethod",
-        "proofValue": "zYv46z1dtvdKkbhLBW24bXkaD7VP3xeuUVfa9ZiKnDQUbLqnfePcfbZfk3cADDHFBe3Po4hweYcHyVDkBH9Yw2j5"
+        "proofValue": "z3W2wNUcFStk3cTcgBh9Aq7zY75AUXE3uJjnd4cPmdxvgyNC2QUSCk1Cs1zXHGpMEhgGg9kh8zNjAD5nTcVmnmugu"
       }
     },
     {
-      "@id": "urn:brutality:tcg:Event:36830c82726e0dc0263f688a14c097d2d007657148db42d6dd354434299e53c5",
+      "@id": "urn:brutality:tcg:Event:05a4a5811dfd74e3e7bbd08b3a8c6a76538781609133fbc7d06d65706b99a836",
       "@type": "urn:brutality:tcg:Event",
       "seq": 24,
-      "ts": "2026-07-18T20:34:49.181Z",
-      "prevId": "urn:brutality:tcg:Event:ca5e827fe0d3a288d818fbc923a516dc6e8220081e7ab039594f0fdce5dde631",
+      "ts": "2026-07-18T20:43:53.669Z",
+      "prevId": "urn:brutality:tcg:Event:c8621c6ee9b1c6a351a696958b07e5a40d11435212bf8192485deed201cfcea2",
       "payload": {
-        "@id": "urn:brutality:tcg:PackOpening:a8b213dd-bc34-4f4a-8b13-b9c9768ce1b2",
+        "@id": "urn:brutality:tcg:PackOpening:abc31f2b-f2e2-47a8-a74b-a91d7887329b",
         "@type": "urn:brutality:tcg:PackOpening",
-        "collector": "c_d7b99084f84853e1",
-        "setId": "og-set",
-        "cardIds": [
-          "og-007",
-          "og-006",
-          "og-002",
-          "og-010",
-          "og-008"
+        "collector": "c_eea1d879dfa35193",
+        "set": "urn:brutality:tcg:CardSet:OG",
+        "cards": [
+          "urn:brutality:tcg:Card:OG:001",
+          "urn:brutality:tcg:Card:OG:001",
+          "urn:brutality:tcg:Card:OG:003",
+          "urn:brutality:tcg:Card:OG:010",
+          "urn:brutality:tcg:Card:OG:008"
         ],
-        "nonce": "978622dbb6369eb02acf6fd734ae5ada",
-        "commitment": "d1234d761501c097eef9037ee4393c24892d3adb7513eafb827cb0837f90b053"
+        "nonce": "3a0a34e85f83a153f4575a9a7419b7eb",
+        "commitment": "71d3c81f1a0275c6c6ca1469cf90cf66be1d68b037c9c1f62563b3ff08494e9b"
       },
       "proof": {
         "type": "DataIntegrityProof",
         "cryptosuite": "eddsa-jcs-2022",
-        "created": "2026-07-18T20:34:49.181Z",
+        "created": "2026-07-18T20:43:53.669Z",
         "verificationMethod": "did:key:z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3#z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3",
         "proofPurpose": "assertionMethod",
-        "proofValue": "z3KYHajTuAwyaYQV7E54mMLGhg7brhog4fXLDksdzrNuubkVUqBKYFPDswb4hNX1qxeJZ6FocvBeDkwDcQo876gv4"
+        "proofValue": "z4xvPFzZ1HLoFxpwVLhVaqw1W2rYvEcnjXbUnKjCNJgExZB39KJ21Q1xavDrgfj3otz5JJM4k4GJ65sjPEtkMdKBw"
       }
     },
     {
-      "@id": "urn:brutality:tcg:Event:02f9b024b9bab6792c0befda14cda5dedfa4b9d7b71a960b3005e499ef9566e4",
+      "@id": "urn:brutality:tcg:Event:c926e380c85c4285dceca32cd0f3f39ee05f8d727bb05636d3c475b6eefe7778",
       "@type": "urn:brutality:tcg:Event",
       "seq": 25,
-      "ts": "2026-07-18T20:34:49.183Z",
-      "prevId": "urn:brutality:tcg:Event:36830c82726e0dc0263f688a14c097d2d007657148db42d6dd354434299e53c5",
+      "ts": "2026-07-18T20:43:53.670Z",
+      "prevId": "urn:brutality:tcg:Event:05a4a5811dfd74e3e7bbd08b3a8c6a76538781609133fbc7d06d65706b99a836",
       "payload": {
-        "@id": "urn:brutality:tcg:CreditReserved:0a884d4e-4cb4-4736-9fc5-44bd0c4248db",
+        "@id": "urn:brutality:tcg:CreditReserved:0d91c8ab-7c7b-4173-9b18-d423a193a954",
         "@type": "urn:brutality:tcg:CreditReserved",
-        "collector": "c_d7b99084f84853e1"
+        "collector": "c_eea1d879dfa35193"
       },
       "proof": {
         "type": "DataIntegrityProof",
         "cryptosuite": "eddsa-jcs-2022",
-        "created": "2026-07-18T20:34:49.183Z",
+        "created": "2026-07-18T20:43:53.670Z",
         "verificationMethod": "did:key:z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3#z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3",
         "proofPurpose": "assertionMethod",
-        "proofValue": "z4UjMvZgCbEKN1uq532ef5SSQHLQe6j6v2bTnstya4AuetrvBCVJBidjRkQcTS4UFhi18pk1wAzkeo8PwUgc7xA8J"
+        "proofValue": "z2mMhYjKk3de5xPG9LZBeWkPGXSuBF8FCcQPAu7MPTCH17g9vH3nnyfkHZeZ1Tft4R5k2iVWbpBeTUwd1MZp4u2Q1"
       }
     },
     {
-      "@id": "urn:brutality:tcg:Event:32e50545d03e18d796e7804641ca99a3498c53987d8a181aea045492d2957ae9",
+      "@id": "urn:brutality:tcg:Event:234ac359bba34a1136ef5c53cb7b31d3e69dbad6ea837782d667957e61a7ef13",
       "@type": "urn:brutality:tcg:Event",
       "seq": 26,
-      "ts": "2026-07-18T20:34:49.183Z",
-      "prevId": "urn:brutality:tcg:Event:02f9b024b9bab6792c0befda14cda5dedfa4b9d7b71a960b3005e499ef9566e4",
+      "ts": "2026-07-18T20:43:53.670Z",
+      "prevId": "urn:brutality:tcg:Event:c926e380c85c4285dceca32cd0f3f39ee05f8d727bb05636d3c475b6eefe7778",
       "payload": {
-        "@id": "urn:brutality:tcg:RedemptionCommitted:0a884d4e-4cb4-4736-9fc5-44bd0c4248db",
+        "@id": "urn:brutality:tcg:RedemptionCommitted:0d91c8ab-7c7b-4173-9b18-d423a193a954",
         "@type": "urn:brutality:tcg:RedemptionCommitted",
-        "collector": "c_d7b99084f84853e1",
-        "setId": "og-set",
+        "collector": "c_eea1d879dfa35193",
+        "set": "urn:brutality:tcg:CardSet:OG",
         "setVersion": 1,
         "packSize": 5,
-        "commitment": "3c87f3ab8d7cb12e25c8410e778e4e1eaaddddb86a6660586a21852c6b5ae164"
+        "commitment": "a871ef19cc40b5fba27feb8a905810bcc944fae26859f14943354f0ff389379e"
       },
       "proof": {
         "type": "DataIntegrityProof",
         "cryptosuite": "eddsa-jcs-2022",
-        "created": "2026-07-18T20:34:49.183Z",
+        "created": "2026-07-18T20:43:53.670Z",
         "verificationMethod": "did:key:z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3#z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3",
         "proofPurpose": "assertionMethod",
-        "proofValue": "z27dwRCwp9UKLf6i9MEBerUwXn6UkcPTWFvVixuoVsnShh4zqTDtjgSTK5aiCpu5ejuspp3yNDEkNmL3xFntMANQS"
+        "proofValue": "zWshxBkm3Hp7TPAXvGKSeVai36ciHov5XojZ841zrSr7fGfCdYeeY1yDoZ5W3gEQou6dYrdJqtvhrgTcVThSiTz4"
       }
     },
     {
-      "@id": "urn:brutality:tcg:Event:3d7d97bacdf735c5c6dbcd5698306cf185a395288da14f56ad3abcb234943b02",
+      "@id": "urn:brutality:tcg:Event:502522c57922ba92bcaa654c5252a6be1f35d735c429ffdf50273b4f7c662c2f",
       "@type": "urn:brutality:tcg:Event",
       "seq": 27,
-      "ts": "2026-07-18T20:34:49.183Z",
-      "prevId": "urn:brutality:tcg:Event:32e50545d03e18d796e7804641ca99a3498c53987d8a181aea045492d2957ae9",
+      "ts": "2026-07-18T20:43:53.670Z",
+      "prevId": "urn:brutality:tcg:Event:234ac359bba34a1136ef5c53cb7b31d3e69dbad6ea837782d667957e61a7ef13",
       "payload": {
-        "@id": "urn:brutality:tcg:PackOpening:0a884d4e-4cb4-4736-9fc5-44bd0c4248db",
+        "@id": "urn:brutality:tcg:PackOpening:0d91c8ab-7c7b-4173-9b18-d423a193a954",
         "@type": "urn:brutality:tcg:PackOpening",
-        "collector": "c_d7b99084f84853e1",
-        "setId": "og-set",
-        "cardIds": [
-          "og-001",
-          "og-006",
-          "og-002",
-          "og-010",
-          "og-006"
+        "collector": "c_eea1d879dfa35193",
+        "set": "urn:brutality:tcg:CardSet:OG",
+        "cards": [
+          "urn:brutality:tcg:Card:OG:006",
+          "urn:brutality:tcg:Card:OG:004",
+          "urn:brutality:tcg:Card:OG:010",
+          "urn:brutality:tcg:Card:OG:001",
+          "urn:brutality:tcg:Card:OG:010"
         ],
-        "nonce": "11f504fe1419ff074c54b0cd1361bd55",
-        "commitment": "3c87f3ab8d7cb12e25c8410e778e4e1eaaddddb86a6660586a21852c6b5ae164"
+        "nonce": "9bc75dc786cf6fbde1dd95cdf1fad93b",
+        "commitment": "a871ef19cc40b5fba27feb8a905810bcc944fae26859f14943354f0ff389379e"
       },
       "proof": {
         "type": "DataIntegrityProof",
         "cryptosuite": "eddsa-jcs-2022",
-        "created": "2026-07-18T20:34:49.183Z",
+        "created": "2026-07-18T20:43:53.670Z",
         "verificationMethod": "did:key:z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3#z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3",
         "proofPurpose": "assertionMethod",
-        "proofValue": "z5VHmpu445SRXRAX4aNSDBMZ7K9EcRKktf6tv3Z9CZmvN7r6GjRtwEDrBFkSZXEiiDTvcPDY4FGSJuJrqCVTMV1jZ"
+        "proofValue": "z4yiYBLXjssFcLK21bnxTW82cj9huff6BCz5rQgcb6SG9MssexEyXorC8hhxzrVpFftHQvjr9M1CiAUDrjwgKC8wW"
       }
     },
     {
-      "@id": "urn:brutality:tcg:Event:487a20423703d2f5d59831f06ab29da3f8008bcbaa832a65498bf64908d4e0f7",
+      "@id": "urn:brutality:tcg:Event:105644c85ca6a06ebb11560d447882fcd10d563ff39b6bcd28693fab121062e7",
       "@type": "urn:brutality:tcg:Event",
       "seq": 28,
-      "ts": "2026-07-18T20:34:49.184Z",
-      "prevId": "urn:brutality:tcg:Event:3d7d97bacdf735c5c6dbcd5698306cf185a395288da14f56ad3abcb234943b02",
+      "ts": "2026-07-18T20:43:53.671Z",
+      "prevId": "urn:brutality:tcg:Event:502522c57922ba92bcaa654c5252a6be1f35d735c429ffdf50273b4f7c662c2f",
       "payload": {
-        "@id": "urn:brutality:tcg:CollectorCreated:c_ddade23b85847555",
+        "@id": "urn:brutality:tcg:CollectorCreated:c_5645ac983371cd5b",
         "@type": "urn:brutality:tcg:CollectorCreated"
       },
       "proof": {
         "type": "DataIntegrityProof",
         "cryptosuite": "eddsa-jcs-2022",
-        "created": "2026-07-18T20:34:49.184Z",
+        "created": "2026-07-18T20:43:53.671Z",
         "verificationMethod": "did:key:z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3#z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3",
         "proofPurpose": "assertionMethod",
-        "proofValue": "z3UMrPhoXMZR9MBK7tAgxAvvsPSgKy67YzeuUieE3zyXboGJrm7AAbKsRkjmKJ5YFf1yaJFp2yij2Ca3AUW4KCNRf"
+        "proofValue": "z63ahHkcuUzxUg7jf4rkR9ZX6yXmz4DHhyByxyJhEcwUELSZ7TKE1Y8vR61LHxNkoHfPY4cfkKPa5t7fFRFfvGpeg"
       }
     },
     {
-      "@id": "urn:brutality:tcg:Event:4a26f39240a5c6aab3156133bf0ea101330a1653dd4fb83fbbfdf225d3917b02",
+      "@id": "urn:brutality:tcg:Event:500555bfe3b9d8a7eb98354d05b275ed40301176c85591298f450e10b653ab7b",
       "@type": "urn:brutality:tcg:Event",
       "seq": 29,
-      "ts": "2026-07-18T20:34:49.184Z",
-      "prevId": "urn:brutality:tcg:Event:487a20423703d2f5d59831f06ab29da3f8008bcbaa832a65498bf64908d4e0f7",
+      "ts": "2026-07-18T20:43:53.671Z",
+      "prevId": "urn:brutality:tcg:Event:105644c85ca6a06ebb11560d447882fcd10d563ff39b6bcd28693fab121062e7",
       "payload": {
-        "@id": "urn:brutality:tcg:CreditsGranted:07033c2b-b2de-45b3-9947-1c2665202ed9",
+        "@id": "urn:brutality:tcg:CreditsGranted:9e7cf782-5059-4702-a3b0-f9064391704f",
         "@type": "urn:brutality:tcg:CreditsGranted",
-        "collector": "c_ddade23b85847555",
+        "collector": "c_5645ac983371cd5b",
         "packs": 2,
         "reason": "demo_fixture"
       },
       "proof": {
         "type": "DataIntegrityProof",
         "cryptosuite": "eddsa-jcs-2022",
-        "created": "2026-07-18T20:34:49.184Z",
+        "created": "2026-07-18T20:43:53.671Z",
         "verificationMethod": "did:key:z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3#z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3",
         "proofPurpose": "assertionMethod",
-        "proofValue": "zwuxFf2wTZYvxsibrQn7m3LM6WrY4YzYNcPRrTBN2bHGjTVBXGBB46KUK2mAkvGd2PCmp85gUMZ3sVouTgYYjbfB"
+        "proofValue": "z3RPAWfQNLGwjVebo9bqW9FHV5uFnrQPHwGHCAGgxC9TNNkdToewS8rH4WbhgTS1pVgRBxA5hmgKLu6WrB33dWRKE"
       }
     },
     {
-      "@id": "urn:brutality:tcg:Event:f69f937b3ea498a9599ea5fee4f9e87d999ca4a60d45da677c247a47784a68fb",
+      "@id": "urn:brutality:tcg:Event:8c709a568cbdb4ef02540266b97218042b2b48ad255c33e672001506587bcaff",
       "@type": "urn:brutality:tcg:Event",
       "seq": 30,
-      "ts": "2026-07-18T20:34:49.185Z",
-      "prevId": "urn:brutality:tcg:Event:4a26f39240a5c6aab3156133bf0ea101330a1653dd4fb83fbbfdf225d3917b02",
+      "ts": "2026-07-18T20:43:53.671Z",
+      "prevId": "urn:brutality:tcg:Event:500555bfe3b9d8a7eb98354d05b275ed40301176c85591298f450e10b653ab7b",
       "payload": {
-        "@id": "urn:brutality:tcg:CreditReserved:79669635-7a71-41e3-b4bc-d1ae33a4fc5a",
+        "@id": "urn:brutality:tcg:CreditReserved:81e03488-ee38-4d9a-a0f6-fd9ecd81f289",
         "@type": "urn:brutality:tcg:CreditReserved",
-        "collector": "c_ddade23b85847555"
+        "collector": "c_5645ac983371cd5b"
       },
       "proof": {
         "type": "DataIntegrityProof",
         "cryptosuite": "eddsa-jcs-2022",
-        "created": "2026-07-18T20:34:49.185Z",
+        "created": "2026-07-18T20:43:53.671Z",
         "verificationMethod": "did:key:z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3#z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3",
         "proofPurpose": "assertionMethod",
-        "proofValue": "z5todLsjHRuv6ftSQqqQFjnLUASDfWuGeicmMJErwnh9YfTkagaBgaM1SVYfYq2j53VTV2yi2MoZNBJBErFiCL7XR"
+        "proofValue": "z48RSfSKDoYWLCr16vNcFAyv7FbaDorrADr5LVVQT7HZMMoTU5K8ntbHhgjkL9vRcWTkGB6H3Msm9mEVi9TvrnmTy"
       }
     },
     {
-      "@id": "urn:brutality:tcg:Event:41fb7e2814306fc1c5b15fb65f84f018e61f7854390a159c3496dd037486ea76",
+      "@id": "urn:brutality:tcg:Event:3375acf0ed3b12ca565452f8dac5b3890d0b5a709fe5d84dc5bf9d5a61fa1110",
       "@type": "urn:brutality:tcg:Event",
       "seq": 31,
-      "ts": "2026-07-18T20:34:49.185Z",
-      "prevId": "urn:brutality:tcg:Event:f69f937b3ea498a9599ea5fee4f9e87d999ca4a60d45da677c247a47784a68fb",
+      "ts": "2026-07-18T20:43:53.672Z",
+      "prevId": "urn:brutality:tcg:Event:8c709a568cbdb4ef02540266b97218042b2b48ad255c33e672001506587bcaff",
       "payload": {
-        "@id": "urn:brutality:tcg:RedemptionCommitted:79669635-7a71-41e3-b4bc-d1ae33a4fc5a",
+        "@id": "urn:brutality:tcg:RedemptionCommitted:81e03488-ee38-4d9a-a0f6-fd9ecd81f289",
         "@type": "urn:brutality:tcg:RedemptionCommitted",
-        "collector": "c_ddade23b85847555",
-        "setId": "og-set",
+        "collector": "c_5645ac983371cd5b",
+        "set": "urn:brutality:tcg:CardSet:OG",
         "setVersion": 1,
         "packSize": 5,
-        "commitment": "513ba790144014127e75e74426410cca948164d631f11678569f038f266fd814"
+        "commitment": "859778b67559576e4fa0b48722e1b2573550e55d3624d333ec07c52591396cf3"
       },
       "proof": {
         "type": "DataIntegrityProof",
         "cryptosuite": "eddsa-jcs-2022",
-        "created": "2026-07-18T20:34:49.185Z",
+        "created": "2026-07-18T20:43:53.672Z",
         "verificationMethod": "did:key:z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3#z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3",
         "proofPurpose": "assertionMethod",
-        "proofValue": "zk1JFMk8qDRB3nBE2VcDmGXBa87eLi4Zftv6uKSnuQbVEnXrd2wYYsCNS77RmQe23VPSFLtBc8EoP7NqBZ1p8pZk"
+        "proofValue": "z2uVEChaCfTC6iDxwQftyuB3WijoE2kGNSQhUgEz66KTytvht3Y5W4YEDdXZQ88u7o2rJRWJkNxs8PFB82TEpLwFx"
       }
     },
     {
-      "@id": "urn:brutality:tcg:Event:a8e46509ed87021c893012e02c3cf9669c636e6d443cc27c5c925c5e8ffe5986",
+      "@id": "urn:brutality:tcg:Event:7b5286336b0358c19c0c8b34326f96c16793f1756f84ff690a564d13b12a089d",
       "@type": "urn:brutality:tcg:Event",
       "seq": 32,
-      "ts": "2026-07-18T20:34:49.185Z",
-      "prevId": "urn:brutality:tcg:Event:41fb7e2814306fc1c5b15fb65f84f018e61f7854390a159c3496dd037486ea76",
+      "ts": "2026-07-18T20:43:53.672Z",
+      "prevId": "urn:brutality:tcg:Event:3375acf0ed3b12ca565452f8dac5b3890d0b5a709fe5d84dc5bf9d5a61fa1110",
       "payload": {
-        "@id": "urn:brutality:tcg:PackOpening:79669635-7a71-41e3-b4bc-d1ae33a4fc5a",
+        "@id": "urn:brutality:tcg:PackOpening:81e03488-ee38-4d9a-a0f6-fd9ecd81f289",
         "@type": "urn:brutality:tcg:PackOpening",
-        "collector": "c_ddade23b85847555",
-        "setId": "og-set",
-        "cardIds": [
-          "og-002",
-          "og-001",
-          "og-007",
-          "og-006",
-          "og-007"
+        "collector": "c_5645ac983371cd5b",
+        "set": "urn:brutality:tcg:CardSet:OG",
+        "cards": [
+          "urn:brutality:tcg:Card:OG:010",
+          "urn:brutality:tcg:Card:OG:008",
+          "urn:brutality:tcg:Card:OG:001",
+          "urn:brutality:tcg:Card:OG:002",
+          "urn:brutality:tcg:Card:OG:007"
         ],
-        "nonce": "dabab22ea15cb63c27bdcc1700d5bd7c",
-        "commitment": "513ba790144014127e75e74426410cca948164d631f11678569f038f266fd814"
+        "nonce": "2535130e9c2d170cf17bd240617f5d15",
+        "commitment": "859778b67559576e4fa0b48722e1b2573550e55d3624d333ec07c52591396cf3"
       },
       "proof": {
         "type": "DataIntegrityProof",
         "cryptosuite": "eddsa-jcs-2022",
-        "created": "2026-07-18T20:34:49.185Z",
+        "created": "2026-07-18T20:43:53.672Z",
         "verificationMethod": "did:key:z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3#z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3",
         "proofPurpose": "assertionMethod",
-        "proofValue": "z2QydUMpyE8ZJhmvyfKvkkN2nwozLKX4tcPfkoXUZWyU3LfcE5J6PJre8or3q31if6xZvYFbxEewTW4n4TW5H94f8"
+        "proofValue": "zWvpjJQ8ynQoArTd9qMyHxdT4o6EWBTj1MiesiSRjnh8j67HK9AZH3Efh36Uzsk6ACSmosA6ooWkEJSoGjhSmFH1"
       }
     },
     {
-      "@id": "urn:brutality:tcg:Event:366042f7be97a19384dafcee5bba9b38c809ae95400e7a1d7fd61f11c43580f2",
+      "@id": "urn:brutality:tcg:Event:8a0ad2088c88638a647c2d0bc813530b71563c1520fd62636b7e1f587ea7615d",
       "@type": "urn:brutality:tcg:Event",
       "seq": 33,
-      "ts": "2026-07-18T20:34:49.186Z",
-      "prevId": "urn:brutality:tcg:Event:a8e46509ed87021c893012e02c3cf9669c636e6d443cc27c5c925c5e8ffe5986",
+      "ts": "2026-07-18T20:43:53.673Z",
+      "prevId": "urn:brutality:tcg:Event:7b5286336b0358c19c0c8b34326f96c16793f1756f84ff690a564d13b12a089d",
       "payload": {
-        "@id": "urn:brutality:tcg:CreditReserved:ca617d82-d9d3-4891-9b4a-d08f1f46a2c4",
+        "@id": "urn:brutality:tcg:CreditReserved:74382d53-c909-498f-93e1-2a7d4cb17fb9",
         "@type": "urn:brutality:tcg:CreditReserved",
-        "collector": "c_ddade23b85847555"
+        "collector": "c_5645ac983371cd5b"
       },
       "proof": {
         "type": "DataIntegrityProof",
         "cryptosuite": "eddsa-jcs-2022",
-        "created": "2026-07-18T20:34:49.186Z",
+        "created": "2026-07-18T20:43:53.673Z",
         "verificationMethod": "did:key:z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3#z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3",
         "proofPurpose": "assertionMethod",
-        "proofValue": "zBU14Bwz7jhyYCQF46BuZ3GKMhAzhmCUgRKVAK2KwjzB4pLdxAtdYFFErb9yQrzAwnZ7aSNu2uoQAQvbBgBkyHdp"
+        "proofValue": "z25YkmG6oMezrC1pzkwfPEk4VS8RkKSeuXwWCbBQTPYaxLL5CKPuwEtnLPG3EnejHUu3Wiug4Nje8jpQUSjXuR4Df"
       }
     },
     {
-      "@id": "urn:brutality:tcg:Event:786a6ab20aa199c061cf534c1604bafecc1c7c4ab1a8ecf67dd593c4098f169b",
+      "@id": "urn:brutality:tcg:Event:30aed61ccfdf78efd4549dda1d25f197ff46cec8fb240762d1e69484d04cad47",
       "@type": "urn:brutality:tcg:Event",
       "seq": 34,
-      "ts": "2026-07-18T20:34:49.186Z",
-      "prevId": "urn:brutality:tcg:Event:366042f7be97a19384dafcee5bba9b38c809ae95400e7a1d7fd61f11c43580f2",
+      "ts": "2026-07-18T20:43:53.673Z",
+      "prevId": "urn:brutality:tcg:Event:8a0ad2088c88638a647c2d0bc813530b71563c1520fd62636b7e1f587ea7615d",
       "payload": {
-        "@id": "urn:brutality:tcg:RedemptionCommitted:ca617d82-d9d3-4891-9b4a-d08f1f46a2c4",
+        "@id": "urn:brutality:tcg:RedemptionCommitted:74382d53-c909-498f-93e1-2a7d4cb17fb9",
         "@type": "urn:brutality:tcg:RedemptionCommitted",
-        "collector": "c_ddade23b85847555",
-        "setId": "og-set",
+        "collector": "c_5645ac983371cd5b",
+        "set": "urn:brutality:tcg:CardSet:OG",
         "setVersion": 1,
         "packSize": 5,
-        "commitment": "c4bd0f83dc7c00cd0640d45ce2225ed97a845954b6cbfdea34b12f153b4dbf8c"
+        "commitment": "7526855a8bcf0ba879e0dd4d2704fe247963d8e88ed9eb84ecac9737ecde43a6"
       },
       "proof": {
         "type": "DataIntegrityProof",
         "cryptosuite": "eddsa-jcs-2022",
-        "created": "2026-07-18T20:34:49.186Z",
+        "created": "2026-07-18T20:43:53.673Z",
         "verificationMethod": "did:key:z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3#z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3",
         "proofPurpose": "assertionMethod",
-        "proofValue": "z3mkHXqzGhgJcNM5Du4mvTenXVs1KFECJr28SX8EUDkJTkwMB9jFJjwK7uagWEuRSa6Z1XGDMMYszffzf1S3ua9PA"
+        "proofValue": "z3Jffio64z2hEXjNqSreEiuWoxvpyHgEoZBustUXY6QK2sZ3f5dsk8FNLqPj6KdDCCk1jpAMdJ9NMDDgEWGXB3AHu"
       }
     },
     {
-      "@id": "urn:brutality:tcg:Event:dd958c264057fd5d7bac5e3d1ce48175df59437ed2fde3b7b885875952af6a18",
+      "@id": "urn:brutality:tcg:Event:ca61a32ee0ae8d2e17db5b324c5fef7b2cb7f25680625a3bece7d742f484a502",
       "@type": "urn:brutality:tcg:Event",
       "seq": 35,
-      "ts": "2026-07-18T20:34:49.187Z",
-      "prevId": "urn:brutality:tcg:Event:786a6ab20aa199c061cf534c1604bafecc1c7c4ab1a8ecf67dd593c4098f169b",
+      "ts": "2026-07-18T20:43:53.673Z",
+      "prevId": "urn:brutality:tcg:Event:30aed61ccfdf78efd4549dda1d25f197ff46cec8fb240762d1e69484d04cad47",
       "payload": {
-        "@id": "urn:brutality:tcg:PackOpening:ca617d82-d9d3-4891-9b4a-d08f1f46a2c4",
+        "@id": "urn:brutality:tcg:PackOpening:74382d53-c909-498f-93e1-2a7d4cb17fb9",
         "@type": "urn:brutality:tcg:PackOpening",
-        "collector": "c_ddade23b85847555",
-        "setId": "og-set",
-        "cardIds": [
-          "og-007",
-          "og-008",
-          "og-002",
-          "og-007",
-          "og-007"
+        "collector": "c_5645ac983371cd5b",
+        "set": "urn:brutality:tcg:CardSet:OG",
+        "cards": [
+          "urn:brutality:tcg:Card:OG:008",
+          "urn:brutality:tcg:Card:OG:008",
+          "urn:brutality:tcg:Card:OG:007",
+          "urn:brutality:tcg:Card:OG:008",
+          "urn:brutality:tcg:Card:OG:001"
         ],
-        "nonce": "1965be1160dbace6384754e6f30ef2d8",
-        "commitment": "c4bd0f83dc7c00cd0640d45ce2225ed97a845954b6cbfdea34b12f153b4dbf8c"
+        "nonce": "b28348f229e00caf1a51a5644e446d28",
+        "commitment": "7526855a8bcf0ba879e0dd4d2704fe247963d8e88ed9eb84ecac9737ecde43a6"
       },
       "proof": {
         "type": "DataIntegrityProof",
         "cryptosuite": "eddsa-jcs-2022",
-        "created": "2026-07-18T20:34:49.187Z",
+        "created": "2026-07-18T20:43:53.673Z",
         "verificationMethod": "did:key:z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3#z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3",
         "proofPurpose": "assertionMethod",
-        "proofValue": "z3hqS6tR4tcd5XsgeSFPfVtj114DadvZGfBiQCaCbVAcfXRZTz84RzRigQzYtWL4u7JsmYJKtz2pPmVCm6Kj2Dr59"
+        "proofValue": "z5quk9S83RZS6xAgZgFdabGHWq5oxYQbz6wvDFRvJRVbrpCxhaHxk7pDKgSNaFpLCRHSKThTWfor1eb9HUM26TgmG"
       }
     },
     {
-      "@id": "urn:brutality:tcg:Event:30ad99dcb479116b6084a3b2ba6e993bb9811e265b9a714e61dc31a62fb7cf84",
+      "@id": "urn:brutality:tcg:Event:cbb1bed031714171b26cf155e3a0361dbbe5c761bcfb38443ce3b8f86455d8f9",
       "@type": "urn:brutality:tcg:Event",
       "seq": 36,
-      "ts": "2026-07-18T20:34:49.187Z",
-      "prevId": "urn:brutality:tcg:Event:dd958c264057fd5d7bac5e3d1ce48175df59437ed2fde3b7b885875952af6a18",
+      "ts": "2026-07-18T20:43:53.674Z",
+      "prevId": "urn:brutality:tcg:Event:ca61a32ee0ae8d2e17db5b324c5fef7b2cb7f25680625a3bece7d742f484a502",
       "payload": {
-        "@id": "urn:brutality:tcg:CollectorCreated:c_82b6ad1c38c7b223",
+        "@id": "urn:brutality:tcg:CollectorCreated:c_363a2ddab9a348e1",
         "@type": "urn:brutality:tcg:CollectorCreated"
       },
       "proof": {
         "type": "DataIntegrityProof",
         "cryptosuite": "eddsa-jcs-2022",
-        "created": "2026-07-18T20:34:49.187Z",
+        "created": "2026-07-18T20:43:53.674Z",
         "verificationMethod": "did:key:z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3#z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3",
         "proofPurpose": "assertionMethod",
-        "proofValue": "z33XCkw87XBYrfgQEGCPPZnCPQ45Q4cY9FUvQii47ydBYCNxH17fhz1Fw2n7aMrZ5DBX6GrwYsjx3zZcbTYNuW9dN"
+        "proofValue": "z2jCL5fTwuR9Z8q554hwgXg1KP7HJ4iULdbdS2CxiALLPRRqMZDzH9jT6DU6Uwuuy6uSCRPABMgomdEr4XdX4diS4"
       }
     },
     {
-      "@id": "urn:brutality:tcg:Event:d58a5949b29ae619ae07b963079b405440797a8a348e036a7935f32716aa3843",
+      "@id": "urn:brutality:tcg:Event:06a7e2d85eff10ec3d4b83c7fc47765779fe67078aca0bb2c3bd52537dc01ae9",
       "@type": "urn:brutality:tcg:Event",
       "seq": 37,
-      "ts": "2026-07-18T20:34:49.188Z",
-      "prevId": "urn:brutality:tcg:Event:30ad99dcb479116b6084a3b2ba6e993bb9811e265b9a714e61dc31a62fb7cf84",
+      "ts": "2026-07-18T20:43:53.674Z",
+      "prevId": "urn:brutality:tcg:Event:cbb1bed031714171b26cf155e3a0361dbbe5c761bcfb38443ce3b8f86455d8f9",
       "payload": {
-        "@id": "urn:brutality:tcg:CreditsGranted:1655e870-4479-4244-aa1d-a5ecf24e74b3",
+        "@id": "urn:brutality:tcg:CreditsGranted:417d412a-5688-43a4-81ea-b2437789487d",
         "@type": "urn:brutality:tcg:CreditsGranted",
-        "collector": "c_82b6ad1c38c7b223",
+        "collector": "c_363a2ddab9a348e1",
         "packs": 6,
         "reason": "demo_fixture"
       },
       "proof": {
         "type": "DataIntegrityProof",
         "cryptosuite": "eddsa-jcs-2022",
-        "created": "2026-07-18T20:34:49.188Z",
+        "created": "2026-07-18T20:43:53.674Z",
         "verificationMethod": "did:key:z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3#z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3",
         "proofPurpose": "assertionMethod",
-        "proofValue": "z3A5oK916eesRTL4r4bMHokhoWj8vJHrhCkcJtcEf3ko2wF4NqsyrMKYLPDewwrW72YeMeoB3CwHERP5Udgqtsp45"
+        "proofValue": "z4idprmZUrfWY249X9aEGJKKEvqshL4g8zJtBycKYnor6CyGNbCzofDHPLEiWWahLncHFgNxPTyLB29thpC4TCsM8"
       }
     },
     {
-      "@id": "urn:brutality:tcg:Event:bba73d7813f03ccda19c4fedb0e700f3f03fb69f7592c29676dc6221cea691a2",
+      "@id": "urn:brutality:tcg:Event:2b042e357384a360587c7f96a8366a6f4073c3da086dbb607e7b6fbab761cb4c",
       "@type": "urn:brutality:tcg:Event",
       "seq": 38,
-      "ts": "2026-07-18T20:34:49.188Z",
-      "prevId": "urn:brutality:tcg:Event:d58a5949b29ae619ae07b963079b405440797a8a348e036a7935f32716aa3843",
+      "ts": "2026-07-18T20:43:53.675Z",
+      "prevId": "urn:brutality:tcg:Event:06a7e2d85eff10ec3d4b83c7fc47765779fe67078aca0bb2c3bd52537dc01ae9",
       "payload": {
-        "@id": "urn:brutality:tcg:CreditReserved:ae0bd147-a5f2-4463-a6ca-cde860c5a7c5",
+        "@id": "urn:brutality:tcg:CreditReserved:d78181d7-12a8-477a-a400-672cfe93a813",
         "@type": "urn:brutality:tcg:CreditReserved",
-        "collector": "c_82b6ad1c38c7b223"
+        "collector": "c_363a2ddab9a348e1"
       },
       "proof": {
         "type": "DataIntegrityProof",
         "cryptosuite": "eddsa-jcs-2022",
-        "created": "2026-07-18T20:34:49.188Z",
+        "created": "2026-07-18T20:43:53.675Z",
         "verificationMethod": "did:key:z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3#z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3",
         "proofPurpose": "assertionMethod",
-        "proofValue": "z4QKjY6oxyRtPF2DzLWoQcC2yqgf5nM47Fkeh3uSkwhnBGiyxJ4Fw2MCMyaeDuL8VXuEfdrkUS5QbQngMicmxL6mx"
+        "proofValue": "z3MkBSt7fe9nCvYVKBGK5EubcoGSEDcryeUk5pBWs9TPLauHsA37n77CuL1WbPkPzLquhkW26h19jahp9StMai3j1"
       }
     },
     {
-      "@id": "urn:brutality:tcg:Event:47ed63601c0f7dee1d79ba8bba1dfceaff02f3b413c233ed5a922fefa9617d03",
+      "@id": "urn:brutality:tcg:Event:fba0321a17d219ec84b53e708a637e8505674bf8b20dc2768a59956a1a2573fb",
       "@type": "urn:brutality:tcg:Event",
       "seq": 39,
-      "ts": "2026-07-18T20:34:49.189Z",
-      "prevId": "urn:brutality:tcg:Event:bba73d7813f03ccda19c4fedb0e700f3f03fb69f7592c29676dc6221cea691a2",
+      "ts": "2026-07-18T20:43:53.675Z",
+      "prevId": "urn:brutality:tcg:Event:2b042e357384a360587c7f96a8366a6f4073c3da086dbb607e7b6fbab761cb4c",
       "payload": {
-        "@id": "urn:brutality:tcg:RedemptionCommitted:ae0bd147-a5f2-4463-a6ca-cde860c5a7c5",
+        "@id": "urn:brutality:tcg:RedemptionCommitted:d78181d7-12a8-477a-a400-672cfe93a813",
         "@type": "urn:brutality:tcg:RedemptionCommitted",
-        "collector": "c_82b6ad1c38c7b223",
-        "setId": "og-set",
+        "collector": "c_363a2ddab9a348e1",
+        "set": "urn:brutality:tcg:CardSet:OG",
         "setVersion": 1,
         "packSize": 5,
-        "commitment": "587f38b2eac487492e22bacb7f3f2871c290161c59743d56493660c75510eadf"
+        "commitment": "a539f420a5dbec81b6397a35097526b7577f1737290a2a03c8e02a1ab2903b85"
       },
       "proof": {
         "type": "DataIntegrityProof",
         "cryptosuite": "eddsa-jcs-2022",
-        "created": "2026-07-18T20:34:49.189Z",
+        "created": "2026-07-18T20:43:53.675Z",
         "verificationMethod": "did:key:z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3#z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3",
         "proofPurpose": "assertionMethod",
-        "proofValue": "zoPczSxVRGbdbQJH4gMKBFaeDRvty8zhMnsp62dJuputYsdcGgV91Js3Fw4dvRauKZXPorVQqmcjxyatGbfJ9TUt"
+        "proofValue": "z2ZXwN1ac94iRpVaoKohTrm9tkFx1zH1JVwiqLsT1GABpB97Knq51V6B2kxCRGyd6J6ATA19z9fiwurJAMdoRqHEV"
       }
     },
     {
-      "@id": "urn:brutality:tcg:Event:781b0745bf7f7d56baa31af1b4e3ba7f08d2c00eed9bd75fce1eff7db64554e8",
+      "@id": "urn:brutality:tcg:Event:94b984b0f1e323548617efed08bf36d11411e24b0f40b69c0786ce7bae1da7ca",
       "@type": "urn:brutality:tcg:Event",
       "seq": 40,
-      "ts": "2026-07-18T20:34:49.189Z",
-      "prevId": "urn:brutality:tcg:Event:47ed63601c0f7dee1d79ba8bba1dfceaff02f3b413c233ed5a922fefa9617d03",
+      "ts": "2026-07-18T20:43:53.675Z",
+      "prevId": "urn:brutality:tcg:Event:fba0321a17d219ec84b53e708a637e8505674bf8b20dc2768a59956a1a2573fb",
       "payload": {
-        "@id": "urn:brutality:tcg:PackOpening:ae0bd147-a5f2-4463-a6ca-cde860c5a7c5",
+        "@id": "urn:brutality:tcg:PackOpening:d78181d7-12a8-477a-a400-672cfe93a813",
         "@type": "urn:brutality:tcg:PackOpening",
-        "collector": "c_82b6ad1c38c7b223",
-        "setId": "og-set",
-        "cardIds": [
-          "og-001",
-          "og-006",
-          "og-001",
-          "og-004",
-          "og-001"
+        "collector": "c_363a2ddab9a348e1",
+        "set": "urn:brutality:tcg:CardSet:OG",
+        "cards": [
+          "urn:brutality:tcg:Card:OG:002",
+          "urn:brutality:tcg:Card:OG:001",
+          "urn:brutality:tcg:Card:OG:006",
+          "urn:brutality:tcg:Card:OG:010",
+          "urn:brutality:tcg:Card:OG:007"
         ],
-        "nonce": "ffa638fdb7ebb1fad15b25e998794831",
-        "commitment": "587f38b2eac487492e22bacb7f3f2871c290161c59743d56493660c75510eadf"
+        "nonce": "df66c0e9943a860c7d7f912e9c66129d",
+        "commitment": "a539f420a5dbec81b6397a35097526b7577f1737290a2a03c8e02a1ab2903b85"
       },
       "proof": {
         "type": "DataIntegrityProof",
         "cryptosuite": "eddsa-jcs-2022",
-        "created": "2026-07-18T20:34:49.189Z",
+        "created": "2026-07-18T20:43:53.675Z",
         "verificationMethod": "did:key:z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3#z6MkeXh8pjKyt8tD7uAZJN4A4zXaWWX2Hcth8u5jseMz66X3",
         "proofPurpose": "assertionMethod",
-        "proofValue": "zYjEy7LKWYdj79SLhiT22kes1NAdqFDeUtYM4RYR6PtDoUB2RCHdq71VFLBZNgHoa4bennU5H7eyexg3jkWFBqTJ"
+        "proofValue": "z3nVpMvEiqB7cB8jJbNh6XZYdu3xoWcvLgVWuP171Mi6vBu3aM62fmfdRuVM931xkvtzBCbbcf2RdbARNSM9qmvF5"
       }
     }
   ],
   "collectors": [
     {
       "discord_id": "demo-npc-overlord",
-      "public_id": "c_26907da183c8eed2",
+      "public_id": "c_676b648a6d57275d",
       "display_name": "Overlord",
-      "created_ts": "2026-07-18T20:34:49.168Z"
+      "created_ts": "2026-07-18T20:43:53.651Z"
     },
     {
       "discord_id": "demo-npc-lowpoint",
-      "public_id": "c_d7b99084f84853e1",
+      "public_id": "c_eea1d879dfa35193",
       "display_name": "LowPoint",
-      "created_ts": "2026-07-18T20:34:49.177Z"
+      "created_ts": "2026-07-18T20:43:53.665Z"
     },
     {
       "discord_id": "demo-npc-pitlord",
-      "public_id": "c_ddade23b85847555",
+      "public_id": "c_5645ac983371cd5b",
       "display_name": "PitLord",
-      "created_ts": "2026-07-18T20:34:49.184Z"
+      "created_ts": "2026-07-18T20:43:53.671Z"
     },
     {
       "discord_id": "demo-guest-000000000000",
-      "public_id": "c_82b6ad1c38c7b223",
+      "public_id": "c_363a2ddab9a348e1",
       "display_name": "Guest",
-      "created_ts": "2026-07-18T20:34:49.188Z"
+      "created_ts": "2026-07-18T20:43:53.674Z"
     }
   ],
   "redemptions": [
     {
-      "redemption_id": "170ec532-3de0-4f70-be21-7458e5e84d0d",
-      "token": "NsuAd2_-g0I_RghsKzbs0SGHpZNQ9OeV",
-      "public_id": "c_26907da183c8eed2",
-      "set_id": "og-set",
-      "card_ids": "[\"og-007\",\"og-008\",\"og-010\",\"og-010\",\"og-001\"]",
-      "nonce": "99ef6515d981819efa8acc173aa28ebb",
-      "commitment": "98d18dfbd561363d8792f4bec8fb67005af85b6b0f5b1f6f86350df17d227cf5",
+      "redemption_id": "abc425ee-2d96-417a-ae31-8098b7515b04",
+      "token": "81e_A7tfsFkMEj696GkMfbg408Fw8B7S",
+      "public_id": "c_676b648a6d57275d",
+      "set_id": "urn:brutality:tcg:CardSet:OG",
+      "card_ids": "[\"urn:brutality:tcg:Card:OG:010\",\"urn:brutality:tcg:Card:OG:007\",\"urn:brutality:tcg:Card:OG:005\",\"urn:brutality:tcg:Card:OG:008\",\"urn:brutality:tcg:Card:OG:003\"]",
+      "nonce": "40296196cd0a57d5444efe44abb40a01",
+      "commitment": "2b05e4c9236650fe71cdce1c5ebd275928fc7a6ff9fd81bc9a62b06de52c29f8",
       "status": "opened",
-      "created_ts": "2026-07-18T20:34:49.170Z",
-      "expires_ts": "2026-07-19T20:34:49.170Z",
-      "opened_ts": "2026-07-18T20:34:49.172Z"
+      "created_ts": "2026-07-18T20:43:53.653Z",
+      "expires_ts": "2026-07-19T20:43:53.653Z",
+      "opened_ts": "2026-07-18T20:43:53.656Z"
     },
     {
-      "redemption_id": "05c94792-fe40-42e6-b1f1-2eb57121db59",
-      "token": "a4U-GBsNusQjESo_9mtTfUhc91E5ZqC6",
-      "public_id": "c_26907da183c8eed2",
-      "set_id": "og-set",
-      "card_ids": "[\"og-007\",\"og-001\",\"og-001\",\"og-002\",\"og-006\"]",
-      "nonce": "60216a1b780f277d25256582d2af4ddd",
-      "commitment": "89226c0fc901a872bf7ef54647eb3044f346a88b0cd7a6a0987d665eadbd246a",
+      "redemption_id": "2e23606d-559e-4761-ba07-58f0478a1560",
+      "token": "6yA0LF3hOwGt-qE7-XPIb7WKG3u3ay3q",
+      "public_id": "c_676b648a6d57275d",
+      "set_id": "urn:brutality:tcg:CardSet:OG",
+      "card_ids": "[\"urn:brutality:tcg:Card:OG:002\",\"urn:brutality:tcg:Card:OG:007\",\"urn:brutality:tcg:Card:OG:005\",\"urn:brutality:tcg:Card:OG:010\",\"urn:brutality:tcg:Card:OG:010\"]",
+      "nonce": "13826f585d053b4a4680721f07e15e4f",
+      "commitment": "52c82468ab9c190382b84d8266701899d7b281dde83d6cd9d234b1172690cfbd",
       "status": "opened",
-      "created_ts": "2026-07-18T20:34:49.173Z",
-      "expires_ts": "2026-07-19T20:34:49.173Z",
-      "opened_ts": "2026-07-18T20:34:49.173Z"
+      "created_ts": "2026-07-18T20:43:53.657Z",
+      "expires_ts": "2026-07-19T20:43:53.657Z",
+      "opened_ts": "2026-07-18T20:43:53.658Z"
     },
     {
-      "redemption_id": "6c829ff6-c03e-4d14-8152-508ae3110ceb",
-      "token": "6BS4sYwSIzBnfjg-S7jpgi1Bl_ZOzG1O",
-      "public_id": "c_26907da183c8eed2",
-      "set_id": "og-set",
-      "card_ids": "[\"og-001\",\"og-004\",\"og-002\",\"og-010\",\"og-007\"]",
-      "nonce": "26c39815bfd5444c531483578e284897",
-      "commitment": "d6a398a049fa9baef899477dffb19ee4820fd0b36e346ea7700f96bbd4f0cc59",
+      "redemption_id": "090629e3-4020-49a1-ad98-df16861819a4",
+      "token": "usf5p2oLPOg7WGR-XtHA2hAM_GwFEwdl",
+      "public_id": "c_676b648a6d57275d",
+      "set_id": "urn:brutality:tcg:CardSet:OG",
+      "card_ids": "[\"urn:brutality:tcg:Card:OG:002\",\"urn:brutality:tcg:Card:OG:002\",\"urn:brutality:tcg:Card:OG:006\",\"urn:brutality:tcg:Card:OG:010\",\"urn:brutality:tcg:Card:OG:007\"]",
+      "nonce": "648b6093bcf555f8c77e6380a0c2d9d2",
+      "commitment": "b4d19dc08ed6df7b67965c11c4321bc428ae21d9ef86f43c31adefbef6b90c44",
       "status": "opened",
-      "created_ts": "2026-07-18T20:34:49.174Z",
-      "expires_ts": "2026-07-19T20:34:49.174Z",
-      "opened_ts": "2026-07-18T20:34:49.175Z"
+      "created_ts": "2026-07-18T20:43:53.661Z",
+      "expires_ts": "2026-07-19T20:43:53.661Z",
+      "opened_ts": "2026-07-18T20:43:53.662Z"
     },
     {
-      "redemption_id": "31b96cbc-1bde-4662-9cb1-e1b01abfadb8",
-      "token": "YRzgEaXuyw97LMgveik9nMVTb5gqHjZu",
-      "public_id": "c_26907da183c8eed2",
-      "set_id": "og-set",
-      "card_ids": "[\"og-002\",\"og-007\",\"og-002\",\"og-006\",\"og-001\"]",
-      "nonce": "862340d4e3bc1c92059facac7e4d99a3",
-      "commitment": "697a88b6b5b6e215117a4dd4e262ccdcb267a81b364594be46e823c91992a2d6",
+      "redemption_id": "6d0e1897-779f-410d-8568-07b73e99f7e7",
+      "token": "iuuI218avz-DKguz4S0KzEWPOhrfroXc",
+      "public_id": "c_676b648a6d57275d",
+      "set_id": "urn:brutality:tcg:CardSet:OG",
+      "card_ids": "[\"urn:brutality:tcg:Card:OG:007\",\"urn:brutality:tcg:Card:OG:002\",\"urn:brutality:tcg:Card:OG:010\",\"urn:brutality:tcg:Card:OG:009\",\"urn:brutality:tcg:Card:OG:010\"]",
+      "nonce": "093a95cb279cc00722396c4e7a0ddb11",
+      "commitment": "47ed374db8285c411204eabbebfa2d0b79c0a406898c9cf8e6a6869feec8c2bb",
       "status": "opened",
-      "created_ts": "2026-07-18T20:34:49.176Z",
-      "expires_ts": "2026-07-19T20:34:49.176Z",
-      "opened_ts": "2026-07-18T20:34:49.176Z"
+      "created_ts": "2026-07-18T20:43:53.663Z",
+      "expires_ts": "2026-07-19T20:43:53.663Z",
+      "opened_ts": "2026-07-18T20:43:53.664Z"
     },
     {
-      "redemption_id": "33e78d0c-a2f9-4032-889d-8883943e6570",
-      "token": "AuYRQXApP4ajUaCq5uStBdip7FtbZNwo",
-      "public_id": "c_d7b99084f84853e1",
-      "set_id": "og-set",
-      "card_ids": "[\"og-008\",\"og-010\",\"og-007\",\"og-007\",\"og-001\"]",
-      "nonce": "21753548c741148d6e63c3f8a171a2d7",
-      "commitment": "18bc394cd68a3cbd2f801dc2e09ba01fe513bcc90c6e2efd1c77b6c741f93b52",
+      "redemption_id": "47dc469a-0d2a-43b6-8eda-fc0b3df22d43",
+      "token": "Z7uFIiy4rWuk46fRNJmgdIoBs5UrI6Nj",
+      "public_id": "c_eea1d879dfa35193",
+      "set_id": "urn:brutality:tcg:CardSet:OG",
+      "card_ids": "[\"urn:brutality:tcg:Card:OG:002\",\"urn:brutality:tcg:Card:OG:002\",\"urn:brutality:tcg:Card:OG:010\",\"urn:brutality:tcg:Card:OG:007\",\"urn:brutality:tcg:Card:OG:010\"]",
+      "nonce": "1da14c9d8a77d7cef64fa2af015d2a1c",
+      "commitment": "e5651290e4b5573bebe0a1e70000100b9c99260105f6ead96bda392bfb7f32d8",
       "status": "opened",
-      "created_ts": "2026-07-18T20:34:49.177Z",
-      "expires_ts": "2026-07-19T20:34:49.177Z",
-      "opened_ts": "2026-07-18T20:34:49.178Z"
+      "created_ts": "2026-07-18T20:43:53.666Z",
+      "expires_ts": "2026-07-19T20:43:53.666Z",
+      "opened_ts": "2026-07-18T20:43:53.666Z"
     },
     {
-      "redemption_id": "a8b213dd-bc34-4f4a-8b13-b9c9768ce1b2",
-      "token": "DMAN3YFTOuQ5QsEzL4VCO2Lx4o44wGJu",
-      "public_id": "c_d7b99084f84853e1",
-      "set_id": "og-set",
-      "card_ids": "[\"og-007\",\"og-006\",\"og-002\",\"og-010\",\"og-008\"]",
-      "nonce": "978622dbb6369eb02acf6fd734ae5ada",
-      "commitment": "d1234d761501c097eef9037ee4393c24892d3adb7513eafb827cb0837f90b053",
+      "redemption_id": "abc31f2b-f2e2-47a8-a74b-a91d7887329b",
+      "token": "RxaU3_5sKB4U6OIlAIlDDxNyveJxw8vF",
+      "public_id": "c_eea1d879dfa35193",
+      "set_id": "urn:brutality:tcg:CardSet:OG",
+      "card_ids": "[\"urn:brutality:tcg:Card:OG:001\",\"urn:brutality:tcg:Card:OG:001\",\"urn:brutality:tcg:Card:OG:003\",\"urn:brutality:tcg:Card:OG:010\",\"urn:brutality:tcg:Card:OG:008\"]",
+      "nonce": "3a0a34e85f83a153f4575a9a7419b7eb",
+      "commitment": "71d3c81f1a0275c6c6ca1469cf90cf66be1d68b037c9c1f62563b3ff08494e9b",
       "status": "opened",
-      "created_ts": "2026-07-18T20:34:49.179Z",
-      "expires_ts": "2026-07-19T20:34:49.179Z",
-      "opened_ts": "2026-07-18T20:34:49.181Z"
+      "created_ts": "2026-07-18T20:43:53.667Z",
+      "expires_ts": "2026-07-19T20:43:53.667Z",
+      "opened_ts": "2026-07-18T20:43:53.669Z"
     },
     {
-      "redemption_id": "0a884d4e-4cb4-4736-9fc5-44bd0c4248db",
-      "token": "e2VHd3tLUoa3J2mGzJ_O5HC3uIP9yAhw",
-      "public_id": "c_d7b99084f84853e1",
-      "set_id": "og-set",
-      "card_ids": "[\"og-001\",\"og-006\",\"og-002\",\"og-010\",\"og-006\"]",
-      "nonce": "11f504fe1419ff074c54b0cd1361bd55",
-      "commitment": "3c87f3ab8d7cb12e25c8410e778e4e1eaaddddb86a6660586a21852c6b5ae164",
+      "redemption_id": "0d91c8ab-7c7b-4173-9b18-d423a193a954",
+      "token": "Ru_bkJoXB8Sc7ivO7Y8Fezg3oDLGGFaG",
+      "public_id": "c_eea1d879dfa35193",
+      "set_id": "urn:brutality:tcg:CardSet:OG",
+      "card_ids": "[\"urn:brutality:tcg:Card:OG:006\",\"urn:brutality:tcg:Card:OG:004\",\"urn:brutality:tcg:Card:OG:010\",\"urn:brutality:tcg:Card:OG:001\",\"urn:brutality:tcg:Card:OG:010\"]",
+      "nonce": "9bc75dc786cf6fbde1dd95cdf1fad93b",
+      "commitment": "a871ef19cc40b5fba27feb8a905810bcc944fae26859f14943354f0ff389379e",
       "status": "opened",
-      "created_ts": "2026-07-18T20:34:49.182Z",
-      "expires_ts": "2026-07-19T20:34:49.183Z",
-      "opened_ts": "2026-07-18T20:34:49.183Z"
+      "created_ts": "2026-07-18T20:43:53.669Z",
+      "expires_ts": "2026-07-19T20:43:53.669Z",
+      "opened_ts": "2026-07-18T20:43:53.670Z"
     },
     {
-      "redemption_id": "79669635-7a71-41e3-b4bc-d1ae33a4fc5a",
-      "token": "ouPFoTvo_axcAWgejr_9Q4XqBjdxpoUV",
-      "public_id": "c_ddade23b85847555",
-      "set_id": "og-set",
-      "card_ids": "[\"og-002\",\"og-001\",\"og-007\",\"og-006\",\"og-007\"]",
-      "nonce": "dabab22ea15cb63c27bdcc1700d5bd7c",
-      "commitment": "513ba790144014127e75e74426410cca948164d631f11678569f038f266fd814",
+      "redemption_id": "81e03488-ee38-4d9a-a0f6-fd9ecd81f289",
+      "token": "wFJ65uMHpc7Uv3kPnIou7gyvPIoVgzoX",
+      "public_id": "c_5645ac983371cd5b",
+      "set_id": "urn:brutality:tcg:CardSet:OG",
+      "card_ids": "[\"urn:brutality:tcg:Card:OG:010\",\"urn:brutality:tcg:Card:OG:008\",\"urn:brutality:tcg:Card:OG:001\",\"urn:brutality:tcg:Card:OG:002\",\"urn:brutality:tcg:Card:OG:007\"]",
+      "nonce": "2535130e9c2d170cf17bd240617f5d15",
+      "commitment": "859778b67559576e4fa0b48722e1b2573550e55d3624d333ec07c52591396cf3",
       "status": "opened",
-      "created_ts": "2026-07-18T20:34:49.184Z",
-      "expires_ts": "2026-07-19T20:34:49.184Z",
-      "opened_ts": "2026-07-18T20:34:49.185Z"
+      "created_ts": "2026-07-18T20:43:53.671Z",
+      "expires_ts": "2026-07-19T20:43:53.671Z",
+      "opened_ts": "2026-07-18T20:43:53.672Z"
     },
     {
-      "redemption_id": "ca617d82-d9d3-4891-9b4a-d08f1f46a2c4",
-      "token": "rYE1cwX3K6TffbdUD_weOsylfDHvuZsm",
-      "public_id": "c_ddade23b85847555",
-      "set_id": "og-set",
-      "card_ids": "[\"og-007\",\"og-008\",\"og-002\",\"og-007\",\"og-007\"]",
-      "nonce": "1965be1160dbace6384754e6f30ef2d8",
-      "commitment": "c4bd0f83dc7c00cd0640d45ce2225ed97a845954b6cbfdea34b12f153b4dbf8c",
+      "redemption_id": "74382d53-c909-498f-93e1-2a7d4cb17fb9",
+      "token": "IjEY6cmfXpiaxzfhKsFG3zTaooyLGpHu",
+      "public_id": "c_5645ac983371cd5b",
+      "set_id": "urn:brutality:tcg:CardSet:OG",
+      "card_ids": "[\"urn:brutality:tcg:Card:OG:008\",\"urn:brutality:tcg:Card:OG:008\",\"urn:brutality:tcg:Card:OG:007\",\"urn:brutality:tcg:Card:OG:008\",\"urn:brutality:tcg:Card:OG:001\"]",
+      "nonce": "b28348f229e00caf1a51a5644e446d28",
+      "commitment": "7526855a8bcf0ba879e0dd4d2704fe247963d8e88ed9eb84ecac9737ecde43a6",
       "status": "opened",
-      "created_ts": "2026-07-18T20:34:49.186Z",
-      "expires_ts": "2026-07-19T20:34:49.186Z",
-      "opened_ts": "2026-07-18T20:34:49.187Z"
+      "created_ts": "2026-07-18T20:43:53.673Z",
+      "expires_ts": "2026-07-19T20:43:53.673Z",
+      "opened_ts": "2026-07-18T20:43:53.673Z"
     },
     {
-      "redemption_id": "ae0bd147-a5f2-4463-a6ca-cde860c5a7c5",
-      "token": "8ko3-odZw-rQNilcCd05TC1FXI3KlWV2",
-      "public_id": "c_82b6ad1c38c7b223",
-      "set_id": "og-set",
-      "card_ids": "[\"og-001\",\"og-006\",\"og-001\",\"og-004\",\"og-001\"]",
-      "nonce": "ffa638fdb7ebb1fad15b25e998794831",
-      "commitment": "587f38b2eac487492e22bacb7f3f2871c290161c59743d56493660c75510eadf",
+      "redemption_id": "d78181d7-12a8-477a-a400-672cfe93a813",
+      "token": "DBvhVC-ulayXGKKLKNJ47qMXLpZfIKOc",
+      "public_id": "c_363a2ddab9a348e1",
+      "set_id": "urn:brutality:tcg:CardSet:OG",
+      "card_ids": "[\"urn:brutality:tcg:Card:OG:002\",\"urn:brutality:tcg:Card:OG:001\",\"urn:brutality:tcg:Card:OG:006\",\"urn:brutality:tcg:Card:OG:010\",\"urn:brutality:tcg:Card:OG:007\"]",
+      "nonce": "df66c0e9943a860c7d7f912e9c66129d",
+      "commitment": "a539f420a5dbec81b6397a35097526b7577f1737290a2a03c8e02a1ab2903b85",
       "status": "opened",
-      "created_ts": "2026-07-18T20:34:49.188Z",
-      "expires_ts": "2026-07-19T20:34:49.188Z",
-      "opened_ts": "2026-07-18T20:34:49.189Z"
+      "created_ts": "2026-07-18T20:43:53.674Z",
+      "expires_ts": "2026-07-19T20:43:53.674Z",
+      "opened_ts": "2026-07-18T20:43:53.675Z"
     }
   ]
 }

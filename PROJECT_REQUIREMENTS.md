@@ -290,9 +290,12 @@ Payload (domain resource):
   lifecycle (`CreditReserved`, `RedemptionCommitted`, `PackOpening`,
   `RedemptionExpired`, `CreditReleased`) share the same `redemptionId`
   suffix; `CollectorCreated` uses the collector's public id; `SetPublished`
-  uses `{setId}:{version}`; Genesis uses the signing key multibase
-- Remaining fields: domain data only (collector, cardIds, commitment,
-  `schemaVersion` on Genesis, etc.)
+  uses `{setCode}:{version}`; Genesis uses the signing key multibase
+- Remaining fields: domain data only (collector, set, cards, commitment,
+  `schemaVersion` on Genesis, etc.). Sets and cards are themselves
+  identified by URNs: `urn:brutality:tcg:CardSet:{code}` (e.g.
+  `…CardSet:OG`) and `urn:brutality:tcg:Card:{setCode}:{number}` (e.g.
+  `…Card:OG:005`, zero-padded)
 
 The content hash covers `seq`, `ts`, `prevId` (when present), and the whole
 `payload`. Verifiers recompute it (confirming the envelope `@id` and the

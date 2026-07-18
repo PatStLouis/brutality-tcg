@@ -85,7 +85,7 @@ export interface EventSpec {
   type: EventType;
   /**
    * Domain identifier suffix for the payload `@id`
-   * (e.g. a redemptionId, collector publicId, or `{setId}:{version}`).
+   * (e.g. a redemptionId, collector publicId, or `{setCode}:{version}`).
    */
   domainId: string;
   /** Domain-specific fields only; `@id`/`@type` are added automatically. */

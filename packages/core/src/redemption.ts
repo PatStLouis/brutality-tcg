@@ -3,7 +3,7 @@ import { getDb } from "./db";
 import { appendEvent, appendEvents } from "./ledger";
 import { canonicalize } from "./canonical";
 import { sha256Hex } from "./ledger";
-import { getSet, type CardDef, type Rarity, type SetDef, RARITIES } from "./cards";
+import { getSet, OG_SET, type CardDef, type Rarity, type SetDef, RARITIES } from "./cards";
 
 const TOKEN_TTL_MS = 24 * 60 * 60 * 1000;
 
@@ -134,12 +134,12 @@ function drawCards(set: SetDef): CardDef[] {
 
 export function computeCommitment(
   redemptionId: string,
-  setId: string,
+  set: string,
   setVersion: number,
-  cardIds: string[],
+  cards: string[],
   nonce: string
 ): string {
-  return sha256Hex(canonicalize({ redemptionId, setId, setVersion, cardIds, nonce }));
+  return sha256Hex(canonicalize({ redemptionId, set, setVersion, cards, nonce }));
 }
 
 export type RedeemResult =
@@ -150,7 +150,7 @@ export type RedeemResult =
  * Atomically reserves one pack credit, draws the pull server-side, and records
  * a commitment to it. Cards stay hidden until the pack is opened.
  */
-export function redeemPack(discordId: string, baseUrl: string, setId = "og-set"): RedeemResult {
+export function redeemPack(discordId: string, baseUrl: string, setId = OG_SET.setId): RedeemResult {
   const db = getDb();
   const collector = ensureCollector(discordId);
   const set = getSet(setId);
@@ -206,7 +206,7 @@ export function redeemPack(discordId: string, baseUrl: string, setId = "og-set")
         domainId: redemptionId,
         payload: {
           collector: collector.publicId,
-          setId: set.setId,
+          set: set.setId,
           setVersion: set.version,
           packSize: set.packSize,
           commitment,
@@ -314,8 +314,8 @@ export function openPack(token: string): OpenResult {
   const openedTs = new Date().toISOString();
   appendEvent("pack_opened", redemption.redemptionId, {
     collector: redemption.publicId,
-    setId: redemption.setId,
-    cardIds: redemption.cardIds,
+    set: redemption.setId,
+    cards: redemption.cardIds,
     nonce: redemption.nonce,
     commitment: redemption.commitment,
   });
