@@ -1,0 +1,17 @@
+{
+  "name": "Brutality TCG",
+  "short_name": "Brutality",
+  "description": "Deathcore artist card collection for the Brutality community.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
