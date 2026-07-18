@@ -1,5 +1,5 @@
 import { getDb } from "./db";
-import { listEvents } from "./ledger";
+import { listEvents, eventTypeOf, domainSuffixOf } from "./ledger";
 
 export interface Holding {
   cardId: string;
@@ -55,51 +55,122 @@ export function replayLedger(): ReplayState {
     return credits.get(c)!;
   };
 
-  let afterSeq = 0;
-  for (;;) {
-    const batch = listEvents(afterSeq, 1000);
-    if (batch.length === 0) break;
-    for (const e of batch) {
-      const p = e.payload as Record<string, any>;
-      switch (e.type) {
-        case "collector_created":
-          bal(p.collector);
-          break;
-        case "credits_granted":
-          bal(p.collector).available += p.packs;
-          break;
-        case "credit_reserved": {
-          const b = bal(p.collector);
-          b.available -= 1;
-          b.reserved += 1;
-          break;
-        }
-        case "credit_released": {
-          const b = bal(p.collector);
-          b.available += 1;
-          break;
-        }
-        case "redemption_expired": {
-          bal(p.collector).reserved -= 1;
-          break;
-        }
-        case "pack_opened": {
-          bal(p.collector).reserved -= 1;
-          if (!holdings.has(p.collector)) holdings.set(p.collector, new Map());
-          const h = holdings.get(p.collector)!;
-          for (const cardId of p.cardIds as string[]) {
-            h.set(cardId, (h.get(cardId) ?? 0) + 1);
-          }
-          break;
-        }
-        default:
-          break;
+  for (const e of listEvents(0)) {
+    const p = e.payload as Record<string, any>;
+    switch (eventTypeOf(e)) {
+      case "collector_created":
+        // The collector's public id is the payload @id suffix.
+        bal(domainSuffixOf(e.payload)!);
+        break;
+      case "credits_granted":
+        bal(p.collector).available += p.packs;
+        break;
+      case "credit_reserved": {
+        const b = bal(p.collector);
+        b.available -= 1;
+        b.reserved += 1;
+        break;
       }
-      afterSeq = e.seq;
+      case "credit_released": {
+        const b = bal(p.collector);
+        b.available += 1;
+        break;
+      }
+      case "redemption_expired": {
+        bal(p.collector).reserved -= 1;
+        break;
+      }
+      case "pack_opened": {
+        bal(p.collector).reserved -= 1;
+        if (!holdings.has(p.collector)) holdings.set(p.collector, new Map());
+        const h = holdings.get(p.collector)!;
+        for (const cardId of p.cardIds as string[]) {
+          h.set(cardId, (h.get(cardId) ?? 0) + 1);
+        }
+        break;
+      }
+      default:
+        break;
     }
   }
 
   return { credits, holdings };
+}
+
+/**
+ * Rebuilds the SQLite projection cache (credit_balances, holdings) from the
+ * canonical ledger. Also reconciles redemption working state against the
+ * ledger: pending redemptions with no committed event are voided, and
+ * redemptions the ledger marks opened/expired are updated to match.
+ */
+export function rebuildCache(): void {
+  const db = getDb();
+  const replayed = replayLedger();
+
+  const committed = new Set<string>();
+  const opened = new Set<string>();
+  const expired = new Set<string>();
+  for (const e of listEvents(0)) {
+    const t = eventTypeOf(e);
+    // For redemption lifecycle events the redemptionId is the payload @id suffix.
+    const redemptionId = domainSuffixOf(e.payload);
+    if (!redemptionId) continue;
+    if (t === "redemption_committed") committed.add(redemptionId);
+    else if (t === "pack_opened") opened.add(redemptionId);
+    else if (t === "redemption_expired") expired.add(redemptionId);
+  }
+
+  db.transaction(() => {
+    db.prepare("DELETE FROM credit_balances").run();
+    db.prepare("DELETE FROM holdings").run();
+
+    const insertBalance = db.prepare(
+      "INSERT INTO credit_balances (public_id, available, reserved) VALUES (?, ?, ?)"
+    );
+    for (const [publicId, bal] of replayed.credits) {
+      insertBalance.run(publicId, bal.available, bal.reserved);
+    }
+    const insertHolding = db.prepare(
+      "INSERT INTO holdings (public_id, card_id, quantity) VALUES (?, ?, ?)"
+    );
+    for (const [publicId, cards] of replayed.holdings) {
+      for (const [cardId, quantity] of cards) {
+        if (quantity > 0) insertHolding.run(publicId, cardId, quantity);
+      }
+    }
+
+    // Reconcile redemption working state with the ledger. Credits/holdings were
+    // already rebuilt above; this only repairs the private redemptions table.
+    const redemptions = db
+      .prepare("SELECT redemption_id, status FROM redemptions")
+      .all() as Array<{ redemption_id: string; status: string }>;
+    for (const r of redemptions) {
+      if (opened.has(r.redemption_id)) {
+        if (r.status !== "opened") {
+          db.prepare("UPDATE redemptions SET status = 'opened' WHERE redemption_id = ?").run(
+            r.redemption_id
+          );
+        }
+      } else if (expired.has(r.redemption_id)) {
+        if (r.status !== "expired") {
+          db.prepare("UPDATE redemptions SET status = 'expired' WHERE redemption_id = ?").run(
+            r.redemption_id
+          );
+        }
+      } else if (!committed.has(r.redemption_id)) {
+        // Crash between SQLite write and ledger append: no committed event, so
+        // the redemption never really happened. Drop the orphan.
+        db.prepare("DELETE FROM redemptions WHERE redemption_id = ?").run(r.redemption_id);
+      } else if (r.status !== "pending") {
+        // Ledger still shows the pack as committed (not opened/expired), but
+        // SQLite was advanced before a crashed ledger append. Reset so the
+        // user can open (or expire) again.
+        db.prepare(
+          "UPDATE redemptions SET status = 'pending', opened_ts = NULL WHERE redemption_id = ?"
+        ).run(r.redemption_id);
+      }
+    }
+  })();
 }
 
 export interface ProjectionCheck {

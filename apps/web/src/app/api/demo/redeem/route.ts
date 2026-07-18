@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { demoEnabled, redeemPack } from "@brutality/core";
+import { demoEnabled, redeemPack, initStore } from "@brutality/core";
 import { getSession } from "@/lib/session";
 
 /**
@@ -16,6 +16,7 @@ export async function POST(request: Request) {
   if (!session) {
     return NextResponse.json({ error: "unauthorized" }, { status: 401 });
   }
+  initStore();
 
   const base = process.env.BASE_URL ?? new URL(request.url).origin;
   const result = redeemPack(session.discordId, base);

@@ -1,17 +1,38 @@
 export { canonicalize } from "./canonical";
 export { getDb, closeDb } from "./db";
-export { getSigningKey } from "./keys";
+export {
+  getSigningKey,
+  ed25519PublicKeyMultibase,
+  verificationMethodFor,
+  base58btcEncode,
+  base58btcDecode,
+  multibaseDecode,
+} from "./keys";
+export {
+  createDataIntegrityProof,
+  verifyDataIntegrityProof,
+  type DataIntegrityProof,
+} from "./dataIntegrity";
 export {
   appendEvent,
+  appendEvents,
   listEvents,
   verifyChain,
-  eventHashInput,
+  eventContentHash,
   sha256Hex,
-  GENESIS_HASH,
+  EVENT_TYPE,
+  JsonLdTypes,
+  domainSuffixOf,
+  eventJsonLdId,
+  eventTypeOf,
+  jsonLdTypeFor,
   type EventType,
   type LedgerEvent,
+  type LedgerEventPayload,
   type VerifyResult,
 } from "./ledger";
+export { ledgerPath, readAllEvents } from "./ledgerFile";
+export { initStore, resyncCache } from "./store";
 export {
   SETS,
   OG_SET,

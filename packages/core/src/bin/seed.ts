@@ -1,14 +1,14 @@
-import { getDb } from "../db";
-import { appendEvent, listEvents } from "../ledger";
+import { appendEvent, listEvents, eventTypeOf } from "../ledger";
 import { SETS } from "../cards";
+import { initStore } from "../store";
 
-getDb();
+initStore();
 
-const existing = listEvents(0, 10_000);
+const existing = listEvents(0);
 for (const set of SETS) {
   const already = existing.some(
     (e) =>
-      e.type === "set_published" &&
+      eventTypeOf(e) === "set_published" &&
       (e.payload as any).setId === set.setId &&
       (e.payload as any).version === set.version
   );
@@ -16,7 +16,7 @@ for (const set of SETS) {
     console.log(`Set already published: ${set.name} v${set.version}`);
     continue;
   }
-  appendEvent("set_published", {
+  appendEvent("set_published", `${set.setId}:${set.version}`, {
     setId: set.setId,
     version: set.version,
     name: set.name,

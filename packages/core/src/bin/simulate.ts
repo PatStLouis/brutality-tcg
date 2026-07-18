@@ -6,6 +6,9 @@ import { grantCredits, redeemPack, openPack, creditBalance } from "../redemption
 import { holdingsFor, globalStats } from "../projections";
 import { getCard } from "../cards";
 import { baseUrl } from "../env";
+import { initStore } from "../store";
+
+initStore();
 
 const discordId = process.argv[2] ?? "sim-user-1";
 

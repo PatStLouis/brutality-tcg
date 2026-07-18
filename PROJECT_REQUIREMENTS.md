@@ -223,42 +223,81 @@ deterministic projections produced by replaying ledger events.
 There is no dedicated ledger UI requirement. Public verification is provided
 through a documented, machine-readable export/API and an open-source verifier.
 
+### 7.1.1 Storage
+
+The canonical ledger is an append-only JSON Lines file (one complete signed
+event object per line). A derived SQLite cache holds rebuildable projections
+(credit balances, holdings) and private working state that is not published
+(Discord identity map, unopened redemption tokens and pulls). Binders and
+balances must always be reproducible by replaying the JSONL ledger alone;
+private working state must be backed up alongside it.
+
 ### 7.2 Event Types
 
-Phase 1 includes:
+The ledger always begins with a Genesis event. Its payload is
+`@type: urn:brutality:tcg:Genesis` with `@id`
+`urn:brutality:tcg:Genesis:{publicKeyMultibase}`, anchoring the whole chain to
+the key that signs it, plus the ledger `schemaVersion`. Genesis omits `prevId`
+(the only event that does); verification recomputes the multibase from the
+signing key and checks it against the Genesis payload `@id`.
 
-- Collector created or linked
-- Pack credit granted
-- Pack credit reserved
-- Redemption committed
-- Pack opened
-- Redemption expired
-- Pack credit released
-- Administrative correction
-- Card/set/campaign version published
+Phase 1 includes (payload JSON-LD `@type` in parentheses):
+
+- Collector created (`urn:brutality:tcg:CollectorCreated`)
+- Pack credit granted (`urn:brutality:tcg:CreditsGranted`)
+- Pack credit reserved (`urn:brutality:tcg:CreditReserved`)
+- Redemption committed (`urn:brutality:tcg:RedemptionCommitted`)
+- Pack opened (`urn:brutality:tcg:PackOpening`)
+- Redemption expired (`urn:brutality:tcg:RedemptionExpired`)
+- Pack credit released (`urn:brutality:tcg:CreditReleased`)
+- Administrative correction (`urn:brutality:tcg:AdminCorrection`)
+- Card/set/campaign version published (`urn:brutality:tcg:SetPublished`)
 
 Phase 2 adds:
 
-- Trade proposed
-- Trade accepted, declined, cancelled, or expired
-- Trade settled
+- Card trading and related settlement events (`urn:brutality:tcg:CardTrading`
+  and finer-grained trade types as needed)
 
 Events are never edited or deleted. Mistakes are corrected with compensating
 events that reference the original event.
 
 ### 7.3 Integrity Requirements
 
-Each event must contain:
+Each event is a uniform JSON-LD envelope whose `payload` is itself a JSON-LD
+resource describing the domain fact:
 
-- Monotonically ordered sequence number
-- Stable event ID
-- UTC timestamp
-- Event type and schema version
-- Pseudonymous public collector ID where applicable
-- Event payload
-- Hash of the preceding event
-- Hash of the canonical current event
-- Service signature and signing-key ID
+Envelope (root):
+
+- `@type`: always `urn:brutality:tcg:Event`
+- `@id`: content-addressed, `urn:brutality:tcg:Event:{contentHash}`
+- `seq`: monotonically ordered sequence number
+- `ts`: UTC timestamp
+- `prevId`: preceding event's envelope `@id`, omitted only on the Genesis
+  root — so each later event's content hash (and thus its `@id`) binds to
+  the prior head
+- `proof`: a W3C **Data Integrity** proof (`DataIntegrityProof`,
+  cryptosuite **`eddsa-jcs-2022`**) over the unsecured document
+  (`{@id, @type, seq, ts, prevId?, payload}`), added after `@id` is
+  computed. It carries `created`, a `did:key` `verificationMethod`,
+  `proofPurpose: assertionMethod`, and a multibase `proofValue`.
+
+Payload (domain resource):
+
+- `@type`: domain-specific type (`urn:brutality:tcg:PackOpening`,
+  `urn:brutality:tcg:Genesis`, etc.); a shared `@context` may come later
+- `@id`: stable domain identifier, `{@type}:{domainId}` — e.g.
+  `urn:brutality:tcg:PackOpening:{redemptionId}`. All events of one pack
+  lifecycle (`CreditReserved`, `RedemptionCommitted`, `PackOpening`,
+  `RedemptionExpired`, `CreditReleased`) share the same `redemptionId`
+  suffix; `CollectorCreated` uses the collector's public id; `SetPublished`
+  uses `{setId}:{version}`; Genesis uses the signing key multibase
+- Remaining fields: domain data only (collector, cardIds, commitment,
+  `schemaVersion` on Genesis, etc.)
+
+The content hash covers `seq`, `ts`, `prevId` (when present), and the whole
+`payload`. Verifiers recompute it (confirming the envelope `@id` and the
+chain) and verify the proof. Null/absent fields are not serialized (e.g.
+Genesis omits `prevId`).
 
 The ledger must use:
 

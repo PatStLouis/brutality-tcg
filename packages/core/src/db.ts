@@ -4,17 +4,9 @@ import { databasePath } from "./env";
 let db: Database.Database | null = null;
 
 const SCHEMA = `
-CREATE TABLE IF NOT EXISTS events (
-  seq        INTEGER PRIMARY KEY AUTOINCREMENT,
-  id         TEXT NOT NULL UNIQUE,
-  ts         TEXT NOT NULL,
-  type       TEXT NOT NULL,
-  payload    TEXT NOT NULL,
-  prev_hash  TEXT NOT NULL,
-  hash       TEXT NOT NULL UNIQUE,
-  sig        TEXT NOT NULL,
-  key_id     TEXT NOT NULL
-);
+-- The canonical ledger lives in data/ledger.jsonl, not here. SQLite holds only
+-- private working state (collector identity map, redemption secrets) and
+-- rebuildable projections (credit balances, holdings).
 
 -- Private mapping of Discord identity to pseudonymous public collector id.
 -- Discord ids never appear in ledger event payloads.

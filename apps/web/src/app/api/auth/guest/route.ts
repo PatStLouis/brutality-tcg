@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import {
   demoEnabled,
   ensureCollector,
+  initStore,
   DEMO_GUEST_DISCORD_ID,
   DEMO_GUEST_USERNAME,
 } from "@brutality/core";
@@ -17,6 +18,7 @@ export async function GET(request: Request) {
   }
 
   const base = process.env.BASE_URL ?? new URL(request.url).origin;
+  initStore();
   ensureCollector(DEMO_GUEST_DISCORD_ID, DEMO_GUEST_USERNAME);
 
   const response = NextResponse.redirect(`${base}/binder`);

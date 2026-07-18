@@ -1,10 +1,11 @@
 import { NextResponse } from "next/server";
-import { openPack, getCard } from "@brutality/core";
+import { openPack, getCard, initStore } from "@brutality/core";
 
 export async function POST(
   _request: Request,
   context: { params: Promise<{ token: string }> }
 ) {
+  initStore();
   const { token } = await context.params;
   const result = openPack(token);
 

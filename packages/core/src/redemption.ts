@@ -1,6 +1,6 @@
 import crypto from "node:crypto";
 import { getDb } from "./db";
-import { appendEvent } from "./ledger";
+import { appendEvent, appendEvents } from "./ledger";
 import { canonicalize } from "./canonical";
 import { sha256Hex } from "./ledger";
 import { getSet, type CardDef, type Rarity, type SetDef, RARITIES } from "./cards";
@@ -48,17 +48,17 @@ export function ensureCollector(discordId: string, displayName?: string): Collec
   }
 
   const publicId = `c_${crypto.randomBytes(8).toString("hex")}`;
-  const created = db.transaction(() => {
+  // Ledger (source of truth) first, then the private mapping + cache row.
+  appendEvent("collector_created", publicId, {});
+  db.transaction(() => {
     db.prepare(
       "INSERT INTO collectors (discord_id, public_id, display_name, created_ts) VALUES (?, ?, ?, ?)"
     ).run(discordId, publicId, displayName ?? null, new Date().toISOString());
     db.prepare(
       "INSERT INTO credit_balances (public_id, available, reserved) VALUES (?, 0, 0)"
     ).run(publicId);
-    appendEvent("collector_created", { collector: publicId });
-    return { discordId, publicId, displayName: displayName ?? null };
-  });
-  return created();
+  })();
+  return { discordId, publicId, displayName: displayName ?? null };
 }
 
 export function collectorByDiscordId(discordId: string): Collector | null {
@@ -90,13 +90,15 @@ export function grantCredits(discordId: string, packs: number, reason: string): 
   if (!Number.isInteger(packs) || packs <= 0) throw new Error("packs must be a positive integer");
   const db = getDb();
   const collector = ensureCollector(discordId);
-  db.transaction(() => {
-    db.prepare("UPDATE credit_balances SET available = available + ? WHERE public_id = ?").run(
-      packs,
-      collector.publicId
-    );
-    appendEvent("credits_granted", { collector: collector.publicId, packs, reason });
-  })();
+  appendEvent("credits_granted", crypto.randomUUID(), {
+    collector: collector.publicId,
+    packs,
+    reason,
+  });
+  db.prepare("UPDATE credit_balances SET available = available + ? WHERE public_id = ?").run(
+    packs,
+    collector.publicId
+  );
   return collector;
 }
 
@@ -153,25 +155,25 @@ export function redeemPack(discordId: string, baseUrl: string, setId = "og-set")
   const collector = ensureCollector(discordId);
   const set = getSet(setId);
 
-  const tx = db.transaction((): RedeemResult => {
-    const reserved = db
+  const redemptionId = crypto.randomUUID();
+  const token = crypto.randomBytes(24).toString("base64url");
+  const nonce = crypto.randomBytes(16).toString("hex");
+  const cards = drawCards(set);
+  const cardIds = cards.map((c) => c.cardId);
+  const commitment = computeCommitment(redemptionId, set.setId, set.version, cardIds, nonce);
+  const createdTs = new Date().toISOString();
+  const expiresTs = new Date(Date.now() + TOKEN_TTL_MS).toISOString();
+
+  // Reserve the credit and persist the (secret) pull in one SQLite txn. The
+  // conditional UPDATE is the atomic double-spend guard; secrets are stored
+  // before the ledger append so any committed redemption can always be opened.
+  const reserved = db.transaction((): boolean => {
+    const res = db
       .prepare(
         "UPDATE credit_balances SET available = available - 1, reserved = reserved + 1 WHERE public_id = ? AND available > 0"
       )
       .run(collector.publicId);
-    if (reserved.changes === 0) {
-      return { ok: false, reason: "no_credits" };
-    }
-
-    const redemptionId = crypto.randomUUID();
-    const token = crypto.randomBytes(24).toString("base64url");
-    const nonce = crypto.randomBytes(16).toString("hex");
-    const cards = drawCards(set);
-    const cardIds = cards.map((c) => c.cardId);
-    const commitment = computeCommitment(redemptionId, set.setId, set.version, cardIds, nonce);
-    const createdTs = new Date().toISOString();
-    const expiresTs = new Date(Date.now() + TOKEN_TTL_MS).toISOString();
-
+    if (res.changes === 0) return false;
     db.prepare(
       `INSERT INTO redemptions
         (redemption_id, token, public_id, set_id, card_ids, nonce, commitment, status, created_ts, expires_ts)
@@ -187,34 +189,55 @@ export function redeemPack(discordId: string, baseUrl: string, setId = "og-set")
       createdTs,
       expiresTs
     );
+    return true;
+  })();
 
-    appendEvent("credit_reserved", { collector: collector.publicId, redemptionId });
-    appendEvent("redemption_committed", {
-      collector: collector.publicId,
-      redemptionId,
-      setId: set.setId,
-      setVersion: set.version,
-      packSize: set.packSize,
-      commitment,
-    });
+  if (!reserved) return { ok: false, reason: "no_credits" };
 
-    const redemption: RedemptionRecord = {
-      redemptionId,
-      token,
-      publicId: collector.publicId,
-      setId: set.setId,
-      cardIds,
-      nonce,
-      commitment,
-      status: "pending",
-      createdTs,
-      expiresTs,
-      openedTs: null,
-    };
-    return { ok: true, redemption, url: `${baseUrl}/open/${token}` };
-  });
+  try {
+    appendEvents([
+      {
+        type: "credit_reserved",
+        domainId: redemptionId,
+        payload: { collector: collector.publicId },
+      },
+      {
+        type: "redemption_committed",
+        domainId: redemptionId,
+        payload: {
+          collector: collector.publicId,
+          setId: set.setId,
+          setVersion: set.version,
+          packSize: set.packSize,
+          commitment,
+        },
+      },
+    ]);
+  } catch (err) {
+    // Ledger append failed: undo the SQLite reservation so cache matches ledger.
+    db.transaction(() => {
+      db.prepare(
+        "UPDATE credit_balances SET available = available + 1, reserved = reserved - 1 WHERE public_id = ?"
+      ).run(collector.publicId);
+      db.prepare("DELETE FROM redemptions WHERE redemption_id = ?").run(redemptionId);
+    })();
+    throw err;
+  }
 
-  return tx();
+  const redemption: RedemptionRecord = {
+    redemptionId,
+    token,
+    publicId: collector.publicId,
+    setId: set.setId,
+    cardIds,
+    nonce,
+    commitment,
+    status: "pending",
+    createdTs,
+    expiresTs,
+    openedTs: null,
+  };
+  return { ok: true, redemption, url: `${baseUrl}/open/${token}` };
 }
 
 function rowToRedemption(row: Record<string, unknown>): RedemptionRecord {
@@ -252,38 +275,51 @@ export type OpenResult =
 export function openPack(token: string): OpenResult {
   const db = getDb();
 
-  const tx = db.transaction((): OpenResult => {
-    const row = db.prepare("SELECT * FROM redemptions WHERE token = ?").get(token) as
-      | Record<string, unknown>
-      | undefined;
-    if (!row) return { status: "not_found" };
-    const redemption = rowToRedemption(row);
+  const row = db.prepare("SELECT * FROM redemptions WHERE token = ?").get(token) as
+    | Record<string, unknown>
+    | undefined;
+  if (!row) return { status: "not_found" };
+  const redemption = rowToRedemption(row);
 
-    if (redemption.status === "opened") {
-      return { status: "opened", redemption, firstOpen: false };
-    }
+  if (redemption.status === "opened") {
+    return { status: "opened", redemption, firstOpen: false };
+  }
+  if (redemption.status === "expired") return { status: "expired" };
 
-    if (redemption.status === "expired") return { status: "expired" };
-
-    if (new Date(redemption.expiresTs).getTime() < Date.now()) {
+  if (new Date(redemption.expiresTs).getTime() < Date.now()) {
+    // Ledger first: a crash after append is repaired by rebuildCache on boot.
+    appendEvents([
+      {
+        type: "redemption_expired",
+        domainId: redemption.redemptionId,
+        payload: { collector: redemption.publicId },
+      },
+      {
+        type: "credit_released",
+        domainId: redemption.redemptionId,
+        payload: { collector: redemption.publicId },
+      },
+    ]);
+    db.transaction(() => {
       db.prepare("UPDATE redemptions SET status = 'expired' WHERE redemption_id = ?").run(
         redemption.redemptionId
       );
       db.prepare(
         "UPDATE credit_balances SET reserved = reserved - 1, available = available + 1 WHERE public_id = ?"
       ).run(redemption.publicId);
-      appendEvent("redemption_expired", {
-        collector: redemption.publicId,
-        redemptionId: redemption.redemptionId,
-      });
-      appendEvent("credit_released", {
-        collector: redemption.publicId,
-        redemptionId: redemption.redemptionId,
-      });
-      return { status: "expired" };
-    }
+    })();
+    return { status: "expired" };
+  }
 
-    const openedTs = new Date().toISOString();
+  const openedTs = new Date().toISOString();
+  appendEvent("pack_opened", redemption.redemptionId, {
+    collector: redemption.publicId,
+    setId: redemption.setId,
+    cardIds: redemption.cardIds,
+    nonce: redemption.nonce,
+    commitment: redemption.commitment,
+  });
+  db.transaction(() => {
     db.prepare(
       "UPDATE redemptions SET status = 'opened', opened_ts = ? WHERE redemption_id = ?"
     ).run(openedTs, redemption.redemptionId);
@@ -296,21 +332,11 @@ export function openPack(token: string): OpenResult {
          ON CONFLICT(public_id, card_id) DO UPDATE SET quantity = quantity + 1`
       ).run(redemption.publicId, cardId);
     }
-    appendEvent("pack_opened", {
-      collector: redemption.publicId,
-      redemptionId: redemption.redemptionId,
-      setId: redemption.setId,
-      cardIds: redemption.cardIds,
-      nonce: redemption.nonce,
-      commitment: redemption.commitment,
-    });
+  })();
 
-    return {
-      status: "opened",
-      redemption: { ...redemption, status: "opened", openedTs },
-      firstOpen: true,
-    };
-  });
-
-  return tx();
+  return {
+    status: "opened",
+    redemption: { ...redemption, status: "opened", openedTs },
+    firstOpen: true,
+  };
 }

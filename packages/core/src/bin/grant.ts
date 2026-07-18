@@ -1,4 +1,7 @@
 import { grantCredits, creditBalance } from "../redemption";
+import { initStore } from "../store";
+
+initStore();
 
 function arg(name: string): string | undefined {
   const i = process.argv.indexOf(`--${name}`);

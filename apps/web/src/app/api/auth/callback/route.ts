@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { ensureCollector } from "@brutality/core";
+import { ensureCollector, initStore } from "@brutality/core";
 import { newSession, sessionCookie } from "@/lib/session";
 
 export async function GET(request: Request) {
@@ -40,6 +40,7 @@ export async function GET(request: Request) {
   }
   const user = (await userRes.json()) as { id: string; username: string };
 
+  initStore();
   ensureCollector(user.id, user.username);
 
   const response = NextResponse.redirect(`${base}/binder`);

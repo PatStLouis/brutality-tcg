@@ -4,17 +4,17 @@
  * 2. Verifies commit/reveal for every opened pack.
  * 3. Replays events and compares against materialized projections.
  */
-import { listEvents, verifyChain } from "../ledger";
+import { listEvents, verifyChain, eventTypeOf, domainSuffixOf } from "../ledger";
 import { getSigningKey } from "../keys";
 import { checkProjections } from "../projections";
 import { computeCommitment } from "../redemption";
 import { getSet } from "../cards";
 
-const events = listEvents(0, 1_000_000);
+const events = listEvents(0);
 const key = getSigningKey();
 
 const chain = verifyChain(events, key.publicKeyPem);
-console.log(`Chain: ${chain.checkedEvents} events, head ${chain.headHash.slice(0, 16)}…`);
+console.log(`Chain: ${chain.checkedEvents} events, head ${chain.headId}…`);
 if (!chain.ok) {
   for (const err of chain.errors) console.error(`  CHAIN ERROR: ${err}`);
 }
@@ -22,17 +22,19 @@ if (!chain.ok) {
 let revealErrors = 0;
 const commitments = new Map<string, string>();
 for (const e of events) {
-  if (e.type === "redemption_committed") {
-    commitments.set((e.payload as any).redemptionId, (e.payload as any).commitment);
+  const t = eventTypeOf(e);
+  const redemptionId = domainSuffixOf(e.payload);
+  if (t === "redemption_committed" && redemptionId) {
+    commitments.set(redemptionId, (e.payload as any).commitment);
   }
-  if (e.type === "pack_opened") {
+  if (t === "pack_opened" && redemptionId) {
     const p = e.payload as any;
     const set = getSet(p.setId);
-    const expected = computeCommitment(p.redemptionId, p.setId, set.version, p.cardIds, p.nonce);
-    const committed = commitments.get(p.redemptionId);
+    const expected = computeCommitment(redemptionId, p.setId, set.version, p.cardIds, p.nonce);
+    const committed = commitments.get(redemptionId);
     if (committed !== p.commitment || expected !== p.commitment) {
       revealErrors++;
-      console.error(`  COMMITMENT ERROR: redemption ${p.redemptionId}`);
+      console.error(`  COMMITMENT ERROR: redemption ${redemptionId}`);
     }
   }
 }

@@ -1,8 +1,12 @@
 import type { Metadata, Viewport } from "next";
 import Link from "next/link";
+import { initStore } from "@brutality/core";
 import { getSession } from "@/lib/session";
 import { SwRegister } from "@/components/SwRegister";
 import "./globals.css";
+
+// Reconcile the SQLite cache against the JSONL ledger once per server process.
+initStore();
 
 export const metadata: Metadata = {
   title: "Brutality TCG",

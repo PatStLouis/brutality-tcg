@@ -3,7 +3,8 @@ import path from "node:path";
 import { getDb } from "./db";
 import { listEvents, verifyChain, type LedgerEvent } from "./ledger";
 import { getSigningKey } from "./keys";
-import { replayLedger } from "./projections";
+import { writeAllEvents, getLastSeq } from "./ledgerFile";
+import { resyncCache } from "./store";
 import { dataDir, REPO_ROOT } from "./env";
 
 /**
@@ -49,7 +50,7 @@ export function exportFixture(outPath = fixturePath()): LedgerFixture {
     );
   }
 
-  const events = listEvents(0, 1_000_000);
+  const events = listEvents(0);
   const collectors = db
     .prepare("SELECT discord_id, public_id, display_name, created_ts FROM collectors")
     .all() as LedgerFixture["collectors"];
@@ -97,10 +98,10 @@ export function importFixture(inPath = fixturePath(), force = false): ImportResu
   }
 
   const db = getDb();
-  const existing = db.prepare("SELECT COUNT(*) AS n FROM events").get() as { n: number };
-  if (existing.n > 0 && !force) {
+  const existing = getLastSeq();
+  if (existing > 0 && !force) {
     throw new Error(
-      `Database already has ${existing.n} event(s). Pass --force to wipe and reseed.`
+      `Ledger already has ${existing} event(s). Pass --force to wipe and reseed.`
     );
   }
 
@@ -112,28 +113,13 @@ export function importFixture(inPath = fixturePath(), force = false): ImportResu
   });
   fs.writeFileSync(path.join(keysDir, "ledger-ed25519.pub.pem"), fixture.publicKeyPem);
 
-  db.transaction(() => {
-    for (const table of ["events", "collectors", "credit_balances", "redemptions", "holdings"]) {
-      db.prepare(`DELETE FROM ${table}`).run();
-    }
-    db.prepare("DELETE FROM sqlite_sequence WHERE name = 'events'").run();
+  // The JSONL ledger file is the source of truth; write it first.
+  writeAllEvents(fixture.events);
 
-    const insertEvent = db.prepare(
-      `INSERT INTO events (seq, id, ts, type, payload, prev_hash, hash, sig, key_id)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`
-    );
-    for (const e of fixture.events) {
-      insertEvent.run(
-        e.seq,
-        e.id,
-        e.ts,
-        e.type,
-        JSON.stringify(e.payload),
-        e.prevHash,
-        e.hash,
-        e.sig,
-        e.keyId
-      );
+  // Restore private working state (not derivable from the ledger).
+  db.transaction(() => {
+    for (const table of ["collectors", "credit_balances", "redemptions", "holdings"]) {
+      db.prepare(`DELETE FROM ${table}`).run();
     }
 
     const insertCollector = db.prepare(
@@ -151,24 +137,10 @@ export function importFixture(inPath = fixturePath(), force = false): ImportResu
     for (const r of fixture.redemptions) {
       insertRedemption.run(r);
     }
-
-    // Rebuild materialized projections by replaying the imported ledger.
-    const replayed = replayLedger();
-    const insertBalance = db.prepare(
-      "INSERT INTO credit_balances (public_id, available, reserved) VALUES (?, ?, ?)"
-    );
-    for (const [publicId, bal] of replayed.credits) {
-      insertBalance.run(publicId, bal.available, bal.reserved);
-    }
-    const insertHolding = db.prepare(
-      "INSERT INTO holdings (public_id, card_id, quantity) VALUES (?, ?, ?)"
-    );
-    for (const [publicId, cards] of replayed.holdings) {
-      for (const [cardId, quantity] of cards) {
-        if (quantity > 0) insertHolding.run(publicId, cardId, quantity);
-      }
-    }
   })();
+
+  // Rebuild credit/holdings projections from the freshly written ledger.
+  resyncCache();
 
   return {
     events: fixture.events.length,

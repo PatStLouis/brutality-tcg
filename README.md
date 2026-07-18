@@ -26,17 +26,33 @@ brutality-tcg/
 │                     # and the internal bot API (owns the DB + signing keys)
 ├── apps/bot          # discord.js bot: !redeem and !packs (talks to the web API,
 │                     # never the database)
-└── data/             # SQLite database + ledger signing keys (gitignored)
+└── data/             # ledger.jsonl + SQLite cache + signing keys (gitignored)
 ```
 
 The two services communicate over an authenticated internal API
 (`POST /api/internal/redeem`, `GET /api/internal/packs`) using the shared
-`BOT_API_SECRET`. Only the web service reads or writes the database and holds
-the ledger signing keys, so the services can be deployed on separate hosts.
+`BOT_API_SECRET`. Only the web service reads or writes the ledger and holds
+the signing keys, so the services can be deployed on separate hosts.
 
-- **Ledger:** append-only events, SHA-256 hash chain, Ed25519 signatures,
-  commit/reveal per pack. Binders are projections of the ledger and can be
-  rebuilt by replay. Public export at `/api/ledger`.
+- **Ledger (source of truth):** append-only JSON Lines file (`data/ledger.jsonl`).
+  Every entry is a uniform envelope: `@type` `urn:brutality:tcg:Event`, `@id`
+  content-addressed as `urn:brutality:tcg:Event:{hash}` (hash of
+  `seq`/`ts`/`prevId`/`payload`), plus `seq`, `ts`, optional `prevId`, and a
+  W3C **Data Integrity** `proof` (`eddsa-jcs-2022` / `did:key`). The `payload`
+  is its own JSON-LD resource describing what happened: a domain `@type`
+  (e.g. `urn:brutality:tcg:PackOpening`) and a stable domain `@id`
+  (e.g. `urn:brutality:tcg:PackOpening:{redemptionId}`), so all events of one
+  pack lifecycle share the same id suffix. An empty ledger gets a Genesis
+  event first, whose payload `@id` is
+  `urn:brutality:tcg:Genesis:{publicKeyMultibase}` — anchoring the chain to
+  its signing key (Genesis is the only event without a `prevId`). Later events
+  set `prevId` to the prior event's envelope `@id`. A shared `@context` can be
+  added later. Commit/reveal per pack. Public export at `/api/ledger` or
+  `/api/ledger?format=jsonl`.
+- **SQLite cache:** rebuildable projections (credit balances, holdings) plus
+  private working state (Discord→collector map, redemption tokens/pulls). The
+  cache is reconciled from the ledger on every web boot. Back up **both**
+  `ledger.jsonl` and the SQLite file — private state is not in the public ledger.
 - **Placeholder art:** cards render a built-in placeholder face until
   commissioned art is added (see `apps/web/public/assets/cards/README.md`).
   Swapping in real art requires no schema or UI changes.
@@ -82,7 +98,8 @@ demos (it is public by design).
 To regenerate the fixture after changing sets or demo contents:
 
 ```bash
-DATABASE_PATH=./data/fixture-build.db npm run fixture:build
+DATABASE_PATH=./data/fixture-build.db LEDGER_PATH=./data/fixture-build.jsonl \
+  npm run fixture:build
 ```
 
 ## Docker
@@ -100,10 +117,10 @@ Or run both with compose (reads variables from `.env`):
 docker compose up --build
 ```
 
-The web container owns the database and ledger signing keys under `/app/data`
-— keep that on a persistent volume (compose sets up `brutality-data` for you).
-The bot container is stateless and reaches the web service at
-`http://web:3000` on the compose network.
+The web container owns `ledger.jsonl`, the SQLite cache, and the signing keys
+under `/app/data` — keep that on a persistent volume (compose sets up
+`brutality-data` for you). The bot container is stateless and reaches the web
+service at `http://web:3000` on the compose network.
 
 To seed inside the container (first run):
 
@@ -123,10 +140,12 @@ docker compose exec web npm run seed:demo     # or the demo fixture
 
 ## Verifying the ledger
 
-`GET /api/ledger` returns all events plus the public key. The `npm run verify`
-CLI recomputes the hash chain, checks every Ed25519 signature, validates each
-pack's commit/reveal, and replays events to confirm the binder projections
-match — the same checks any third party can implement from the export.
+`GET /api/ledger` returns all events plus the public key. Pass
+`?format=jsonl` for the raw append-only form (identical to `data/ledger.jsonl`).
+The `npm run verify` CLI recomputes the hash chain, checks every Ed25519
+signature, validates each pack's commit/reveal, and replays events to confirm
+the binder projections match — the same checks any third party can implement
+from the export.
 
 ## License
 

@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { ensureCollector, redeemPack, baseUrl } from "@brutality/core";
+import { ensureCollector, redeemPack, baseUrl, initStore } from "@brutality/core";
 import { botAuthorized } from "@/lib/botAuth";
 
 /**
@@ -11,6 +11,7 @@ export async function POST(request: Request) {
   if (!botAuthorized(request)) {
     return NextResponse.json({ error: "unauthorized" }, { status: 401 });
   }
+  initStore();
 
   const body = (await request.json().catch(() => null)) as {
     discordId?: string;

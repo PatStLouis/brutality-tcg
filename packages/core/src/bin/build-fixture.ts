@@ -8,27 +8,27 @@
  *
  *   DATABASE_PATH=./data/fixture-build.db npm run fixture:build
  */
-import { getDb } from "../db";
-import { appendEvent, listEvents } from "../ledger";
+import { appendEvent } from "../ledger";
+import { getLastSeq } from "../ledgerFile";
+import { initStore } from "../store";
 import { SETS } from "../cards";
 import { grantCredits, redeemPack, openPack } from "../redemption";
 import { exportFixture, fixturePath } from "../fixture";
 import { DEMO_GUEST_DISCORD_ID, DEMO_GUEST_USERNAME } from "../demo";
 import { ensureCollector } from "../redemption";
 
-const db = getDb();
-const existing = db.prepare("SELECT COUNT(*) AS n FROM events").get() as { n: number };
-if (existing.n > 0) {
+initStore();
+if (getLastSeq() > 0) {
   console.error(
-    "Database is not empty. Point DATABASE_PATH at a scratch file, e.g.\n" +
-      "  DATABASE_PATH=./data/fixture-build.db npm run fixture:build"
+    "Ledger is not empty. Point DATABASE_PATH and LEDGER_PATH at scratch files, e.g.\n" +
+      "  DATABASE_PATH=./data/fixture-build.db LEDGER_PATH=./fixture-build.jsonl npm run fixture:build"
   );
   process.exit(1);
 }
 
 // 1. Publish sets.
 for (const set of SETS) {
-  appendEvent("set_published", {
+  appendEvent("set_published", `${set.setId}:${set.version}`, {
     setId: set.setId,
     version: set.version,
     name: set.name,
@@ -65,4 +65,3 @@ console.log(`Wrote ${fixturePath()}`);
 console.log(
   `  ${fixture.events.length} events, ${fixture.collectors.length} collectors, ${fixture.redemptions.length} redemptions`
 );
-console.log(`  ledger events: ${listEvents(0, 10).length >= 1 ? "ok" : "??"}`);
