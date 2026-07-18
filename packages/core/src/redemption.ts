@@ -2,7 +2,7 @@ import crypto from "node:crypto";
 import { getDb } from "./db";
 import { appendEvent, appendEvents } from "./ledger";
 import { canonicalize } from "./canonical";
-import { sha256Hex } from "./ledger";
+import { sha256DigestMultibase } from "./ledger";
 import { getSet, OG_SET, type CardDef, type Rarity, type SetDef, RARITIES } from "./cards";
 
 const TOKEN_TTL_MS = 24 * 60 * 60 * 1000;
@@ -139,7 +139,7 @@ export function computeCommitment(
   cards: string[],
   nonce: string
 ): string {
-  return sha256Hex(canonicalize({ redemptionId, set, setVersion, cards, nonce }));
+  return sha256DigestMultibase(canonicalize({ redemptionId, set, setVersion, cards, nonce }));
 }
 
 export type RedeemResult =

@@ -1,6 +1,11 @@
 import crypto from "node:crypto";
 import { canonicalize } from "./canonical";
-import { getSigningKey, ed25519PublicKeyMultibase, verificationMethodFor } from "./keys";
+import {
+  getSigningKey,
+  ed25519PublicKeyMultibase,
+  verificationMethodFor,
+  base58btcEncode,
+} from "./keys";
 import { createDataIntegrityProof, verifyDataIntegrityProof } from "./dataIntegrity";
 import {
   appendRaw,
@@ -35,8 +40,15 @@ export {
 };
 export type { EventType, EventSpec, LedgerEvent, LedgerEventPayload };
 
-export function sha256Hex(input: string): string {
-  return crypto.createHash("sha256").update(input, "utf8").digest("hex");
+/**
+ * `digestMultibase`-style digest (W3C security vocab): the sha2-256 multihash
+ * (0x12 0x20 prefix + 32 digest bytes), base58btc multibase encoded with a
+ * `z` prefix — the same encoding family as the did:key verification method.
+ */
+export function sha256DigestMultibase(input: string): string {
+  const digest = crypto.createHash("sha256").update(input, "utf8").digest();
+  const multihash = Buffer.concat([Buffer.from([0x12, 0x20]), digest]);
+  return "z" + base58btcEncode(multihash);
 }
 
 /**
@@ -56,7 +68,7 @@ export function eventContentHash(e: {
     payload: e.payload,
   };
   if (e.prevId !== undefined) body.prevId = e.prevId;
-  return sha256Hex(canonicalize(body));
+  return sha256DigestMultibase(canonicalize(body));
 }
 
 /**

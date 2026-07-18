@@ -269,10 +269,12 @@ resource describing the domain fact:
 Envelope (root):
 
 - `@type`: always `urn:brutality:tcg:Event`
-- `@id`: `urn:brutality:tcg:Event:{seq}-{contentHash}` — the monotonically
-  ordered sequence number folded together with the content hash, so the id
+- `@id`: `urn:brutality:tcg:Event:{seq}-{digestMultibase}` — the monotonically
+  ordered sequence number folded together with the content digest, so the id
   is both sortable and content-addressed. There is no separate `seq` field;
-  `seq` is read from the id
+  `seq` is read from the id. Digests use the `digestMultibase` form from the
+  W3C security vocabulary: a sha2-256 multihash (0x12 0x20 + digest),
+  base58btc multibase encoded (`z…`)
 - `ts`: UTC timestamp
 - `prevId`: preceding event's envelope `@id`, omitted only on the Genesis
   root — so each later event's content hash (and thus its `@id`) binds to
@@ -300,10 +302,11 @@ Payload (domain resource):
   `…CardSet:OG`) and `urn:brutality:tcg:Card:{setCode}:{number}` (e.g.
   `…Card:OG:005`, zero-padded)
 
-The content hash covers `seq`, `ts`, `prevId` (when present), and the whole
-`payload`. Verifiers read `seq` from the `@id`, recompute the hash (confirming
-the envelope `@id`, the `seq` prefix, and the chain), and verify the proof.
-Null/absent fields are not serialized (e.g. Genesis omits `prevId`).
+The content digest covers `seq`, `ts`, `prevId` (when present), and the whole
+`payload`. Verifiers read `seq` from the `@id`, recompute the digest
+(confirming the envelope `@id`, the `seq` prefix, and the chain), and verify
+the proof. Pack commitments are `digestMultibase` values too. Null/absent
+fields are not serialized (e.g. Genesis omits `prevId`).
 
 The ledger must use:
 

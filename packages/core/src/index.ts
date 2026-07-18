@@ -19,7 +19,7 @@ export {
   listEvents,
   verifyChain,
   eventContentHash,
-  sha256Hex,
+  sha256DigestMultibase,
   EVENT_TYPE,
   JsonLdTypes,
   domainSuffixOf,
