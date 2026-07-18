@@ -30,6 +30,7 @@ export interface LedgerFixture {
     display_name: string | null;
     created_ts: string;
   }>;
+  publicProfiles?: Array<Record<string, unknown>>;
   redemptions: Array<Record<string, unknown>>;
 }
 
@@ -54,6 +55,9 @@ export function exportFixture(outPath = fixturePath()): LedgerFixture {
   const collectors = db
     .prepare("SELECT discord_id, public_id, display_name, created_ts FROM collectors")
     .all() as LedgerFixture["collectors"];
+  const publicProfiles = db.prepare("SELECT * FROM public_profiles").all() as Array<
+    Record<string, unknown>
+  >;
   const redemptions = db.prepare("SELECT * FROM redemptions").all() as Array<
     Record<string, unknown>
   >;
@@ -68,6 +72,7 @@ export function exportFixture(outPath = fixturePath()): LedgerFixture {
     keyId: key.keyId,
     events,
     collectors,
+    publicProfiles,
     redemptions,
   };
 
@@ -118,7 +123,13 @@ export function importFixture(inPath = fixturePath(), force = false): ImportResu
 
   // Restore private working state (not derivable from the ledger).
   db.transaction(() => {
-    for (const table of ["collectors", "credit_balances", "redemptions", "holdings"]) {
+    for (const table of [
+      "collectors",
+      "public_profiles",
+      "credit_balances",
+      "redemptions",
+      "holdings",
+    ]) {
       db.prepare(`DELETE FROM ${table}`).run();
     }
 
@@ -127,6 +138,15 @@ export function importFixture(inPath = fixturePath(), force = false): ImportResu
     );
     for (const c of fixture.collectors) {
       insertCollector.run(c.discord_id, c.public_id, c.display_name, c.created_ts);
+    }
+
+    const insertProfile = db.prepare(
+      `INSERT INTO public_profiles
+        (public_id, discord_id, username, display_name, avatar_url, updated_ts)
+       VALUES (@public_id, @discord_id, @username, @display_name, @avatar_url, @updated_ts)`
+    );
+    for (const profile of fixture.publicProfiles ?? []) {
+      insertProfile.run(profile);
     }
 
     const insertRedemption = db.prepare(

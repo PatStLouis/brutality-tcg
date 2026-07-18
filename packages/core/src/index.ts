@@ -88,3 +88,10 @@ export {
   type ImportResult,
 } from "./fixture";
 export { DEMO_GUEST_DISCORD_ID, DEMO_GUEST_USERNAME, demoEnabled } from "./demo";
+export {
+  publicProfileByDiscordId,
+  listPublicProfiles,
+  publishPublicProfile,
+  unpublishPublicProfile,
+  type PublicCollectorProfile,
+} from "./profiles";

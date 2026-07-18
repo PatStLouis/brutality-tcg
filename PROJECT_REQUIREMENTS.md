@@ -126,6 +126,8 @@ independent ownership database.
 - Uses placeholders for cards not yet collected without revealing protected
   content that a campaign intentionally keeps secret.
 - Provides a shareable public view using a pseudonymous collector identity.
+- Lets collectors opt into or out of a current public Discord profile binding
+  through `!profile public`, `!profile private`, or equivalent web controls.
 
 #### Global Binder
 
@@ -133,8 +135,11 @@ independent ownership database.
 - Shows all released card sets and cards.
 - Shows aggregate circulation and ownership counts derived from the ledger.
 - May link to pseudonymous public collector binders.
-- Must not publish Discord IDs, emails, subscription identities, or private
-  entitlement information.
+- Must not publish Discord IDs by default. It may display the current Discord
+  id, username, display name, and avatar only for collectors who explicitly
+  opt into the separate public-profile list.
+- Must never publish emails, subscription identities, or private entitlement
+  information.
 
 ### 5.5 Entitlements and Pack Credits
 
@@ -365,6 +370,14 @@ The public ledger must use stable pseudonymous collector IDs. Mapping those IDs
 to Discord identities is private unless a collector explicitly opts to expose
 their public profile.
 
+The opt-in Discord binding must not be appended to the immutable ownership
+ledger: opting out must remove it from the current public list. The MVP stores
+that mutable list separately and exposes it at `/api/profiles` with no shared
+caching. A future VC recognized-entity artifact may sign the current list and
+bind rotatable `did:key` verification methods to the stable collector URN.
+Collectors must be warned that third parties may retain copies published while
+the profile was public.
+
 ## 8. Progressive Web App Requirements
 
 The pack-opening experience and binders form one mobile-first web application.
@@ -567,7 +580,9 @@ Phase 1 is complete when:
 6. Both binder views can be rebuilt solely by replaying the ledger.
 7. An independent verifier can validate the event chain, signatures,
    checkpoints, and commit/reveal records.
-8. Public exports reveal no Discord IDs or subscription-provider identities.
+8. The ledger export reveals no Discord IDs or subscription-provider
+   identities. `/api/profiles` reveals Discord information only for collectors
+   currently opted in.
 9. Administrators can publish a campaign, import eligibility, grant credits,
    and inspect redemption status.
 10. The web app is installable as a PWA and has usable offline read-only binder
@@ -582,7 +597,7 @@ before production launch:
 
 - Exact pack rights by subscription platform and membership tier
 - Final pack size and rarity distributions per campaign
-- Whether public profiles show collector-selected Discord display names
+- Final VC recognized-entity format for signing collector profile/key bindings
 - Pack-credit expiration policy
 - Whether weekly guest packs are guaranteed cards or weighted pools
 - Duplicate protection, pity rules, and limited-edition supply

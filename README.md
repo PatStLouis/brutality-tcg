@@ -6,6 +6,7 @@ Brutality Podcast and deathcore community.
 The first phase centers on:
 
 - Discord-based pack redemption (`!redeem` → unique opening link)
+- Opt-in public Discord profiles (`!profile public|private`)
 - Unique web pack-opening experiences
 - Personal and global card binders
 - A mobile-friendly Progressive Web App
@@ -24,8 +25,8 @@ brutality-tcg/
 ├── packages/core     # Ledger, cards, redemption logic, projections, CLI tools
 ├── apps/web          # Next.js PWA: pack opening, binders, ledger export, OAuth,
 │                     # and the internal bot API (owns the DB + signing keys)
-├── apps/bot          # discord.js bot: !redeem and !packs (talks to the web API,
-│                     # never the database)
+├── apps/bot          # discord.js bot: !redeem, !packs, and !profile
+│                     # (talks to the web API, never the database)
 └── data/             # ledger.jsonl + SQLite cache + signing keys (gitignored)
 ```
 
@@ -60,7 +61,12 @@ the signing keys, so the services can be deployed on separate hosts.
   Commit/reveal per pack. Public export at `/api/ledger` or
   `/api/ledger?format=jsonl`.
 - **SQLite cache:** rebuildable projections (credit balances, holdings) plus
-  private working state (Discord→collector map, redemption tokens/pulls). The
+  private working state (Discord→collector map, redemption tokens/pulls) and
+  the mutable current public-profile list. Collector ids in the ledger are
+  opaque URNs (`urn:brutality:tcg:Collector:c_…`). `!profile public` opts into
+  a separate collector↔Discord binding exposed at `/api/profiles`;
+  `!profile private` deletes that current binding. It is deliberately not
+  appended to the immutable ledger, where opt-out could never erase it. The
   cache is reconciled from the ledger on every web boot. Back up **both**
   `ledger.jsonl` and the SQLite file — private state is not in the public ledger.
 - **Placeholder art:** cards render a built-in placeholder face until

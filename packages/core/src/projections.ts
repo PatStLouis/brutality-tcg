@@ -59,8 +59,7 @@ export function replayLedger(): ReplayState {
     const p = e.payload as Record<string, any>;
     switch (eventTypeOf(e)) {
       case "collector_created":
-        // The collector's public id is the payload @id suffix.
-        bal(domainSuffixOf(e.payload)!);
+        bal(p.collector);
         break;
       case "credits_granted":
         bal(p.collector).available += p.packs;

@@ -28,11 +28,16 @@ export const LEDGER_CONTEXT_DOCUMENT = {
     CreditReleased: JsonLdTypes.credit_released,
     AdminCorrection: JsonLdTypes.admin_correction,
     CardTrading: JsonLdTypes.card_trading,
+    Collector: "urn:brutality:tcg:Collector",
     ts: {
       "@id": "urn:brutality:tcg:ts",
       "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
     },
     payload: "urn:brutality:tcg:payload",
+    collector: {
+      "@id": "urn:brutality:tcg:collector",
+      "@type": "@id",
+    },
     proof: "https://w3id.org/security#proof",
     DataIntegrityProof: "https://w3id.org/security#DataIntegrityProof",
     cryptosuite: "https://w3id.org/security#cryptosuite",

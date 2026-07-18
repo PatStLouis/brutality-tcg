@@ -16,6 +16,7 @@ import { grantCredits, redeemPack, openPack } from "../redemption";
 import { exportFixture, fixturePath } from "../fixture";
 import { DEMO_GUEST_DISCORD_ID, DEMO_GUEST_USERNAME } from "../demo";
 import { ensureCollector } from "../redemption";
+import { publishPublicProfile } from "../profiles";
 
 initStore();
 if (getLastSeq() > 0) {
@@ -45,7 +46,11 @@ const community = [
   { discordId: "demo-npc-pitlord", name: "PitLord", packs: 2 },
 ];
 for (const npc of community) {
-  ensureCollector(npc.discordId, npc.name);
+  publishPublicProfile({
+    discordId: npc.discordId,
+    username: npc.name.toLowerCase(),
+    displayName: npc.name,
+  });
   grantCredits(npc.discordId, npc.packs, "demo_fixture");
   for (let i = 0; i < npc.packs; i++) {
     const redeem = redeemPack(npc.discordId, "http://demo.invalid");

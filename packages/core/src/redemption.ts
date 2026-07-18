@@ -47,9 +47,10 @@ export function ensureCollector(discordId: string, displayName?: string): Collec
     };
   }
 
-  const publicId = `c_${crypto.randomBytes(8).toString("hex")}`;
+  const opaqueId = `c_${crypto.randomBytes(8).toString("hex")}`;
+  const publicId = `urn:brutality:tcg:Collector:${opaqueId}`;
   // Ledger (source of truth) first, then the private mapping + cache row.
-  appendEvent("collector_created", publicId, {});
+  appendEvent("collector_created", opaqueId, { collector: publicId });
   db.transaction(() => {
     db.prepare(
       "INSERT INTO collectors (discord_id, public_id, display_name, created_ts) VALUES (?, ?, ?, ?)"

@@ -1,10 +1,11 @@
-import { OG_SET, globalStats } from "@brutality/core";
+import { OG_SET, globalStats, listPublicProfiles } from "@brutality/core";
 import { CardFace } from "@/components/CardFace";
 
 export const dynamic = "force-dynamic";
 
 export default async function GlobalBinderPage() {
   const stats = new Map(globalStats().map((s) => [s.cardId, s]));
+  const profiles = listPublicProfiles();
   const totalCirculation = [...stats.values()].reduce((s, c) => s + c.totalCirculation, 0);
 
   return (
@@ -22,6 +23,36 @@ export default async function GlobalBinderPage() {
           <b>{OG_SET.cards.length}</b> cards in {OG_SET.name}
         </div>
       </div>
+      {profiles.length > 0 && (
+        <>
+          <h2>Public Collectors</h2>
+          <p className="muted">
+            Discord profiles shown here are opt-in. Current machine-readable
+            bindings are available at <a href="/api/profiles">/api/profiles</a>.
+          </p>
+          <div className="stats-row">
+            {profiles.map((profile) => (
+              <div className="stat" key={profile.collector}>
+                {profile.avatarUrl && (
+                  // Discord CDN URL supplied by the authenticated bot.
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={profile.avatarUrl}
+                    alt=""
+                    width={48}
+                    height={48}
+                    style={{ borderRadius: "50%", verticalAlign: "middle", marginRight: 12 }}
+                  />
+                )}
+                <b>{profile.displayName}</b>
+                <div className="muted" style={{ fontSize: 12 }}>
+                  @{profile.username}
+                </div>
+              </div>
+            ))}
+          </div>
+        </>
+      )}
       <div className="grid">
         {OG_SET.cards.map((card) => {
           const s = stats.get(card.cardId);

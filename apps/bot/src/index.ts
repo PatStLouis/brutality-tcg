@@ -121,12 +121,71 @@ async function handlePacks(message: Message) {
   );
 }
 
+async function handleProfile(message: Message, action?: string) {
+  if (!action) {
+    const res = await api(
+      `/api/internal/profile?discordId=${encodeURIComponent(message.author.id)}`
+    );
+    if (!res.ok) {
+      console.error(`Profile API error: ${res.status}`);
+      await message.reply("The profile service is unavailable right now.");
+      return;
+    }
+    const body = (await res.json()) as {
+      public: boolean;
+      profile?: { collector: string; displayName: string } | null;
+    };
+    await message.reply(
+      body.public
+        ? `Your public profile is enabled as **${body.profile?.displayName}** (${body.profile?.collector}).`
+        : "Your public profile is private. Use `!profile public` to opt in."
+    );
+    return;
+  }
+
+  if (action !== "public" && action !== "private") {
+    await message.reply("Use `!profile`, `!profile public`, or `!profile private`.");
+    return;
+  }
+
+  const displayName = message.member?.displayName ?? message.author.displayName;
+  const res = await api("/api/internal/profile", {
+    method: "POST",
+    body: JSON.stringify({
+      action,
+      discordId: message.author.id,
+      username: message.author.username,
+      displayName,
+      avatarUrl: message.author.displayAvatarURL({ extension: "webp", size: 256 }),
+    }),
+  });
+  if (!res.ok) {
+    console.error(`Profile API error: ${res.status}`);
+    await message.reply("The profile service is unavailable right now.");
+    return;
+  }
+
+  if (action === "public") {
+    await message.reply(
+      "Public profile enabled. Your collector id is now publicly linked to your Discord id, username, display name, and avatar. Use `!profile private` to remove the current listing."
+    );
+  } else {
+    await message.reply(
+      "Public profile disabled. The current Discord binding has been removed. Copies previously saved by third parties cannot be recalled."
+    );
+  }
+}
+
 client.on("messageCreate", async (message) => {
   if (message.author.bot) return;
   const content = message.content.trim().toLowerCase();
   try {
     if (content === "!redeem") await handleRedeem(message);
     else if (content === "!packs") await handlePacks(message);
+    else if (content === "!profile") await handleProfile(message);
+    else if (content.startsWith("!profile ")) {
+      await handleProfile(message, content.slice("!profile ".length).trim());
+    }
   } catch (err) {
     console.error("Command failed:", err);
     await message.reply("Something went wrong — try again in a moment.").catch(() => {});

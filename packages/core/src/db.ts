@@ -17,6 +17,18 @@ CREATE TABLE IF NOT EXISTS collectors (
   created_ts   TEXT NOT NULL
 );
 
+-- Current opt-in public profile binding. This is intentionally separate from
+-- the append-only ledger: opting out deletes the Discord association from the
+-- public list instead of leaving it permanently recoverable in ledger history.
+CREATE TABLE IF NOT EXISTS public_profiles (
+  public_id    TEXT PRIMARY KEY,
+  discord_id   TEXT NOT NULL UNIQUE,
+  username     TEXT NOT NULL,
+  display_name TEXT NOT NULL,
+  avatar_url   TEXT,
+  updated_ts   TEXT NOT NULL
+);
+
 -- Materialized projection of pack credit balances (rebuildable from events).
 CREATE TABLE IF NOT EXISTS credit_balances (
   public_id TEXT PRIMARY KEY,
