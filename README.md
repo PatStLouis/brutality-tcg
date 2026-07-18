@@ -22,10 +22,17 @@ requirements, delivery phases, ledger design, and UI commissioning scope.
 ```
 brutality-tcg/
 ├── packages/core     # Ledger, cards, redemption logic, projections, CLI tools
-├── apps/web          # Next.js PWA: pack opening, binders, ledger export, OAuth
-├── apps/bot          # discord.js bot: !redeem and !packs
+├── apps/web          # Next.js PWA: pack opening, binders, ledger export, OAuth,
+│                     # and the internal bot API (owns the DB + signing keys)
+├── apps/bot          # discord.js bot: !redeem and !packs (talks to the web API,
+│                     # never the database)
 └── data/             # SQLite database + ledger signing keys (gitignored)
 ```
+
+The two services communicate over an authenticated internal API
+(`POST /api/internal/redeem`, `GET /api/internal/packs`) using the shared
+`BOT_API_SECRET`. Only the web service reads or writes the database and holds
+the ledger signing keys, so the services can be deployed on separate hosts.
 
 - **Ledger:** append-only events, SHA-256 hash chain, Ed25519 signatures,
   commit/reveal per pack. Binders are projections of the ledger and can be
